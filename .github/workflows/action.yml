@@ -31,9 +31,9 @@ jobs:
           format: "YYYY-MM-DD-hh-mm"
 
       ##########  collect programme data  ##########
-      - name: Delete Programme Data
-        run: |
-          rm data/programme/programmeList.json
+      # - name: Delete Programme Data
+      #   run: |
+      #     rm data/programme/programmeList.json
 
       - name: Collect Programme Data
         uses: ./action/
@@ -47,9 +47,9 @@ jobs:
           message: "programme data - ${{ steps.date.outputs.time }}"
 
       ##########  collect Tag data  ##########
-      - name: Delete Tag Data
-        run: |
-          rm data/programme/tagList.json
+      # - name: Delete Tag Data
+      #   run: |
+      #     rm data/programme/tagList.json
 
       - name: Collect Tag Data
         uses: ./action/
@@ -63,10 +63,10 @@ jobs:
           message: "tag data - ${{ steps.date.outputs.time }}"
 
       ##########  process data  ##########
-      - name: Delete Old Data
-        run: |
-          rm -rf data/programme/programme/
-          rm -rf data/programme/tag/
+      # - name: Delete Old Data
+      #   run: |
+      #     rm -rf data/programme/programme/
+      #     rm -rf data/programme/tag/
 
       - name: Process Data
         uses: ./action/
