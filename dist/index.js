@@ -35456,7 +35456,7 @@ async function collectOrgStats(owner, token) {
     await console.log(data);
 
     // write contributors list data to file
-    const contributorsFileDir = "data/programme";
+    const contributorsFileDir = "data";
     const contributorsFilePath = `${contributorsFileDir}/${"contributors"}.json`;
     await external_fs_default().writeFile(
       contributorsFilePath,
@@ -35468,7 +35468,7 @@ async function collectOrgStats(owner, token) {
     );
 
     // write stats data to file
-    const statsFileDir = "data/programme";
+    const statsFileDir = "data";
     const statsFilePath = `${statsFileDir}/${"stats"}.json`;
     await external_fs_default().writeFile(statsFilePath, JSON.stringify(data), (err) => {
       if (err) throw err;
