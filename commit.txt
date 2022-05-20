@@ -1,0 +1,1 @@
+git pull && ncc build index.js --license licenses.txt && git add . && git commit -m "try build & commit" && git push origin master

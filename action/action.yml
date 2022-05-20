@@ -1,0 +1,54 @@
+name: "Collect data"
+description: "Collect data for fetch purpose"
+inputs:
+  # basic data
+  owner:
+    description: "owner of the repository"
+    required: true
+    default: "codinasion"
+
+  # personal token for github api authentication
+  token:
+    description: "github personal access token"
+    required: true
+
+  # programme repo related data
+  programme-repo:
+    description: "programme repository name"
+    required: true
+    default: "codinasion-programme"
+
+  programme-branch:
+    description: "programme repository branch"
+    required: true
+    default: "master"
+
+  # function trigger conditions
+  collect-programme:
+    description: "collect programme data"
+    required: true
+    default: "false"
+
+  process-programme:
+    description: "process programme data"
+    required: true
+    default: "false"
+
+  collect-tag:
+    description: "collect tag data"
+    required: true
+    default: "false"
+
+  process-tag:
+    description: "process tag data"
+    required: true
+    default: "false"
+
+  collect-stats:
+    description: "collect stats data"
+    required: true
+    default: "false"
+
+runs:
+  using: "node16"
+  main: "../dist/index.js"

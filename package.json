@@ -1,0 +1,13 @@
+{
+  "name": "codinasion-data",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.8.0",
+    "gray-matter": "^4.0.3",
+    "node-fetch": "^3.2.4",
+    "remark": "^14.0.2",
+    "remark-html": "^15.0.1"
+  }
+}
