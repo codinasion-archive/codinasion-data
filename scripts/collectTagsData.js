@@ -2,6 +2,8 @@ import fs from "fs";
 
 import fetch from "node-fetch";
 
+import formatTag from "./formatTag";
+
 export default async function collectTagsData(owner, token) {
   const allTags = [];
 
@@ -21,8 +23,8 @@ export default async function collectTagsData(owner, token) {
     (await Promise.all(
       await programmeList.map(async (data) => {
         for (let i = 0; i < data.tags.length; i++) {
-          if (!allTags.includes(data.tags[i])) {
-            await allTags.push(data.tags[i]);
+          if (!allTags.includes(formatTag(data.tags[i]).tag)) {
+            await allTags.push(formatTag(data.tags[i]).tag);
           }
         }
       })
