@@ -50,7 +50,7 @@ export default async function collectAllDsaData(
 
           try {
             const content = await matter(source);
-            await collectAllDsaDataList.push({
+            await dsaList.push({
               title: content.data.title ? content.data.title : "Codinasion",
               tags: content.data.tags ? content.data.tags : [],
               slug: formatSlug(data.path),
