@@ -4,7 +4,7 @@ import fs from "fs";
 
 import matter from "gray-matter";
 
-import formatSlug from "./formatSlug";
+import formatSlug from "../formatSlug";
 
 export default async function collectProgrammesData(
   owner,

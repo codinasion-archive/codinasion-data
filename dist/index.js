@@ -14480,7 +14480,7 @@ function formatSlug(slug) {
   return slug;
 }
 
-;// CONCATENATED MODULE: ./scripts/collectProgrammesData.js
+;// CONCATENATED MODULE: ./scripts/programme/collectProgrammesData.js
 
 
 
@@ -35063,7 +35063,7 @@ function remarkHtml(settings = {}) {
   }
 }
 
-;// CONCATENATED MODULE: ./scripts/collectProgrammeData.js
+;// CONCATENATED MODULE: ./scripts/programme/collectProgrammeData.js
 
 
 
@@ -35149,45 +35149,6 @@ async function collectProgrammeData(
     ));
 }
 
-;// CONCATENATED MODULE: ./scripts/collectTagsData.js
-
-
-
-
-async function collectTagsData(owner, token) {
-  const allTags = [];
-
-  const programmeList = await fetch(
-    `https://raw.githubusercontent.com/${owner}/${"codinasion-data"}/master/data/programme/${"programmeList"}.json`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: `token ${token}`,
-      },
-    }
-  )
-    .then((res) => res.json())
-    .catch((error) => console.log(error));
-
-  programmeList &&
-    (await Promise.all(
-      await programmeList.map(async (data) => {
-        for (let i = 0; i < data.tags.length; i++) {
-          if (!allTags.includes(data.tags[i])) {
-            await allTags.push(data.tags[i]);
-          }
-        }
-      })
-    ));
-
-  // write tag list data to file
-  const tagsFilePath = `data/programme/tagList.json`;
-  await external_fs_default().writeFile(tagsFilePath, JSON.stringify(allTags), (err) => {
-    if (err) throw err;
-    console.log(`=> ${tagsFilePath} succesfully saved !!!`);
-  });
-}
-
 ;// CONCATENATED MODULE: ./scripts/formatTag.js
 function formatTag(tag) {
   if (tag === "c" || tag === "C") {
@@ -35251,7 +35212,48 @@ function formatTag(tag) {
   };
 }
 
-;// CONCATENATED MODULE: ./scripts/collectTagData.js
+;// CONCATENATED MODULE: ./scripts/tag/collectTagsData.js
+
+
+
+
+
+
+async function collectTagsData(owner, token) {
+  const allTags = [];
+
+  const programmeList = await fetch(
+    `https://raw.githubusercontent.com/${owner}/${"codinasion-data"}/master/data/programme/${"programmeList"}.json`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    }
+  )
+    .then((res) => res.json())
+    .catch((error) => console.log(error));
+
+  programmeList &&
+    (await Promise.all(
+      await programmeList.map(async (data) => {
+        for (let i = 0; i < data.tags.length; i++) {
+          if (!allTags.includes(formatTag(data.tags[i]).tag)) {
+            await allTags.push(formatTag(data.tags[i]).tag);
+          }
+        }
+      })
+    ));
+
+  // write tag list data to file
+  const tagsFilePath = `data/programme/tagList.json`;
+  await external_fs_default().writeFile(tagsFilePath, JSON.stringify(allTags), (err) => {
+    if (err) throw err;
+    console.log(`=> ${tagsFilePath} succesfully saved !!!`);
+  });
+}
+
+;// CONCATENATED MODULE: ./scripts/tag/collectTagData.js
 
 
 
@@ -35321,7 +35323,7 @@ async function collectTagData(owner, token) {
     ));
 }
 
-;// CONCATENATED MODULE: ./scripts/collectOrgStats.js
+;// CONCATENATED MODULE: ./scripts/stats/collectOrgStats.js
 
 
 

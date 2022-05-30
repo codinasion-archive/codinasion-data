@@ -1,8 +1,8 @@
-import collectProgrammesData from "./scripts/collectProgrammesData";
-import collectProgrammeData from "./scripts/collectProgrammeData";
-import collectTagsData from "./scripts/collectTagsData";
-import collectTagData from "./scripts/collectTagData";
-import collectOrgStats from "./scripts/collectOrgStats";
+import collectProgrammesData from "./scripts/programme/collectProgrammesData";
+import collectProgrammeData from "./scripts/programme/collectProgrammeData";
+import collectTagsData from "./scripts/tag/collectTagsData";
+import collectTagData from "./scripts/tag/collectTagData";
+import collectOrgStats from "./scripts/stats/collectOrgStats";
 
 const core = require("@actions/core");
 
