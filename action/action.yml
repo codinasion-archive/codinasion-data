@@ -45,6 +45,16 @@ inputs:
     required: true
     default: "false"
 
+  collect-dsa:
+    description: "collect dsa data"
+    required: true
+    default: "false"
+
+  process-dsa:
+    description: "process dsa data"
+    required: true
+    default: "false"
+
   collect-tag:
     description: "collect tag data"
     required: true
