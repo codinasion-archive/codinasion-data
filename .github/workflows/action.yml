@@ -46,6 +46,22 @@ jobs:
         with:
           message: "programme data - ${{ steps.date.outputs.time }}"
 
+      ##########  collect dsa data  ##########
+      # - name: Delete dsa Data
+      #   run: |
+      #     rm data/dsa/dsaList.json
+
+      - name: Collect dsa Data
+        uses: ./action/
+        with:
+          collect-dsa: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit dsa Data
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "dsa data - ${{ steps.date.outputs.time }}"
+
       ##########  collect Tag data  ##########
       # - name: Delete Tag Data
       #   run: |
@@ -72,6 +88,7 @@ jobs:
         uses: ./action/
         with:
           process-programme: true
+          process-dsa: true
           process-tag: true
           collect-stats: true
           token: ${{ secrets.GITHUB_TOKEN }}

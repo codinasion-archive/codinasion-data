@@ -35484,7 +35484,179 @@ async function collectOrgStats(owner, token) {
   }
 }
 
+;// CONCATENATED MODULE: ./scripts/dsa/collectAllDsaData.js
+
+
+
+
+
+
+
+
+async function collectAllDsaData(
+  owner,
+  token,
+  dsaRepo,
+  dsaBranch
+) {
+  const dsaList = [];
+  const pathsData = await fetch(
+    `https://api.github.com/repos/${owner}/${dsaRepo}/git/trees/${dsaBranch}?recursive=1`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    }
+  )
+    .then((res) => res.json())
+    .then((res) => res.tree)
+    .catch((error) => {
+      console.log(error);
+    });
+
+  pathsData &&
+    (await Promise.all(
+      await pathsData.map(async (data) => {
+        if (
+          data.path.startsWith("programme") &&
+          data.path.endsWith("README.md") &&
+          data.path !== "programme/README.md"
+        ) {
+          const source = await fetch(
+            `https://raw.githubusercontent.com/${owner}/${dsaRepo}/${dsaBranch}/${data.path}`,
+            {
+              method: "GET",
+              headers: {
+                Authorization: `token ${token}`,
+              },
+            }
+          )
+            .then((res) => res.text())
+            .catch((error) => console.log(error));
+
+          try {
+            const content = await gray_matter_default()(source);
+            await collectAllDsaDataList.push({
+              title: content.data.title ? content.data.title : "Codinasion",
+              tags: content.data.tags ? content.data.tags : [],
+              slug: formatSlug(data.path),
+            });
+          } catch (error) {
+            await console.log("error occured !!! for ", data.path);
+            await console.log(error);
+          }
+        }
+      })
+    ));
+
+  await console.log("\n=> Total dsaList data : ", dsaList.length);
+
+  // write prorgamme list data to file
+  const dsaListJson = await JSON.stringify(
+    dsaList.sort(function (a, b) {
+      if (a.slug < b.slug) {
+        return -1;
+      }
+      if (a.slug > b.slug) {
+        return 1;
+      }
+      return 0;
+    })
+  );
+  const dsaFileDir = "data/dsa";
+  await external_fs_default().promises.mkdir(dsaFileDir, { recursive: true });
+  const dsaFilePath = dsaFileDir + "/dsaList.json";
+  await external_fs_default().writeFile(dsaFilePath, dsaListJson, (err) => {
+    if (err) throw err;
+    console.log(`=> ${dsaFilePath} succesfully saved !!!`);
+  });
+}
+
+;// CONCATENATED MODULE: ./scripts/dsa/collectDsaData.js
+
+
+
+
+
+
+
+
+async function collectDsaData(owner, token, dsaRepo, dsaBranch) {
+  const dsaList = await fetch(
+    `https://raw.githubusercontent.com/${"codinasion"}/${"codinasion-data"}/master/data/dsa/${"dsaList"}.json`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    }
+  )
+    .then((res) => res.json())
+    .catch((error) => console.log(error));
+
+  const dsaFileDir = "data/dsa/programme";
+  await external_fs_default().promises.mkdir(dsaFileDir, { recursive: true });
+  dsaList &&
+    (await Promise.all(
+      dsaList.map(async (data) => {
+        const slug = data.slug;
+
+        try {
+          const source = await fetch(
+            `https://raw.githubusercontent.com/${owner}/${dsaRepo}/${dsaBranch}/programme/${slug}/README.md`,
+            {
+              method: "GET",
+              headers: {
+                Authorization: `token ${token}`,
+              },
+            }
+          )
+            .then((res) => res.text())
+            .catch((error) => console.log(error));
+
+          const matterResult = await gray_matter_default()(source);
+
+          const processedContent = await remark()
+            .use(remarkHtml)
+            .process(matterResult.content);
+          const contentHtml = processedContent.toString();
+
+          const dsaData = JSON.stringify({
+            contentHtml: contentHtml,
+            markdown: matterResult.content,
+            frontMatter: {
+              slug: slug || null,
+              title: matterResult.data.title
+                ? matterResult.data.title
+                : "Codinasion",
+              description: matterResult.data.description
+                ? matterResult.data.description
+                : "Codinasion",
+              tags: matterResult.data.tags ? matterResult.data.tags : [],
+              contributors: matterResult.data.contributors
+                ? matterResult.data.contributors
+                : [],
+            },
+          });
+
+          // write prorgamme list data to file
+          const dsaFilePath = `${dsaFileDir}/${slug}.json`;
+          await external_fs_default().writeFile(dsaFilePath, dsaData, (err) => {
+            if (err) throw err;
+            console.log(`=> ${dsaFilePath} succesfully saved !!!`);
+          });
+        } catch (error) {
+          await console.log("error occured !!! for ", slug);
+          await console.log(error);
+        }
+      })
+    ));
+}
+
 ;// CONCATENATED MODULE: ./index.js
+
+
 
 
 
@@ -35502,8 +35674,12 @@ const index_core = __nccwpck_require__(2810);
     const token = await index_core.getInput("token");
     const programmeRepo = await index_core.getInput("programme-repo");
     const programmeBranch = await index_core.getInput("programme-branch");
+    const dsaRepo = await index_core.getInput("dsa-repo");
+    const dsaBranch = await index_core.getInput("dsa-branch");
     const collectProgramme = await index_core.getInput("collect-programme");
     const processProgramme = await index_core.getInput("process-programme");
+    const collectDsa = await index_core.getInput("collect-dsa");
+    const processDsa = await index_core.getInput("process-dsa");
     const collectTag = await index_core.getInput("collect-tag");
     const processTag = await index_core.getInput("process-tag");
     const collectStats = await index_core.getInput("collect-stats");
@@ -35514,6 +35690,14 @@ const index_core = __nccwpck_require__(2810);
 
     if (processProgramme === "true") {
       await collectProgrammeData(owner, token, programmeRepo, programmeBranch);
+    }
+
+    if (collectDsa === "true") {
+      await collectAllDsaData(owner, token, dsaRepo, dsaBranch);
+    }
+
+    if (processDsa === "true") {
+      await collectDsaData(owner, token, dsaRepo, dsaBranch);
     }
 
     if (collectTag === "true") {

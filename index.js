@@ -3,6 +3,8 @@ import collectProgrammeData from "./scripts/programme/collectProgrammeData";
 import collectTagsData from "./scripts/tag/collectTagsData";
 import collectTagData from "./scripts/tag/collectTagData";
 import collectOrgStats from "./scripts/stats/collectOrgStats";
+import collectAllDsaData from "./scripts/dsa/collectAllDsaData";
+import collectDsaData from "./scripts/dsa/collectDsaData";
 
 const core = require("@actions/core");
 
@@ -15,8 +17,12 @@ const core = require("@actions/core");
     const token = await core.getInput("token");
     const programmeRepo = await core.getInput("programme-repo");
     const programmeBranch = await core.getInput("programme-branch");
+    const dsaRepo = await core.getInput("dsa-repo");
+    const dsaBranch = await core.getInput("dsa-branch");
     const collectProgramme = await core.getInput("collect-programme");
     const processProgramme = await core.getInput("process-programme");
+    const collectDsa = await core.getInput("collect-dsa");
+    const processDsa = await core.getInput("process-dsa");
     const collectTag = await core.getInput("collect-tag");
     const processTag = await core.getInput("process-tag");
     const collectStats = await core.getInput("collect-stats");
@@ -27,6 +33,14 @@ const core = require("@actions/core");
 
     if (processProgramme === "true") {
       await collectProgrammeData(owner, token, programmeRepo, programmeBranch);
+    }
+
+    if (collectDsa === "true") {
+      await collectAllDsaData(owner, token, dsaRepo, dsaBranch);
+    }
+
+    if (processDsa === "true") {
+      await collectDsaData(owner, token, dsaRepo, dsaBranch);
     }
 
     if (collectTag === "true") {

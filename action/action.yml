@@ -23,6 +23,17 @@ inputs:
     required: true
     default: "master"
 
+  # dsa repo related data
+  dsa-repo:
+    description: "dsa repository name"
+    required: true
+    default: "codinasion-dsa"
+
+  dsa-branch:
+    description: "dsa repository branch"
+    required: true
+    default: "master"
+
   # function trigger conditions
   collect-programme:
     description: "collect programme data"
