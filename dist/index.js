@@ -35654,7 +35654,43 @@ async function collectDsaData(owner, token, dsaRepo, dsaBranch) {
     ));
 }
 
+;// CONCATENATED MODULE: ./scripts/quote/collectQuoteData.js
+
+
+
+
+async function collectQuoteData(
+  owner,
+  token,
+  quoteRepo,
+  quoteBranch
+) {
+  const quoteData = await fetch(
+    `https://raw.githubusercontent.com/${owner}/${quoteRepo}/${quoteBranch}/quotes.json`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    }
+  )
+    .then((res) => res.json())
+    .then((res) => res.tree)
+    .catch((error) => {
+      console.log(error);
+    });
+
+  const quoteFileDir = "data/quote";
+  await external_fs_default().promises.mkdir(quoteFileDir, { recursive: true });
+  const quoteFilePath = quoteFileDir + "/quotes.json";
+  await external_fs_default().writeFile(quoteFilePath, quoteData, (err) => {
+    if (err) throw err;
+    console.log(`=> ${quoteFilePath} succesfully saved !!!`);
+  });
+}
+
 ;// CONCATENATED MODULE: ./index.js
+
 
 
 
@@ -35676,10 +35712,13 @@ const index_core = __nccwpck_require__(2810);
     const programmeBranch = await index_core.getInput("programme-branch");
     const dsaRepo = await index_core.getInput("dsa-repo");
     const dsaBranch = await index_core.getInput("dsa-branch");
+    const quoteRepo = await index_core.getInput("quote-repo");
+    const quoteBranch = await index_core.getInput("quote-branch");
     const collectProgramme = await index_core.getInput("collect-programme");
     const processProgramme = await index_core.getInput("process-programme");
     const collectDsa = await index_core.getInput("collect-dsa");
     const processDsa = await index_core.getInput("process-dsa");
+    const collectQuote = await index_core.getInput("collect-quote");
     const collectTag = await index_core.getInput("collect-tag");
     const processTag = await index_core.getInput("process-tag");
     const collectStats = await index_core.getInput("collect-stats");
@@ -35710,6 +35749,10 @@ const index_core = __nccwpck_require__(2810);
 
     if (collectStats === "true") {
       await collectOrgStats(owner, token);
+    }
+
+    if (collectQuote === "true") {
+      await collectQuoteData(owner, token, quoteRepo, quoteBranch);
     }
 
     // end of action

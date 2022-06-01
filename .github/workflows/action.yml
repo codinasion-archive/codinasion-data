@@ -61,6 +61,22 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           message: "dsa data - ${{ steps.date.outputs.time }}"
+      
+      ##########  collect quote data  ##########
+      # - name: Delete quote Data
+      #   run: |
+      #     rm data/quote/quotes.json
+
+      - name: Collect quote Data
+        uses: ./action/
+        with:
+          collect-quote: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit quote Data
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "quote data - ${{ steps.date.outputs.time }}"
 
       ##########  collect Tag data  ##########
       # - name: Delete Tag Data
