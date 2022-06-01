@@ -35675,7 +35675,6 @@ async function collectQuoteData(
     }
   )
     .then((res) => res.json())
-    .then((res) => res.tree)
     .catch((error) => {
       console.log(error);
     });
