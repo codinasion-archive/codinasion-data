@@ -22,6 +22,8 @@ export default async function collectQuoteData(
       console.log(error);
     });
 
+  console.log(quoteData);
+
   const quoteFileDir = "data/quote";
   await fs.promises.mkdir(quoteFileDir, { recursive: true });
   const quoteFilePath = quoteFileDir + "/quotes.json";

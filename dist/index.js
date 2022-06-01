@@ -35679,6 +35679,8 @@ async function collectQuoteData(
       console.log(error);
     });
 
+  console.log(quoteData);
+
   const quoteFileDir = "data/quote";
   await external_fs_default().promises.mkdir(quoteFileDir, { recursive: true });
   const quoteFilePath = quoteFileDir + "/quotes.json";
