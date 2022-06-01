@@ -22,13 +22,13 @@ export default async function collectQuoteData(
       console.log(error);
     });
 
-  console.log(quoteData);
+  console.log("quoteData => ", quoteData);
 
-  const quoteFileDir = "data/quote";
-  await fs.promises.mkdir(quoteFileDir, { recursive: true });
-  const quoteFilePath = quoteFileDir + "/quotes.json";
-  await fs.writeFile(quoteFilePath, JSON.stringify(quoteData), (err) => {
-    if (err) throw err;
-    console.log(`=> ${quoteFilePath} succesfully saved !!!`);
-  });
+  // const quoteFileDir = "data/quote";
+  // await fs.promises.mkdir(quoteFileDir, { recursive: true });
+  // const quoteFilePath = quoteFileDir + "/quotes.json";
+  // await fs.writeFile(quoteFilePath, JSON.stringify(quoteData), (err) => {
+  //   if (err) throw err;
+  //   console.log(`=> ${quoteFilePath} succesfully saved !!!`);
+  // });
 }
