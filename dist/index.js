@@ -35666,7 +35666,7 @@ async function collectQuoteData(
   quoteBranch
 ) {
   const quoteData = await fetch(
-    `https://raw.githubusercontent.com/codinasion/readme-quotes/master/quotes.json?token=GHSAT0AAAAAABUKO6S3RSUFHFGQNZ2UIB4KYUXWVJA``https://raw.githubusercontent.com/${owner}/${quoteRepo}/${quoteBranch}/quotes.json`,
+    `https://raw.githubusercontent.com/${owner}/${quoteRepo}/${quoteBranch}/quotes.json`,
     {
       method: "GET",
       headers: {
