@@ -35539,6 +35539,14 @@ async function collectAllDsaData(
             const content = await gray_matter_default()(source);
             await dsaList.push({
               title: content.data.title ? content.data.title : "Codinasion",
+              description: content.data.description
+                ? content.data.description
+                : "Codinasion",
+              image: content.data.image
+                ? `https://raw.githubusercontent.com/${owner}/${dsaRepo}/${dsaBranch}/programme/${formatSlug(
+                    data.path
+                  )}/${content.data.image}`
+                : "https://avatars.githubusercontent.com/u/98682602",
               tags: content.data.tags ? content.data.tags : [],
               slug: formatSlug(data.path),
             });
@@ -35633,6 +35641,9 @@ async function collectDsaData(owner, token, dsaRepo, dsaBranch) {
               description: matterResult.data.description
                 ? matterResult.data.description
                 : "Codinasion",
+              image: matterResult.data.image
+                ? `https://raw.githubusercontent.com/${owner}/${dsaRepo}/${dsaBranch}/programme/${slug}/${matterResult.data.image}`
+                : "https://avatars.githubusercontent.com/u/98682602",
               tags: matterResult.data.tags ? matterResult.data.tags : [],
               contributors: matterResult.data.contributors
                 ? matterResult.data.contributors
