@@ -35641,6 +35641,9 @@ async function collectDsaData(owner, token, dsaRepo, dsaBranch) {
               description: matterResult.data.description
                 ? matterResult.data.description
                 : "Codinasion",
+              image: matterResult.data.image
+                ? `https://raw.githubusercontent.com/${owner}/${dsaRepo}/${dsaBranch}/programme/${slug}/${matterResult.data.image}`
+                : "https://avatars.githubusercontent.com/u/98682602",
               tags: matterResult.data.tags ? matterResult.data.tags : [],
               contributors: matterResult.data.contributors
                 ? matterResult.data.contributors
