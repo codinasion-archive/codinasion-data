@@ -38,7 +38,7 @@ inputs:
   quote-repo:
     description: "quote repository name"
     required: true
-    default: "readme-quotes"
+    default: "readme-quote"
 
   quote-branch:
     description: "quote repository branch"
