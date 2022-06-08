@@ -107,7 +107,7 @@ jobs:
           process-dsa: true
           process-tag: true
           collect-stats: true
-          collect-quote: true
+          process-quote: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit Processed Data
