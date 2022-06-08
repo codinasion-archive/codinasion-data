@@ -6,6 +6,7 @@ import collectOrgStats from "./scripts/stats/collectOrgStats";
 import collectAllDsaData from "./scripts/dsa/collectAllDsaData";
 import collectDsaData from "./scripts/dsa/collectDsaData";
 import collectQuoteData from "./scripts/quote/collectQuoteData";
+import collectQuoteCategoryData from "./scripts/quote/collectQuoteCategoryData";
 
 const core = require("@actions/core");
 
@@ -27,6 +28,7 @@ const core = require("@actions/core");
     const collectDsa = await core.getInput("collect-dsa");
     const processDsa = await core.getInput("process-dsa");
     const collectQuote = await core.getInput("collect-quote");
+    const processQuote = await core.getInput("process-quote");
     const collectTag = await core.getInput("collect-tag");
     const processTag = await core.getInput("process-tag");
     const collectStats = await core.getInput("collect-stats");
@@ -61,6 +63,10 @@ const core = require("@actions/core");
 
     if (collectQuote === "true") {
       await collectQuoteData(owner, token, quoteRepo, quoteBranch);
+    }
+
+    if (processQuote === "true") {
+      await collectQuoteCategoryData(token);
     }
 
     // end of action

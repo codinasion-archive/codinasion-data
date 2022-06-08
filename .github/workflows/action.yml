@@ -61,7 +61,7 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           message: "dsa data - ${{ steps.date.outputs.time }}"
-      
+
       ##########  collect quote data  ##########
       # - name: Delete quote Data
       #   run: |
@@ -107,6 +107,7 @@ jobs:
           process-dsa: true
           process-tag: true
           collect-stats: true
+          process-quote: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit Processed Data
