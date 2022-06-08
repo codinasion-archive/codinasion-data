@@ -35734,8 +35734,6 @@ async function collectQuoteCategoryData(token) {
       })
     ));
 
-  await console.log("quotes categories =>", quoteCategory);
-
   // save quote category data
   quoteCategory &&
     (await Promise.all(
@@ -35751,7 +35749,7 @@ async function collectQuoteCategoryData(token) {
           JSON.stringify(categoryQuotes),
           (err) => {
             if (err) throw err;
-            console.log(`<=> ${quoteFilePath} succesfully saved !!!`);
+            console.log(`=> ${quoteFilePath} succesfully saved !!!`);
           }
         );
       })
