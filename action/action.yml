@@ -33,7 +33,7 @@ inputs:
     description: "dsa repository branch"
     required: true
     default: "master"
-  
+
   # quote repo related data
   quote-repo:
     description: "quote repository name"
@@ -65,9 +65,14 @@ inputs:
     description: "process dsa data"
     required: true
     default: "false"
-  
+
   collect-quote:
     description: "collect quote data"
+    required: true
+    default: "false"
+
+  process-quote:
+    description: "process quote data"
     required: true
     default: "false"
 
