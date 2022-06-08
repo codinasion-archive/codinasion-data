@@ -29,6 +29,8 @@ export default async function collectQuoteCategoryData(token) {
       })
     ));
 
+  await console.log("quotes categories =>", quoteCategory);
+
   // save quote category data
   quoteCategory &&
     (await Promise.all(
