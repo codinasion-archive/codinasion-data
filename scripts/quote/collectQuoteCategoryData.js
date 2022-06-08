@@ -46,7 +46,7 @@ export default async function collectQuoteCategoryData(token) {
           JSON.stringify(categoryQuotes),
           (err) => {
             if (err) throw err;
-            console.log(`=> ${quoteFilePath} succesfully saved !!!`);
+            console.log(`<=> ${quoteFilePath} succesfully saved !!!`);
           }
         );
       })
