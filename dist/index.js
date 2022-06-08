@@ -35702,7 +35702,62 @@ async function collectQuoteData(
   });
 }
 
+;// CONCATENATED MODULE: ./scripts/quote/collectQuoteCategoryData.js
+
+
+
+
+async function collectQuoteCategoryData(token) {
+  const quoteCategory = [];
+  const quoteList = await fetch(
+    `https://raw.githubusercontent.com/${"codinasion"}/${"codinasion-data"}/master/data/quote/${"quotes"}.json`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    }
+  )
+    .then((res) => res.json())
+    .catch((error) => console.log(error));
+
+  const quoteFileDir = "data/quote/category";
+  await external_fs_default().promises.mkdir(quoteFileDir, { recursive: true });
+
+  //  get quote categories
+  quoteList &&
+    (await Promise.all(
+      await quoteList.map(async (quote) => {
+        if (!quoteCategory.includes(quote.type.toLowerCase())) {
+          await quoteCategory.push(quote.type.toLowerCase());
+        }
+      })
+    ));
+
+  // save quote category data
+  quoteCategory &&
+    (await Promise.all(
+      await quoteCategory.map(async (category) => {
+        const categoryQuotes = await quoteList.filter(function (quote) {
+          return quote.type.toLowerCase() === category.toLowerCase();
+        });
+
+        // write quote category data to file
+        const quoteFilePath = `${quoteFileDir}/${category.toLowerCase()}.json`;
+        await external_fs_default().writeFile(
+          quoteFilePath,
+          JSON.stringify(categoryQuotes),
+          (err) => {
+            if (err) throw err;
+            console.log(`=> ${quoteFilePath} succesfully saved !!!`);
+          }
+        );
+      })
+    ));
+}
+
 ;// CONCATENATED MODULE: ./index.js
+
 
 
 
@@ -35732,6 +35787,7 @@ const index_core = __nccwpck_require__(2810);
     const collectDsa = await index_core.getInput("collect-dsa");
     const processDsa = await index_core.getInput("process-dsa");
     const collectQuote = await index_core.getInput("collect-quote");
+    const processQuote = await index_core.getInput("process-quote");
     const collectTag = await index_core.getInput("collect-tag");
     const processTag = await index_core.getInput("process-tag");
     const collectStats = await index_core.getInput("collect-stats");
@@ -35766,6 +35822,10 @@ const index_core = __nccwpck_require__(2810);
 
     if (collectQuote === "true") {
       await collectQuoteData(owner, token, quoteRepo, quoteBranch);
+    }
+
+    if (processQuote === "true") {
+      await collectQuoteCategoryData(token);
     }
 
     // end of action
