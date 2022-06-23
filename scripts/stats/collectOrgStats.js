@@ -157,8 +157,8 @@ export default async function collectOrgStats(owner, token, PAT) {
     // add logo to humans.txt
     humans =
       humans +
-      `\n\n
-    __
+      `\n
+     __
     /  )          /                 /            
    /      _    __/  -  __    _    -/-  -  _   __
   (___/  (_)  (_/  /   / (  (_(_  (_  /  (_)  / (
