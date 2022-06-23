@@ -35713,6 +35713,73 @@ Twitter:     https://twitter.com/codinasion
       humansAdded.push(team_member_data.login);
     }
 
+    // add contributors to humans.txt
+    humans =
+      humans +
+      `\n
+/* CONTRIBUTORS */
+    `;
+    var contributors_data = [];
+    // iterate through all contributors and add to contributors array
+    for (let i = 0; i < contributors.length; i++) {
+      // find if contributor is already in humansAdded array
+      var isAlreadyAdded = false;
+      for (let j = 0; j < humansAdded.length; j++) {
+        if (humansAdded[j] === contributors[i].username) {
+          isAlreadyAdded = true;
+        }
+      }
+      // if contributor is not already in humansAdded array, add to contributors array
+      if (isAlreadyAdded === false) {
+        contributors_data.push(contributors[i].username);
+      }
+    }
+    // iterate through contributors array and get user data from github api
+    for (let i = 0; i < contributors_data.length; i++) {
+      var contributor_data = {};
+      await fetch(`https://api.github.com/users/${contributors_data[i]}`, {
+        method: "GET",
+        headers: {
+          Authorization: `token ${token} `,
+        },
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            throw new Error(
+              `The HTTP status of the reponse: ${res.status} (${res.statusText})`
+            );
+          }
+        })
+        .then((json) => {
+          contributor_data = json;
+        })
+        .catch((err) => console.log(err));
+      // add contributor to humans.txt
+      if (contributor_data.name !== "") {
+        humans = humans + `\n${contributor_data.name}`;
+      } else {
+        humans = humans + `\n${contributor_data.login}`;
+      }
+      if (contributor_data.html_url !== "") {
+        humans = humans + `\n${contributor_data.html_url}`;
+      } else {
+        humans = humans + `\n${"https://github.com/orgs/codinasion/people"}`;
+      }
+      if (
+        contributor_data.twitter_username !== "" &&
+        contributor_data.twitter_username !== null &&
+        contributor_data.twitter_username !== undefined
+      ) {
+        humans =
+          humans +
+          `\n${"https://twitter.com/" + contributor_data.twitter_username}`;
+      }
+      humans = humans + "\n";
+      humansAdded.push(contributor_data.login);
+    }
+
     await console.log(humans);
 
     // // write humans.txt data to file
