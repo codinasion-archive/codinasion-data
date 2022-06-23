@@ -35331,7 +35331,7 @@ async function collectTagData(owner, token) {
 
 
 
-async function collectOrgStats(owner, token) {
+async function collectOrgStats(owner, token, PAT) {
   try {
     const repos = [];
     const contributors = [];
@@ -35526,7 +35526,7 @@ async function collectOrgStats(owner, token) {
       {
         method: "GET",
         headers: {
-          Authorization: `token ${token} `,
+          Authorization: `token ${PAT} `,
         },
       }
     )
@@ -35899,6 +35899,7 @@ const index_core = __nccwpck_require__(2810);
 
     const owner = await index_core.getInput("owner");
     const token = await index_core.getInput("token");
+    const PAT = await index_core.getInput("PAT");
     const programmeRepo = await index_core.getInput("programme-repo");
     const programmeBranch = await index_core.getInput("programme-branch");
     const dsaRepo = await index_core.getInput("dsa-repo");
@@ -35940,7 +35941,7 @@ const index_core = __nccwpck_require__(2810);
     }
 
     if (collectStats === "true") {
-      await collectOrgStats(owner, token);
+      await collectOrgStats(owner, token, PAT);
     }
 
     if (collectQuote === "true") {

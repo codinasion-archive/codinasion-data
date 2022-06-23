@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 
 import fs from "fs";
 
-export default async function collectOrgStats(owner, token) {
+export default async function collectOrgStats(owner, token, PAT) {
   try {
     const repos = [];
     const contributors = [];
@@ -197,7 +197,7 @@ export default async function collectOrgStats(owner, token) {
       {
         method: "GET",
         headers: {
-          Authorization: `token ${token} `,
+          Authorization: `token ${PAT} `,
         },
       }
     )

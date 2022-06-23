@@ -17,6 +17,7 @@ const core = require("@actions/core");
 
     const owner = await core.getInput("owner");
     const token = await core.getInput("token");
+    const PAT = await core.getInput("PAT");
     const programmeRepo = await core.getInput("programme-repo");
     const programmeBranch = await core.getInput("programme-branch");
     const dsaRepo = await core.getInput("dsa-repo");
@@ -58,7 +59,7 @@ const core = require("@actions/core");
     }
 
     if (collectStats === "true") {
-      await collectOrgStats(owner, token);
+      await collectOrgStats(owner, token, PAT);
     }
 
     if (collectQuote === "true") {
