@@ -159,11 +159,11 @@ export default async function collectOrgStats(owner, token, PAT) {
     humans =
       humans +
       `\n
-     __
-    /  )          /                 /            
-   /      _    __/  -  __    _    -/-  -  _   __
-  (___/  (_)  (_/  /   / (  (_(_  (_  /  (_)  / (
-   
+       __
+      /  )          /                 /
+     /      _    __/  -  __    _    -/-  -  _   __
+    (___/  (_)  (_/  /   / (  (_(_  (_  /  (_)  / (
+
 
     The humans.txt file explains the team, technology, and assets 
     behind this site.
