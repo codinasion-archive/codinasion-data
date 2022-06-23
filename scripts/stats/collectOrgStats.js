@@ -252,7 +252,11 @@ Twitter:     https://twitter.com/codinasion
       } else {
         humans = humans + `\n${"https://github.com/orgs/codinasion/people"}`;
       }
-      if (maintainer_data.twitter_username !== "") {
+      if (
+        maintainer_data.twitter_username !== "" &&
+        maintainer_data.twitter_username !== null &&
+        maintainer_data.twitter_username !== undefined
+      ) {
         humans =
           humans +
           `\n${"https://twitter.com/" + maintainer_data.twitter_username}`;
@@ -326,6 +330,8 @@ Twitter:     https://twitter.com/codinasion
         }
       }
     }
+    // sort team array alphabetically
+    team.sort();
     // iterate trough team array and get user data from github api
     for (let j = 0; j < team.length; j++) {
       var team_member_data = {};
@@ -359,7 +365,11 @@ Twitter:     https://twitter.com/codinasion
       } else {
         humans = humans + `\n${"https://github.com/orgs/codinasion/people"}`;
       }
-      if (team_member_data.twitter_username !== "") {
+      if (
+        team_member_data.twitter_username !== "" &&
+        team_member_data.twitter_username !== null &&
+        team_member_data.twitter_username !== undefined
+      ) {
         humans =
           humans +
           `\n${"https://twitter.com/" + team_member_data.twitter_username}`;
