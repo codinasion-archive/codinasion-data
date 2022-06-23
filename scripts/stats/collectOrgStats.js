@@ -206,7 +206,7 @@ export default async function collectOrgStats(owner, token) {
           return res.json();
         } else {
           throw new Error(
-            `The HTTP status of the reponse: ${res.status} (${res.statusText})`
+            `The HTTP status of the reponse { maintainers-api }: ${res.status} (${res.statusText})`
           );
         }
       })
