@@ -35602,7 +35602,7 @@ Twitter:     https://twitter.com/codinasion
     await fetch(`https://api.github.com/orgs/codinasion/teams`, {
       method: "GET",
       headers: {
-        Authorization: `token ${token} `,
+        Authorization: `token ${PAT} `,
       },
     })
       .then((res) => {
@@ -35624,7 +35624,7 @@ Twitter:     https://twitter.com/codinasion
       await fetch(`https://api.github.com/teams/${team_data[i].id}/members`, {
         method: "GET",
         headers: {
-          Authorization: `token ${token} `,
+          Authorization: `token ${PAT} `,
         },
       })
         .then((res) => {
