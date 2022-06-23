@@ -35590,6 +35590,113 @@ Twitter:     https://twitter.com/codinasion
       humansAdded.push(maintainer_data.login);
     }
 
+    // add team details to humans.txt
+    humans =
+      humans +
+      `\n
+/* TEAM */
+    `;
+    var team_data = [];
+    var team = [];
+    // get all teams from github api
+    await fetch(`https://api.github.com/orgs/codinasion/teams`, {
+      method: "GET",
+      headers: {
+        Authorization: `token ${token} `,
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error(
+            `The HTTP status of the reponse: ${res.status} (${res.statusText})`
+          );
+        }
+      })
+      .then((json) => {
+        team_data = json;
+      })
+      .catch((err) => console.log(err));
+    // iterate through team data and fetch team members
+    for (let i = 0; i < team_data.length; i++) {
+      var team_members_data = [];
+      await fetch(`https://api.github.com/teams/${team_data[i].id}/members`, {
+        method: "GET",
+        headers: {
+          Authorization: `token ${token} `,
+        },
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            throw new Error(
+              `The HTTP status of the reponse: ${res.status} (${res.statusText})`
+            );
+          }
+        })
+        .then((json) => {
+          team_members_data = json;
+        })
+        .catch((err) => console.log(err));
+      // iterate through team members data and add to team array
+      for (let j = 0; j < team_members_data.length; j++) {
+        // find if team member is already in humansAdded array
+        var isAlreadyAdded = false;
+        for (let k = 0; k < humansAdded.length; k++) {
+          if (humansAdded[k] === team_members_data[j].login) {
+            isAlreadyAdded = true;
+          }
+        }
+        // if team member is not already in humansAdded array, add to team array
+        if (isAlreadyAdded === false) {
+          team.push(team_members_data[j].login);
+        }
+      }
+    }
+    // iterate trough team array and get user data from github api
+    for (let j = 0; j < team.length; j++) {
+      var team_member_data = {};
+      await fetch(`https://api.github.com/users/${team[j]}`, {
+        method: "GET",
+        headers: {
+          Authorization: `token ${token} `,
+        },
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            throw new Error(
+              `The HTTP status of the reponse: ${res.status} (${res.statusText})`
+            );
+          }
+        })
+        .then((json) => {
+          team_member_data = json;
+        })
+        .catch((err) => console.log(err));
+      // add team member to humans.txt
+      if (team_member_data.name !== "") {
+        humans = humans + `\n${team_member_data.name}`;
+      } else {
+        humans = humans + `\n${team_member_data.login}`;
+      }
+      if (team_member_data.html_url !== "") {
+        humans = humans + `\n${team_member_data.html_url}`;
+      } else {
+        humans = humans + `\n${"https://github.com/orgs/codinasion/people"}`;
+      }
+      if (team_member_data.twitter_username !== "") {
+        humans =
+          humans +
+          `\n${"https://twitter.com/" + team_member_data.twitter_username}`;
+      }
+      humans = humans + "\n";
+      humansAdded.push(team_member_data.login);
+    }
+
     await console.log(humans);
 
     // // write humans.txt data to file
