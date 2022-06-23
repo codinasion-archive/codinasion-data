@@ -109,6 +109,7 @@ jobs:
           collect-stats: true
           process-quote: true
           token: ${{ secrets.GITHUB_TOKEN }}
+          PAT: ${{ secrets.API_DATA_FETCH_PAT }}
 
       - name: Commit Processed Data
         uses: EndBug/add-and-commit@v9

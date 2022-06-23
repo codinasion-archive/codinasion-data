@@ -7,10 +7,15 @@ inputs:
     required: true
     default: "codinasion"
 
-  # personal token for github api authentication
+  # token for github api authentication (auto generation)
   token:
     description: "github personal access token"
     required: true
+
+  # personal token for github api authentication
+  PAT:
+    description: "github personal access token"
+    required: false
 
   # programme repo related data
   programme-repo:
