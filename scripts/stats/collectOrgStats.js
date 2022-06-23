@@ -202,7 +202,6 @@ export default async function collectOrgStats(owner, token, PAT) {
       }
     )
       .then((res) => {
-        console.log(res);
         if (res.ok) {
           return res.json();
         } else {
@@ -250,7 +249,7 @@ export default async function collectOrgStats(owner, token, PAT) {
         maintainer_data.name !== ""
           ? maintainer_data.name
           : maintainer_data.login
-      }"}
+      }
       ${
         maintainer_data.html_url !== ""
           ? maintainer_data.html_url
