@@ -155,7 +155,20 @@ export default async function collectOrgStats(owner, token, PAT) {
     const humansAdded = [];
     var humans = "";
     // add logo to humans.txt
-    // ...
+    humans =
+      humans +
+      `\n\n
+    __
+    /  )          /                 /            
+   /      _    __/  -  __    _    -/-  -  _   __
+  (___/  (_)  (_/  /   / (  (_(_  (_  /  (_)  / (
+         
+ 
+    The humans.txt file explains the team, technology, and assets 
+    behind this site.
+ 
+ _______________________________________________________________________________
+    `;
     // add organisation details to humans.txt
     humans =
       humans +
