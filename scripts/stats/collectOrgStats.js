@@ -202,6 +202,7 @@ export default async function collectOrgStats(owner, token) {
       }
     )
       .then((res) => {
+        console.log(res);
         if (res.ok) {
           return res.json();
         } else {
