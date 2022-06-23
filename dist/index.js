@@ -35571,12 +35571,20 @@ Twitter:     https://twitter.com/codinasion
         })
         .catch((err) => console.log(err));
       // add maintainer to humans.txt
-      if (maintainer_data.name !== "") {
+      if (
+        maintainer_data.name !== "" &&
+        maintainer_data.name !== null &&
+        maintainer_data.name !== undefined
+      ) {
         humans = humans + `\n${maintainer_data.name}`;
       } else {
         humans = humans + `\n${maintainer_data.login}`;
       }
-      if (maintainer_data.html_url !== "") {
+      if (
+        maintainer_data.html_url !== "" &&
+        maintainer_data.html_url !== null &&
+        maintainer_data.html_url !== undefined
+      ) {
         humans = humans + `\n${maintainer_data.html_url}`;
       } else {
         humans = humans + `\n${"https://github.com/orgs/codinasion/people"}`;
@@ -35690,12 +35698,20 @@ Twitter:     https://twitter.com/codinasion
         })
         .catch((err) => console.log(err));
       // add team member to humans.txt
-      if (team_member_data.name !== "") {
+      if (
+        team_member_data.name !== "" &&
+        team_member_data.name !== null &&
+        team_member_data.name !== undefined
+      ) {
         humans = humans + `\n${team_member_data.name}`;
       } else {
         humans = humans + `\n${team_member_data.login}`;
       }
-      if (team_member_data.html_url !== "") {
+      if (
+        team_member_data.html_url !== "" &&
+        team_member_data.html_url !== null &&
+        team_member_data.html_url !== undefined
+      ) {
         humans = humans + `\n${team_member_data.html_url}`;
       } else {
         humans = humans + `\n${"https://github.com/orgs/codinasion/people"}`;
@@ -35757,12 +35773,20 @@ Twitter:     https://twitter.com/codinasion
         })
         .catch((err) => console.log(err));
       // add contributor to humans.txt
-      if (contributor_data.name !== "") {
+      if (
+        contributor_data.name !== "" &&
+        contributor_data.name !== null &&
+        contributor_data.name !== undefined
+      ) {
         humans = humans + `\n${contributor_data.name}`;
       } else {
         humans = humans + `\n${contributor_data.login}`;
       }
-      if (contributor_data.html_url !== "") {
+      if (
+        contributor_data.html_url !== "" &&
+        contributor_data.html_url !== null &&
+        contributor_data.html_url !== undefined
+      ) {
         humans = humans + `\n${contributor_data.html_url}`;
       } else {
         humans = humans + `\n${"https://github.com/orgs/codinasion/people"}`;
