@@ -35806,13 +35806,13 @@ Twitter:     https://twitter.com/codinasion
 
     await console.log(humans);
 
-    // // write humans.txt data to file
-    // const humansFileDir = "data";
-    // const humansFilePath = `${humansFileDir}/${"humans"}.txt`;
-    // await fs.writeFile(humansFilePath, humans, (err) => {
-    //   if (err) throw err;
-    //   console.log(`=> ${humansFilePath} succesfully saved !!!`);
-    // });
+    // write humans.txt data to file
+    const humansFileDir = "data";
+    const humansFilePath = `${humansFileDir}/${"humans"}.txt`;
+    await external_fs_default().writeFile(humansFilePath, humans, (err) => {
+      if (err) throw err;
+      console.log(`=> ${humansFilePath} succesfully saved !!!`);
+    });
 
     //   collection complete
   } catch (error) {
