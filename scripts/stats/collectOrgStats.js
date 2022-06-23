@@ -101,7 +101,7 @@ export default async function collectOrgStats(owner, token, PAT) {
     }
 
     contributors.sort((a, b) =>
-      a.username > b.username.toLowerCase()
+      a.username.toLowerCase() > b.username.toLowerCase()
         ? 1
         : b.username.toLowerCase() > a.username.toLowerCase()
         ? -1
@@ -331,7 +331,13 @@ Twitter:     https://twitter.com/codinasion
       }
     }
     // sort team array alphabetically
-    team.sort();
+    team.sort((a, b) =>
+      a.toLowerCase() > b.toLowerCase()
+        ? 1
+        : b.toLowerCase() > a.toLowerCase()
+        ? -1
+        : 0
+    );
     // iterate trough team array and get user data from github api
     for (let j = 0; j < team.length; j++) {
       var team_member_data = {};
