@@ -35488,36 +35488,36 @@ async function collectOrgStats(owner, token, PAT) {
     // add organisation details to humans.txt
     humans =
       humans +
-      `\n\n
-    /* PROJECT */
-    Site Name:   Codinasion
-    Site URL:    https://codinasion.vercel.app
-    Created:     2022-01-26
-    Web Design:  Harsh Raj @ Codinasion
+      `\n
+/* PROJECT */
+Site Name:   Codinasion
+Site URL:    https://codinasion.vercel.app
+Created:     2022-01-26
+Web Design:  Harsh Raj @ Codinasion
     `;
     // add meta details to humans.txt
     humans =
       humans +
-      `\n\n
-    /* META */
-    Title:       Codinasion
-    Description: An Open Source community, dedicated to Open Source projects. Codinasion is a community of developers and coders.
-    Built with:  Nextjs, Docsearch, Github API, Material-UI, Giscus, and many more.
+      `\n
+/* META */
+Title:       Codinasion
+Description: An Open Source community, dedicated to Open Source projects. Codinasion is a community of developers and coders.
+Built with:  Nextjs, Docsearch, Github API, Material-UI, Giscus, and many more.
     `;
     // add social media details to humans.txt
     humans =
       humans +
-      `\n\n
-    /* SOCIAL */
-    Website:     https://codinasion.vercel.app
-    Github:      https://github.com/codinasion
-    Twitter:     https://twitter.com/codinasion
+      `\n
+/* SOCIAL */
+Website:     https://codinasion.vercel.app
+Github:      https://github.com/codinasion
+Twitter:     https://twitter.com/codinasion
     `;
     // add maintainers details to humans.txt
     humans =
       humans +
-      `\n\n
-    /* MAINTAINERS */
+      `\n
+/* MAINTAINERS */
     `;
     var maintainers_data = [];
     var maintainers = [];
@@ -35586,6 +35586,7 @@ async function collectOrgStats(owner, token, PAT) {
           humans +
           `\n${"https://twitter.com/" + maintainer_data.twitter_username}`;
       }
+      humans = humans + "\n";
       humansAdded.push(maintainer_data.login);
     }
 
