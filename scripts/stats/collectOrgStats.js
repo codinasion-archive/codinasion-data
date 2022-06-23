@@ -498,7 +498,7 @@ Twitter:     https://twitter.com/codinasion
     // write humans.txt data to file
     const humansFileDir = "data";
     const humansFilePath = `${humansFileDir}/${"humans"}.txt`;
-    await fs.writeFile(humansFilePath, humans, (err) => {
+    await fs.writeFile(humansFilePath, String(humans), (err) => {
       if (err) throw err;
       console.log(`=> ${humansFilePath} succesfully saved !!!`);
     });
