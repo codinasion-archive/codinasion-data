@@ -154,6 +154,7 @@ export default async function collectOrgStats(owner, token, PAT) {
     // humans.txt data
     const humansAdded = [];
     var humans = "";
+
     // add logo to humans.txt
     humans =
       humans +
@@ -162,13 +163,14 @@ export default async function collectOrgStats(owner, token, PAT) {
     /  )          /                 /            
    /      _    __/  -  __    _    -/-  -  _   __
   (___/  (_)  (_/  /   / (  (_(_  (_  /  (_)  / (
-         
- 
+   
+
     The humans.txt file explains the team, technology, and assets 
     behind this site.
- 
- _______________________________________________________________________________
+
+_______________________________________________________________________________
     `;
+
     // add organisation details to humans.txt
     humans =
       humans +
@@ -179,6 +181,7 @@ Site URL:    https://codinasion.vercel.app
 Created:     2022-01-26
 Web Design:  Harsh Raj @ Codinasion
     `;
+
     // add meta details to humans.txt
     humans =
       humans +
@@ -188,6 +191,7 @@ Title:       Codinasion
 Description: An Open Source community, dedicated to Open Source projects. Codinasion is a community of developers and coders.
 Built with:  Nextjs, Docsearch, Github API, Material-UI, Giscus, and many more.
     `;
+
     // add social media details to humans.txt
     humans =
       humans +
@@ -197,6 +201,7 @@ Website:     https://codinasion.vercel.app
 Github:      https://github.com/codinasion
 Twitter:     https://twitter.com/codinasion
     `;
+
     // add maintainers details to humans.txt
     humans =
       humans +
