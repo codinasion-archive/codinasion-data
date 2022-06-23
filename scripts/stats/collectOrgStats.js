@@ -242,24 +242,21 @@ export default async function collectOrgStats(owner, token, PAT) {
         })
         .catch((err) => console.log(err));
       // add maintainer to humans.txt
-      humans =
-        humans +
-        `\n
-      ${
-        maintainer_data.name !== ""
-          ? maintainer_data.name
-          : maintainer_data.login
+      if (maintainer_data.name !== "") {
+        humans = humans + `\n${maintainer_data.name}`;
+      } else {
+        humans = humans + `\n${maintainer_data.login}`;
       }
-      ${
-        maintainer_data.html_url !== ""
-          ? maintainer_data.html_url
-          : "https://github.com/orgs/codinasion/people"
+      if (maintainer_data.html_url !== "") {
+        humans = humans + `\n${maintainer_data.html_url}`;
+      } else {
+        humans = humans + `\n${"https://github.com/orgs/codinasion/people"}`;
       }
-      ${
-        maintainer_data.twitter_username !== "" &&
-        "https://twitter.com/" + maintainer_data.twitter_username
+      if (maintainer_data.twitter_username !== "") {
+        humans =
+          humans +
+          `\n${"https://twitter.com/" + maintainer_data.twitter_username}`;
       }
-      `;
       humansAdded.push(maintainer_data.login);
     }
 
