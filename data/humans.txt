@@ -44,12 +44,20 @@ Anzo52
 https://github.com/Anzo52
 https://twitter.com/DevAndyZ
 
+Anzo52
+https://github.com/Anzo52
+https://twitter.com/DevAndyZ
+
 Madhu S Gowda
 https://github.com/MadhuS-1605
 https://twitter.com/thenameismadhus
 
 Neel Patel
 https://github.com/NeelPatel31
+
+Prajwal Borkar
+https://github.com/PrajwalBorkar
+https://twitter.com/PrajwalBorkar7
 
 Lorenzo Rossi
 https://github.com/rossilor95
@@ -270,10 +278,6 @@ https://github.com/ppark3
 
 Prabhdeep
 https://github.com/Prabs09
-
-Prajwal Borkar
-https://github.com/PrajwalBorkar
-https://twitter.com/PrajwalBorkar7
 
 Ramanand Thakur
 https://github.com/ramanand-rv
