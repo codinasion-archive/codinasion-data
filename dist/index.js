@@ -35562,63 +35562,72 @@ Twitter:     https://twitter.com/codinasion
       })
       .catch((err) => console.log(err));
     // iterate through maintainers data and add to maintainers array
-    for (let i = 0; i < maintainers_data.length; i++) {
-      maintainers.push(maintainers_data[i].login);
-    }
+    // for loop doesn't work here because of the async-await
+    maintainers_data &&
+      (await Promise.all(
+        await maintainers_data.map(async (maintainer) => {
+          maintainers.push(maintainer.login);
+        })
+      ));
     // add maintainers to humans.txt
-    for (let i = 0; i < maintainers.length; i++) {
-      var maintainer_data = {};
-      // get user data from github api
-      await fetch(`https://api.github.com/users/${maintainers[i]}`, {
-        method: "GET",
-        headers: {
-          Authorization: `token ${token} `,
-        },
-      })
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
+    // for loop doesn't work here because of the async-await
+    maintainers &&
+      (await Promise.all(
+        await maintainers.map(async (maintainer) => {
+          var maintainer_data = {};
+          // get user data from github api
+          await fetch(`https://api.github.com/users/${maintainer}`, {
+            method: "GET",
+            headers: {
+              Authorization: `token ${token} `,
+            },
+          })
+            .then((res) => {
+              if (res.ok) {
+                return res.json();
+              } else {
+                throw new Error(
+                  `The HTTP status of the reponse: ${res.status} (${res.statusText})`
+                );
+              }
+            })
+            .then((json) => {
+              maintainer_data = json;
+            })
+            .catch((err) => console.log(err));
+          // add maintainer to humans.txt
+          if (
+            maintainer_data.name !== "" &&
+            maintainer_data.name !== null &&
+            maintainer_data.name !== undefined
+          ) {
+            humans = humans + `\n${maintainer_data.name}`;
           } else {
-            throw new Error(
-              `The HTTP status of the reponse: ${res.status} (${res.statusText})`
-            );
+            humans = humans + `\n${maintainer_data.login}`;
           }
+          if (
+            maintainer_data.html_url !== "" &&
+            maintainer_data.html_url !== null &&
+            maintainer_data.html_url !== undefined
+          ) {
+            humans = humans + `\n${maintainer_data.html_url}`;
+          } else {
+            humans =
+              humans + `\n${"https://github.com/orgs/codinasion/people"}`;
+          }
+          if (
+            maintainer_data.twitter_username !== "" &&
+            maintainer_data.twitter_username !== null &&
+            maintainer_data.twitter_username !== undefined
+          ) {
+            humans =
+              humans +
+              `\n${"https://twitter.com/" + maintainer_data.twitter_username}`;
+          }
+          humans = humans + "\n";
+          await humansAdded.push(maintainer_data.login);
         })
-        .then((json) => {
-          maintainer_data = json;
-        })
-        .catch((err) => console.log(err));
-      // add maintainer to humans.txt
-      if (
-        maintainer_data.name !== "" &&
-        maintainer_data.name !== null &&
-        maintainer_data.name !== undefined
-      ) {
-        humans = humans + `\n${maintainer_data.name}`;
-      } else {
-        humans = humans + `\n${maintainer_data.login}`;
-      }
-      if (
-        maintainer_data.html_url !== "" &&
-        maintainer_data.html_url !== null &&
-        maintainer_data.html_url !== undefined
-      ) {
-        humans = humans + `\n${maintainer_data.html_url}`;
-      } else {
-        humans = humans + `\n${"https://github.com/orgs/codinasion/people"}`;
-      }
-      if (
-        maintainer_data.twitter_username !== "" &&
-        maintainer_data.twitter_username !== null &&
-        maintainer_data.twitter_username !== undefined
-      ) {
-        humans =
-          humans +
-          `\n${"https://twitter.com/" + maintainer_data.twitter_username}`;
-      }
-      humans = humans + "\n";
-      humansAdded.push(maintainer_data.login);
-    }
+      ));
 
     // add team details to humans.txt
     humans =
@@ -35649,42 +35658,55 @@ Twitter:     https://twitter.com/codinasion
       })
       .catch((err) => console.log(err));
     // iterate through team data and fetch team members
-    for (let i = 0; i < team_data.length; i++) {
-      var team_members_data = [];
-      await fetch(`https://api.github.com/teams/${team_data[i].id}/members`, {
-        method: "GET",
-        headers: {
-          Authorization: `token ${PAT} `,
-        },
-      })
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          } else {
-            throw new Error(
-              `The HTTP status of the reponse: ${res.status} (${res.statusText})`
-            );
-          }
+    // for loop doesn't work here because of the async-await
+    team_data &&
+      (await Promise.all(
+        await team_data.map(async (data) => {
+          var team_members_data = [];
+          await fetch(`https://api.github.com/teams/${data.id}/members`, {
+            method: "GET",
+            headers: {
+              Authorization: `token ${PAT} `,
+            },
+          })
+            .then((res) => {
+              if (res.ok) {
+                return res.json();
+              } else {
+                throw new Error(
+                  `The HTTP status of the reponse: ${res.status} (${res.statusText})`
+                );
+              }
+            })
+            .then((json) => {
+              team_members_data = json;
+            })
+            .catch((err) => console.log(err));
+          // iterate through team members data and add to team array
+          // for loop doesn't work here because of the async-await
+          team_members_data &&
+            (await Promise.all(
+              await team_members_data.map(async (member) => {
+                // find if team member is already in humansAdded array
+                var isAlreadyAdded = false;
+                humansAdded &&
+                  (await Promise.all(
+                    await humansAdded.map(async (human) => {
+                      if (human === member.login) {
+                        isAlreadyAdded = true;
+                      }
+                    })
+                  ));
+                // if team member is not already in humansAdded array, add to team array
+                if (isAlreadyAdded === false) {
+                  await team.push(member.login);
+                  await humansAdded.push(member.login);
+                }
+              })
+            ));
         })
-        .then((json) => {
-          team_members_data = json;
-        })
-        .catch((err) => console.log(err));
-      // iterate through team members data and add to team array
-      for (let j = 0; j < team_members_data.length; j++) {
-        // find if team member is already in humansAdded array
-        var isAlreadyAdded = false;
-        for (let k = 0; k < humansAdded.length; k++) {
-          if (humansAdded[k] === team_members_data[j].login) {
-            isAlreadyAdded = true;
-          }
-        }
-        // if team member is not already in humansAdded array, add to team array
-        if (isAlreadyAdded === false) {
-          team.push(team_members_data[j].login);
-        }
-      }
-    }
+      ));
+
     // sort team array alphabetically
     team.sort((a, b) =>
       a.toLowerCase() > b.toLowerCase()
@@ -35744,7 +35766,6 @@ Twitter:     https://twitter.com/codinasion
           `\n${"https://twitter.com/" + team_member_data.twitter_username}`;
       }
       humans = humans + "\n";
-      humansAdded.push(team_member_data.login);
     }
 
     // add contributors to humans.txt
@@ -35765,7 +35786,8 @@ Twitter:     https://twitter.com/codinasion
       }
       // if contributor is not already in humansAdded array, add to contributors array
       if (isAlreadyAdded === false) {
-        contributors_data.push(contributors[i].username);
+        await contributors_data.push(contributors[i].username);
+        await humansAdded.push(contributors[i].username);
       }
     }
     // iterate through contributors array and get user data from github api
@@ -35819,7 +35841,6 @@ Twitter:     https://twitter.com/codinasion
           `\n${"https://twitter.com/" + contributor_data.twitter_username}`;
       }
       humans = humans + "\n";
-      humansAdded.push(contributor_data.login);
     }
 
     await console.log(humans);
