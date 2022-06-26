@@ -35119,6 +35119,7 @@ async function collectProgrammeData(
 
           var latestUpdateDate = null;
           try {
+            let json_res = [];
             const latestUpdateDate = await fetch(
               `https://api.github.com/repos/${owner}/${programmeRepo}/commits?path=${
                 "programme/" + slug + "/README.md"
@@ -35126,8 +35127,9 @@ async function collectProgrammeData(
             )
               .then((res) => res.json())
               .then((json) => console.log(json))
+              .then((json) => (json_res = json))
               .then((json) => json[0].commit.committer.date)
-              .catch((error) => console.log(slug, error));
+              .catch((error) => console.log(slug, json_res, error));
             // const data = await res.json();
             // latestUpdateDate = await data[0].commit.committer.date;
           } catch (error) {
