@@ -58,7 +58,6 @@ export default async function collectProgrammeData(
                 "programme/" + slug + "/README.md"
               }&page=1&per_page=1`
             )
-              .then((res) => console.log(res))
               .then((res) => res.json())
               .then((json) => console.log(json))
               .then((json) => json[0].commit.committer.date)
