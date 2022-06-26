@@ -35126,7 +35126,6 @@ async function collectProgrammeData(
             );
             const data = await res.json();
             latestUpdateDate = await data[0].commit.committer.date;
-            await console.log(slug, latestUpdateDate);
           } catch (error) {
             latestUpdateDate = await new Date().toISOString();
             await console.log(
