@@ -48,7 +48,8 @@ export default async function collectDsaData(owner, token, dsaRepo, dsaBranch) {
 
           var latestUpdateDate = null;
           try {
-            const res = await fetch(
+            let json_res = [];
+            latestUpdateDate = await fetch(
               `https://api.github.com/repos/${owner}/${dsaRepo}/commits?path=${
                 "programme/" + slug + "/README.md"
               }&page=1&per_page=1`,
@@ -58,9 +59,11 @@ export default async function collectDsaData(owner, token, dsaRepo, dsaBranch) {
                   Authorization: `token ${token}`,
                 },
               }
-            );
-            const data = await res.json();
-            latestUpdateDate = data[0].commit.committer.date;
+            )
+              .then((res) => res.json())
+              .then((json) => ((json_res = json), json_res))
+              .then((json) => json[0].commit.committer.date)
+              .catch((error) => console.log(slug, json_res, error));
           } catch (error) {
             latestUpdateDate = new Date().toISOString();
             await console.log(

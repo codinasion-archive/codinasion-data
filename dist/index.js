@@ -35120,7 +35120,7 @@ async function collectProgrammeData(
           var latestUpdateDate = null;
           try {
             let json_res = [];
-            const latestUpdateDate = await fetch(
+            latestUpdateDate = await fetch(
               `https://api.github.com/repos/${owner}/${programmeRepo}/commits?path=${
                 "programme/" + slug + "/README.md"
               }&page=1&per_page=1`,
@@ -35132,16 +35132,13 @@ async function collectProgrammeData(
               }
             )
               .then((res) => res.json())
-              // .then((json) => console.log(json))
               .then((json) => ((json_res = json), json_res))
               .then((json) => json[0].commit.committer.date)
               .catch((error) => console.log(slug, json_res, error));
-            // const data = await res.json();
-            // latestUpdateDate = await data[0].commit.committer.date;
           } catch (error) {
             latestUpdateDate = await new Date().toISOString();
             await console.log(
-              "latestUpdateDate set to null !!! for" +
+              "latestUpdateDate set to null !!! for " +
                 `https://api.github.com/repos/${owner}/${programmeRepo}/commits?path=${
                   "programme/" + slug + "/README.md"
                 }&page=1&per_page=1`
@@ -36041,7 +36038,8 @@ async function collectDsaData(owner, token, dsaRepo, dsaBranch) {
 
           var latestUpdateDate = null;
           try {
-            const res = await fetch(
+            let json_res = [];
+            latestUpdateDate = await fetch(
               `https://api.github.com/repos/${owner}/${dsaRepo}/commits?path=${
                 "programme/" + slug + "/README.md"
               }&page=1&per_page=1`,
@@ -36051,9 +36049,11 @@ async function collectDsaData(owner, token, dsaRepo, dsaBranch) {
                   Authorization: `token ${token}`,
                 },
               }
-            );
-            const data = await res.json();
-            latestUpdateDate = data[0].commit.committer.date;
+            )
+              .then((res) => res.json())
+              .then((json) => ((json_res = json), json_res))
+              .then((json) => json[0].commit.committer.date)
+              .catch((error) => console.log(slug, json_res, error));
           } catch (error) {
             latestUpdateDate = new Date().toISOString();
             await console.log(
