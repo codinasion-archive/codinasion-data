@@ -58,9 +58,11 @@ export default async function collectProgrammeData(
                 "programme/" + slug + "/README.md"
               }&page=1&per_page=1`
             )
+              .then((res) => console.log(res))
               .then((res) => res.json())
+              .then((json) => console.log(json))
               .then((json) => json[0].commit.committer.date)
-              .catch((error) => console.log(error));
+              .catch((error) => console.log(slug, error));
             // const data = await res.json();
             // latestUpdateDate = await data[0].commit.committer.date;
           } catch (error) {
