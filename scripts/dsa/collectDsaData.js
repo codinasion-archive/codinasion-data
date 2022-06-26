@@ -55,15 +55,15 @@ export default async function collectDsaData(owner, token, dsaRepo, dsaBranch) {
             );
             const data = await res.json();
             latestUpdateDate = data[0].commit.committer.date;
-            await console.log(slug, latestUpdateDate);
           } catch (error) {
             latestUpdateDate = new Date().toISOString();
             await console.log(
-              "latestUpdateDate set to null !!! for" +
+              "latestUpdateDate set to null !!! for " +
                 `https://api.github.com/repos/${owner}/${dsaRepo}/commits?path=${
                   "programme/" + slug + "/README.md"
                 }&page=1&per_page=1`
             );
+            await console.log(error);
           }
 
           const dsaData = JSON.stringify({

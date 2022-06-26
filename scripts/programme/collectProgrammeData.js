@@ -68,6 +68,7 @@ export default async function collectProgrammeData(
                   "programme/" + slug + "/README.md"
                 }&page=1&per_page=1`
             );
+            await console.log(error);
           }
 
           const programmeData = JSON.stringify({
