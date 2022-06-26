@@ -35147,9 +35147,6 @@ async function collectProgrammeData(
           }
 
           const programmeData = JSON.stringify({
-            latestUpdateDate: latestUpdateDate,
-            contentHtml: contentHtml,
-            markdown: matterResult.content,
             frontMatter: {
               slug: slug || null,
               title: matterResult.data.title
@@ -35158,14 +35155,14 @@ async function collectProgrammeData(
               description: matterResult.data.description
                 ? matterResult.data.description
                 : "Codinasion",
-              image: matterResult.data.image
-                ? `https://raw.githubusercontent.com/${owner}/${programmeRepo}/${programmeBranch}/programme/${slug}/${matterResult.data.image}`
-                : "https://avatars.githubusercontent.com/u/98682602",
               tags: matterResult.data.tags ? matterResult.data.tags : [],
               contributors: matterResult.data.contributors
                 ? matterResult.data.contributors
                 : [],
             },
+            latestUpdateDate: latestUpdateDate,
+            contentHtml: contentHtml,
+            markdown: matterResult.content,
           });
 
           // write prorgamme list data to file
@@ -35237,6 +35234,18 @@ function formatTag(tag) {
     return {
       tag: "js",
       label: "JS",
+    };
+  }
+  if (tag === "php" || tag === "PHP" || tag === "Php") {
+    return {
+      tag: "php",
+      label: "PHP",
+    };
+  }
+  if (tag === "julia" || tag === "Julia" || tag === "JULIA") {
+    return {
+      tag: "julia",
+      label: "Julia",
     };
   }
   return {
@@ -35948,11 +35957,6 @@ async function collectAllDsaData(
               description: content.data.description
                 ? content.data.description
                 : "Codinasion",
-              image: content.data.image
-                ? `https://raw.githubusercontent.com/${owner}/${dsaRepo}/${dsaBranch}/programme/${formatSlug(
-                    data.path
-                  )}/${content.data.image}`
-                : "https://avatars.githubusercontent.com/u/98682602",
               tags: content.data.tags ? content.data.tags : [],
               slug: formatSlug(data.path),
             });
@@ -36066,9 +36070,6 @@ async function collectDsaData(owner, token, dsaRepo, dsaBranch) {
           }
 
           const dsaData = JSON.stringify({
-            latestUpdateDate: latestUpdateDate,
-            contentHtml: contentHtml,
-            markdown: matterResult.content,
             frontMatter: {
               slug: slug || null,
               title: matterResult.data.title
@@ -36077,14 +36078,14 @@ async function collectDsaData(owner, token, dsaRepo, dsaBranch) {
               description: matterResult.data.description
                 ? matterResult.data.description
                 : "Codinasion",
-              image: matterResult.data.image
-                ? `https://raw.githubusercontent.com/${owner}/${dsaRepo}/${dsaBranch}/programme/${slug}/${matterResult.data.image}`
-                : "https://avatars.githubusercontent.com/u/98682602",
               tags: matterResult.data.tags ? matterResult.data.tags : [],
               contributors: matterResult.data.contributors
                 ? matterResult.data.contributors
                 : [],
             },
+            latestUpdateDate: latestUpdateDate,
+            contentHtml: contentHtml,
+            markdown: matterResult.content,
           });
 
           // write prorgamme list data to file
