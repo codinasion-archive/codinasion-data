@@ -51,7 +51,28 @@ export default async function collectProgrammeData(
             .process(matterResult.content);
           const contentHtml = processedContent.toString();
 
+          var latestUpdateDate = null;
+          try {
+            const res = await fetch(
+              `https://api.github.com/repos/${owner}/${programmeRepo}/commits?path=${
+                "programme/" + slug + "/README.md"
+              }&page=1&per_page=1`
+            );
+            const data = await res.json();
+            latestUpdateDate = await data[0].commit.committer.date;
+            await console.log(slug, latestUpdateDate);
+          } catch (error) {
+            latestUpdateDate = await new Date().toISOString();
+            await console.log(
+              "latestUpdateDate set to null !!! for" +
+                `https://api.github.com/repos/${owner}/${programmeRepo}/commits?path=${
+                  "programme/" + slug + "/README.md"
+                }&page=1&per_page=1`
+            );
+          }
+
           const programmeData = JSON.stringify({
+            latestUpdateDate: latestUpdateDate,
             contentHtml: contentHtml,
             markdown: matterResult.content,
             frontMatter: {
