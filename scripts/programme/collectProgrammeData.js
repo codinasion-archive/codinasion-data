@@ -60,8 +60,8 @@ export default async function collectProgrammeData(
               }&page=1&per_page=1`
             )
               .then((res) => res.json())
-              .then((json) => console.log(json))
-              .then((json) => (json_res = json))
+              // .then((json) => console.log(json))
+              .then((json) => ((json_res = json), json_res))
               .then((json) => json[0].commit.committer.date)
               .catch((error) => console.log(slug, json_res, error));
             // const data = await res.json();
