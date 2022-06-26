@@ -76,9 +76,6 @@ export default async function collectDsaData(owner, token, dsaRepo, dsaBranch) {
           }
 
           const dsaData = JSON.stringify({
-            latestUpdateDate: latestUpdateDate,
-            contentHtml: contentHtml,
-            markdown: matterResult.content,
             frontMatter: {
               slug: slug || null,
               title: matterResult.data.title
@@ -87,14 +84,14 @@ export default async function collectDsaData(owner, token, dsaRepo, dsaBranch) {
               description: matterResult.data.description
                 ? matterResult.data.description
                 : "Codinasion",
-              image: matterResult.data.image
-                ? `https://raw.githubusercontent.com/${owner}/${dsaRepo}/${dsaBranch}/programme/${slug}/${matterResult.data.image}`
-                : "https://avatars.githubusercontent.com/u/98682602",
               tags: matterResult.data.tags ? matterResult.data.tags : [],
               contributors: matterResult.data.contributors
                 ? matterResult.data.contributors
                 : [],
             },
+            latestUpdateDate: latestUpdateDate,
+            contentHtml: contentHtml,
+            markdown: matterResult.content,
           });
 
           // write prorgamme list data to file
