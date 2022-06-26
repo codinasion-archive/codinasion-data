@@ -55,11 +55,6 @@ export default async function collectAllDsaData(
               description: content.data.description
                 ? content.data.description
                 : "Codinasion",
-              image: content.data.image
-                ? `https://raw.githubusercontent.com/${owner}/${dsaRepo}/${dsaBranch}/programme/${formatSlug(
-                    data.path
-                  )}/${content.data.image}`
-                : "https://avatars.githubusercontent.com/u/98682602",
               tags: content.data.tags ? content.data.tags : [],
               slug: formatSlug(data.path),
             });

@@ -54,6 +54,18 @@ export default function formatTag(tag) {
       label: "JS",
     };
   }
+  if (tag === "php" || tag === "PHP" || tag === "Php") {
+    return {
+      tag: "php",
+      label: "PHP",
+    };
+  }
+  if (tag === "julia" || tag === "Julia" || tag === "JULIA") {
+    return {
+      tag: "julia",
+      label: "Julia",
+    };
+  }
   return {
     tag: tag,
     label: tag,

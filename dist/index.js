@@ -35117,9 +35117,36 @@ async function collectProgrammeData(
             .process(matterResult.content);
           const contentHtml = processedContent.toString();
 
+          var latestUpdateDate = null;
+          try {
+            let json_res = [];
+            latestUpdateDate = await fetch(
+              `https://api.github.com/repos/${owner}/${programmeRepo}/commits?path=${
+                "programme/" + slug + "/README.md"
+              }&page=1&per_page=1`,
+              {
+                method: "GET",
+                headers: {
+                  Authorization: `token ${token}`,
+                },
+              }
+            )
+              .then((res) => res.json())
+              .then((json) => ((json_res = json), json_res))
+              .then((json) => json[0].commit.committer.date)
+              .catch((error) => console.log(slug, json_res, error));
+          } catch (error) {
+            latestUpdateDate = await new Date().toISOString();
+            await console.log(
+              "latestUpdateDate set to null !!! for " +
+                `https://api.github.com/repos/${owner}/${programmeRepo}/commits?path=${
+                  "programme/" + slug + "/README.md"
+                }&page=1&per_page=1`
+            );
+            await console.log(error);
+          }
+
           const programmeData = JSON.stringify({
-            contentHtml: contentHtml,
-            markdown: matterResult.content,
             frontMatter: {
               slug: slug || null,
               title: matterResult.data.title
@@ -35128,14 +35155,14 @@ async function collectProgrammeData(
               description: matterResult.data.description
                 ? matterResult.data.description
                 : "Codinasion",
-              image: matterResult.data.image
-                ? `https://raw.githubusercontent.com/${owner}/${programmeRepo}/${programmeBranch}/programme/${slug}/${matterResult.data.image}`
-                : "https://avatars.githubusercontent.com/u/98682602",
               tags: matterResult.data.tags ? matterResult.data.tags : [],
               contributors: matterResult.data.contributors
                 ? matterResult.data.contributors
                 : [],
             },
+            latestUpdateDate: latestUpdateDate,
+            contentHtml: contentHtml,
+            markdown: matterResult.content,
           });
 
           // write prorgamme list data to file
@@ -35207,6 +35234,18 @@ function formatTag(tag) {
     return {
       tag: "js",
       label: "JS",
+    };
+  }
+  if (tag === "php" || tag === "PHP" || tag === "Php") {
+    return {
+      tag: "php",
+      label: "PHP",
+    };
+  }
+  if (tag === "julia" || tag === "Julia" || tag === "JULIA") {
+    return {
+      tag: "julia",
+      label: "Julia",
     };
   }
   return {
@@ -35918,11 +35957,6 @@ async function collectAllDsaData(
               description: content.data.description
                 ? content.data.description
                 : "Codinasion",
-              image: content.data.image
-                ? `https://raw.githubusercontent.com/${owner}/${dsaRepo}/${dsaBranch}/programme/${formatSlug(
-                    data.path
-                  )}/${content.data.image}`
-                : "https://avatars.githubusercontent.com/u/98682602",
               tags: content.data.tags ? content.data.tags : [],
               slug: formatSlug(data.path),
             });
@@ -36006,9 +36040,36 @@ async function collectDsaData(owner, token, dsaRepo, dsaBranch) {
             .process(matterResult.content);
           const contentHtml = processedContent.toString();
 
+          var latestUpdateDate = null;
+          try {
+            let json_res = [];
+            latestUpdateDate = await fetch(
+              `https://api.github.com/repos/${owner}/${dsaRepo}/commits?path=${
+                "programme/" + slug + "/README.md"
+              }&page=1&per_page=1`,
+              {
+                method: "GET",
+                headers: {
+                  Authorization: `token ${token}`,
+                },
+              }
+            )
+              .then((res) => res.json())
+              .then((json) => ((json_res = json), json_res))
+              .then((json) => json[0].commit.committer.date)
+              .catch((error) => console.log(slug, json_res, error));
+          } catch (error) {
+            latestUpdateDate = new Date().toISOString();
+            await console.log(
+              "latestUpdateDate set to null !!! for " +
+                `https://api.github.com/repos/${owner}/${dsaRepo}/commits?path=${
+                  "programme/" + slug + "/README.md"
+                }&page=1&per_page=1`
+            );
+            await console.log(error);
+          }
+
           const dsaData = JSON.stringify({
-            contentHtml: contentHtml,
-            markdown: matterResult.content,
             frontMatter: {
               slug: slug || null,
               title: matterResult.data.title
@@ -36017,14 +36078,14 @@ async function collectDsaData(owner, token, dsaRepo, dsaBranch) {
               description: matterResult.data.description
                 ? matterResult.data.description
                 : "Codinasion",
-              image: matterResult.data.image
-                ? `https://raw.githubusercontent.com/${owner}/${dsaRepo}/${dsaBranch}/programme/${slug}/${matterResult.data.image}`
-                : "https://avatars.githubusercontent.com/u/98682602",
               tags: matterResult.data.tags ? matterResult.data.tags : [],
               contributors: matterResult.data.contributors
                 ? matterResult.data.contributors
                 : [],
             },
+            latestUpdateDate: latestUpdateDate,
+            contentHtml: contentHtml,
+            markdown: matterResult.content,
           });
 
           // write prorgamme list data to file

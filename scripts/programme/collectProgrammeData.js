@@ -51,9 +51,36 @@ export default async function collectProgrammeData(
             .process(matterResult.content);
           const contentHtml = processedContent.toString();
 
+          var latestUpdateDate = null;
+          try {
+            let json_res = [];
+            latestUpdateDate = await fetch(
+              `https://api.github.com/repos/${owner}/${programmeRepo}/commits?path=${
+                "programme/" + slug + "/README.md"
+              }&page=1&per_page=1`,
+              {
+                method: "GET",
+                headers: {
+                  Authorization: `token ${token}`,
+                },
+              }
+            )
+              .then((res) => res.json())
+              .then((json) => ((json_res = json), json_res))
+              .then((json) => json[0].commit.committer.date)
+              .catch((error) => console.log(slug, json_res, error));
+          } catch (error) {
+            latestUpdateDate = await new Date().toISOString();
+            await console.log(
+              "latestUpdateDate set to null !!! for " +
+                `https://api.github.com/repos/${owner}/${programmeRepo}/commits?path=${
+                  "programme/" + slug + "/README.md"
+                }&page=1&per_page=1`
+            );
+            await console.log(error);
+          }
+
           const programmeData = JSON.stringify({
-            contentHtml: contentHtml,
-            markdown: matterResult.content,
             frontMatter: {
               slug: slug || null,
               title: matterResult.data.title
@@ -62,14 +89,14 @@ export default async function collectProgrammeData(
               description: matterResult.data.description
                 ? matterResult.data.description
                 : "Codinasion",
-              image: matterResult.data.image
-                ? `https://raw.githubusercontent.com/${owner}/${programmeRepo}/${programmeBranch}/programme/${slug}/${matterResult.data.image}`
-                : "https://avatars.githubusercontent.com/u/98682602",
               tags: matterResult.data.tags ? matterResult.data.tags : [],
               contributors: matterResult.data.contributors
                 ? matterResult.data.contributors
                 : [],
             },
+            latestUpdateDate: latestUpdateDate,
+            contentHtml: contentHtml,
+            markdown: matterResult.content,
           });
 
           // write prorgamme list data to file
