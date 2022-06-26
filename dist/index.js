@@ -35123,7 +35123,13 @@ async function collectProgrammeData(
             const latestUpdateDate = await fetch(
               `https://api.github.com/repos/${owner}/${programmeRepo}/commits?path=${
                 "programme/" + slug + "/README.md"
-              }&page=1&per_page=1`
+              }&page=1&per_page=1`,
+              {
+                method: "GET",
+                headers: {
+                  Authorization: `token ${token}`,
+                },
+              }
             )
               .then((res) => res.json())
               // .then((json) => console.log(json))
@@ -36038,7 +36044,13 @@ async function collectDsaData(owner, token, dsaRepo, dsaBranch) {
             const res = await fetch(
               `https://api.github.com/repos/${owner}/${dsaRepo}/commits?path=${
                 "programme/" + slug + "/README.md"
-              }&page=1&per_page=1`
+              }&page=1&per_page=1`,
+              {
+                method: "GET",
+                headers: {
+                  Authorization: `token ${token}`,
+                },
+              }
             );
             const data = await res.json();
             latestUpdateDate = data[0].commit.committer.date;
