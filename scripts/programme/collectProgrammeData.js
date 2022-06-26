@@ -53,13 +53,16 @@ export default async function collectProgrammeData(
 
           var latestUpdateDate = null;
           try {
-            const res = await fetch(
+            const latestUpdateDate = await fetch(
               `https://api.github.com/repos/${owner}/${programmeRepo}/commits?path=${
                 "programme/" + slug + "/README.md"
               }&page=1&per_page=1`
-            );
-            const data = await res.json();
-            latestUpdateDate = await data[0].commit.committer.date;
+            )
+              .then((res) => res.json())
+              .then((json) => json[0].commit.committer.date)
+              .catch((error) => console.log(error));
+            // const data = await res.json();
+            // latestUpdateDate = await data[0].commit.committer.date;
           } catch (error) {
             latestUpdateDate = await new Date().toISOString();
             await console.log(
