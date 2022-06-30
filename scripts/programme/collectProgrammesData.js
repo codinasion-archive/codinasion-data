@@ -48,7 +48,7 @@ export default async function collectProgrammesData(
             .then((res) => res.text())
             .catch((error) => console.log(error));
 
-          // get programme files
+          // get programme tags
           const programme_tags = [];
           const programme_files = pathsData.filter((file) =>
             file.path.startsWith("programme/" + data.path.split("/")[1])
