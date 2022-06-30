@@ -35166,7 +35166,10 @@ function formatTag(tag) {
   };
 }
 
+;// CONCATENATED MODULE: external "querystring"
+const external_querystring_namespaceObject = require("querystring");
 ;// CONCATENATED MODULE: ./scripts/programme/collectProgrammeData.js
+
 
 
 
@@ -35282,7 +35285,7 @@ ${code_text}
 
           // await console.log(source);
 
-          const matterResult = await gray_matter_default()(source);
+          const matterResult = await gray_matter_default()(String(source));
 
           await console.log(matterResult.data.title);
 

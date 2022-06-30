@@ -7,6 +7,7 @@ import { remark } from "remark";
 import html from "remark-html";
 
 import formatTag from "../formatTag";
+import { stringify } from "querystring";
 
 export default async function collectProgrammeData(
   owner,
@@ -113,7 +114,7 @@ ${code_text}
 
           // await console.log(source);
 
-          const matterResult = await matter(source);
+          const matterResult = await matter(String(source));
 
           await console.log(matterResult.data.title);
 
