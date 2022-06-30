@@ -14542,7 +14542,7 @@ async function collectProgrammesData(
               await programme_files.map(async (file) => {
                 if (
                   !file.path.endsWith(".md") &&
-                  !file.path.replace(
+                  file.path.replace(
                     `programme/${file.path.split("/")[1]}`,
                     ""
                   ) !== ""
