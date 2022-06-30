@@ -55,14 +55,14 @@ jobs:
           message: "programme list data - ${{ steps.date.outputs.time }}"
 
       ##########  process data  ##########
-      # - name: Process Data
-      #   uses: ./action/
-      #   with:
-      #     process-programme: true
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     PAT: ${{ secrets.API_DATA_FETCH_PAT }}
+      - name: Process Programme Data
+        uses: ./action/
+        with:
+          process-programme: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          PAT: ${{ secrets.API_DATA_FETCH_PAT }}
 
-      # - name: Commit Processed Data
-      #   uses: EndBug/add-and-commit@v9
-      #   with:
-      #     message: "programme data - ${{ steps.date.outputs.time }}"
+      - name: Commit Processed Data
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "programme data - ${{ steps.date.outputs.time }}"
