@@ -23,22 +23,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Download File
-        run: |
-          cd scripts
-          wget 'https://raw.githubusercontent.com/codinasion/codinasion/master/script/formatTag.js' -O formatTag.js
-      
-      - name: Commit Script Files
-        uses: EndBug/add-and-commit@v9
-        with:
-          message: "update script - ${{ steps.date.outputs.time }}"
-
+      ##########  Get Date  ##########
       - name: Get Date
         id: date
         uses: nanzm/get-time-action@v1.1
         with:
           timeZone: 5.5
           format: "YYYY-MM-DD-hh-mm"
+
+      ##########  Update Script  ##########
+      - name: Download File
+        run: |
+          cd scripts
+          wget 'https://raw.githubusercontent.com/codinasion/codinasion/master/script/formatTag.js' -O formatTag.js
+
+      - name: Commit Script Files
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "update script - ${{ steps.date.outputs.time }}"
 
       ##########  collect programme data  ##########
       - name: Collect Programme Data
