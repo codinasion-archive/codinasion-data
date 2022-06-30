@@ -27,6 +27,11 @@ jobs:
         run: |
           cd scripts
           wget 'https://raw.githubusercontent.com/codinasion/codinasion/master/script/formatTag.js' -O formatTag.js
+      
+      - name: Commit Script Files
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "update script - ${{ steps.date.outputs.time }}"
 
       - name: Get Date
         id: date
