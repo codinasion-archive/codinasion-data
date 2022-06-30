@@ -111,9 +111,11 @@ ${readme_text}
 ${code_text}
         `;
 
-          await console.log(source);
+          // await console.log(source);
 
           const matterResult = await matter(source);
+
+          await console.log(matterResult.data.title);
 
           const processedContent = await remark()
             .use(html)
