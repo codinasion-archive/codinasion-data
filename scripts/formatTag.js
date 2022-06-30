@@ -7,7 +7,7 @@ export default async function formatTag(tag) {
     .then((res) => res.text())
     .catch((error) => console.log(error));
 
-  eval(fnText);
+  await eval(fnText);
 
   return formatTag(tag);
 }
