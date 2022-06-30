@@ -92,88 +92,82 @@ ${"```"}
         code_text =
           code_text +
           `
-<CodeBlock>
+</CodeBlock>
           `;
-        await console.log(code_text);
 
-        // try {
-        //   const source = await fetch(
-        //     `https://raw.githubusercontent.com/${owner}/${programmeRepo}/${programmeBranch}/programme/${slug}/README.md`,
-        //     {
-        //       method: "GET",
-        //       headers: {
-        //         Authorization: `token ${token}`,
-        //       },
-        //     }
-        //   )
-        //     .then((res) => res.text())
-        //     .catch((error) => console.log(error));
+        try {
+          const source = `
+${readme_text}
+${code_text}
+        `;
 
-        //   const matterResult = await matter(source);
+          await console.log(source);
 
-        //   const processedContent = await remark()
-        //     .use(html)
-        //     .process(matterResult.content);
-        //   const contentHtml = processedContent.toString();
+          const matterResult = await matter(source);
 
-        //   var latestUpdateDate = null;
-        //   try {
-        //     let json_res = [];
-        //     latestUpdateDate = await fetch(
-        //       `https://api.github.com/repos/${owner}/${programmeRepo}/commits?path=${
-        //         "programme/" + slug + "/README.md"
-        //       }&page=1&per_page=1`,
-        //       {
-        //         method: "GET",
-        //         headers: {
-        //           Authorization: `token ${token}`,
-        //         },
-        //       }
-        //     )
-        //       .then((res) => res.json())
-        //       .then((json) => ((json_res = json), json_res))
-        //       .then((json) => json[0].commit.committer.date)
-        //       .catch((error) => console.log(slug, json_res, error));
-        //   } catch (error) {
-        //     latestUpdateDate = await new Date().toISOString();
-        //     await console.log(
-        //       "latestUpdateDate set to null !!! for " +
-        //         `https://api.github.com/repos/${owner}/${programmeRepo}/commits?path=${
-        //           "programme/" + slug + "/README.md"
-        //         }&page=1&per_page=1`
-        //     );
-        //     await console.log(error);
-        //   }
+          const processedContent = await remark()
+            .use(html)
+            .process(matterResult.content);
+          const contentHtml = processedContent.toString();
 
-        //   const programmeData = JSON.stringify({
-        //     frontMatter: {
-        //       slug: slug || null,
-        //       title: matterResult.data.title
-        //         ? matterResult.data.title
-        //         : "Codinasion",
-        //       description: matterResult.data.description
-        //         ? matterResult.data.description
-        //         : "Codinasion",
-        //       tags: matterResult.data.tags ? matterResult.data.tags : [],
-        //       contributors: matterResult.data.contributors
-        //         ? matterResult.data.contributors
-        //         : [],
-        //     },
-        //     latestUpdateDate: latestUpdateDate,
-        //     contentHtml: contentHtml,
-        //     markdown: matterResult.content,
-        //   });
+          var latestUpdateDate = null;
+          try {
+            let json_res = [];
+            latestUpdateDate = await fetch(
+              `https://api.github.com/repos/${owner}/${programmeRepo}/commits?path=${
+                "programme/" + slug + "/README.md"
+              }&page=1&per_page=1`,
+              {
+                method: "GET",
+                headers: {
+                  Authorization: `token ${token}`,
+                },
+              }
+            )
+              .then((res) => res.json())
+              .then((json) => ((json_res = json), json_res))
+              .then((json) => json[0].commit.committer.date)
+              .catch((error) => console.log(slug, json_res, error));
+          } catch (error) {
+            latestUpdateDate = await new Date().toISOString();
+            await console.log(
+              "latestUpdateDate set to null !!! for " +
+                `https://api.github.com/repos/${owner}/${programmeRepo}/commits?path=${
+                  "programme/" + slug + "/README.md"
+                }&page=1&per_page=1`
+            );
+            await console.log(error);
+          }
 
-        //   // write prorgamme list data to file
-        //   const programmeFilePath = `${programmeFileDir}/${slug}.json`;
-        //   await fs.writeFile(programmeFilePath, programmeData, (err) => {
-        //     if (err) throw err;
-        //     console.log(`=> ${programmeFilePath} succesfully saved !!!`);
-        //   });
-        // } catch (error) {
-        //   await console.log("error occured !!! for ", slug);
-        //   await console.log(error);
-        // }
+          const programmeData = JSON.stringify({
+            frontMatter: {
+              slug: slug || null,
+              title: matterResult.data.title
+                ? matterResult.data.title
+                : "Codinasion",
+              description: matterResult.data.description
+                ? matterResult.data.description
+                : "Codinasion",
+              tags: matterResult.data.tags ? matterResult.data.tags : [],
+              contributors: matterResult.data.contributors
+                ? matterResult.data.contributors
+                : [],
+            },
+            latestUpdateDate: latestUpdateDate,
+            contentHtml: contentHtml,
+            markdown: matterResult.content,
+          });
+
+          // write prorgamme list data to file
+          const programmeFilePath = `${programmeFileDir}/${slug}.json`;
+          await fs.writeFile(programmeFilePath, programmeData, (err) => {
+            if (err) throw err;
+            console.log(`=> ${programmeFilePath} succesfully saved !!!`);
+          });
+        } catch (error) {
+          await console.log("error occured !!! for ", slug);
+          await console.log(error);
+        }
       })
     ));
 }
