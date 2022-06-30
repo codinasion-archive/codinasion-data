@@ -107,9 +107,7 @@ ${"```"}
           `;
 
         try {
-          const source = `
-${readme_text}
-
+          const source = `${readme_text}
 ${code_text}
         `;
 
