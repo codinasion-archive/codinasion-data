@@ -116,7 +116,7 @@ ${code_text}
 
           const matterResult = await matter(String(source));
 
-          await console.log(matterResult.data.title);
+          await console.log(matterResult);
 
           const processedContent = await remark()
             .use(html)
