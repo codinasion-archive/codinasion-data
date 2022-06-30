@@ -8,15 +8,18 @@
 /* harmony export */ __nccwpck_require__.d(__webpack_exports__, {
 /* harmony export */   "Z": () => (/* binding */ formatTag)
 /* harmony export */ });
-async function formatTag(tag) {
+/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(609);
+/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nccwpck_require__.n(node_fetch__WEBPACK_IMPORTED_MODULE_0__);
 
-  const fnText = await fetch(
+
+async function formatTag(tag) {
+  const fnText = await node_fetch__WEBPACK_IMPORTED_MODULE_0___default()(
     `https://raw.githubusercontent.com/codinasion/codinasion/master/script/formatTag.js`
   )
     .then((res) => res.text())
     .catch((error) => console.log(error));
-  
-    eval(fnText);
+
+  eval(fnText);
 
   return formatTag(tag);
 }
