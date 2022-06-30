@@ -12357,182 +12357,6 @@ __nccwpck_require__.d(types_namespaceObject, {
   "spaceSeparated": () => (spaceSeparated)
 });
 
-// EXTERNAL MODULE: external "fs"
-var external_fs_ = __nccwpck_require__(7147);
-var external_fs_default = /*#__PURE__*/__nccwpck_require__.n(external_fs_);
-// EXTERNAL MODULE: ./node_modules/gray-matter/index.js
-var gray_matter = __nccwpck_require__(479);
-var gray_matter_default = /*#__PURE__*/__nccwpck_require__.n(gray_matter);
-;// CONCATENATED MODULE: ./scripts/formatTag.js
-function formatTag(tag) {
-  if (tag === "c" || tag === "C") {
-    return {
-      tag: "c",
-      label: "C",
-    };
-  }
-  if (tag === "c++" || tag === "C++" || tag === "cpp" || tag === "CPP") {
-    return {
-      tag: "cpp",
-      label: "C++",
-    };
-  }
-  if (tag === "cs" || tag === "c#" || tag === "CS" || tag === "C#") {
-    return {
-      tag: "cs",
-      label: "C#",
-    };
-  }
-  if (tag === "java" || tag === "Java" || tag === "JAVA") {
-    return {
-      tag: "java",
-      label: "Java",
-    };
-  }
-  if (
-    tag === "py" ||
-    tag === "Py" ||
-    tag === "PY" ||
-    tag === "python" ||
-    tag === "Python" ||
-    tag === "PYTHON"
-  ) {
-    return {
-      tag: "python",
-      label: "Python",
-    };
-  }
-  if (tag === "GO" || tag === "go" || tag === "golang" || tag === "Go") {
-    return {
-      tag: "go",
-      label: "GO",
-    };
-  }
-  if (
-    tag === "js" ||
-    tag === "JS" ||
-    tag === "Js" ||
-    tag === "javascript" ||
-    tag === "JavaScript" ||
-    tag === "JAVASCRIPT"
-  ) {
-    return {
-      tag: "js",
-      label: "JS",
-    };
-  }
-  if (tag === "php" || tag === "PHP" || tag === "Php") {
-    return {
-      tag: "php",
-      label: "PHP",
-    };
-  }
-  if (tag === "julia" || tag === "Julia" || tag === "JULIA") {
-    return {
-      tag: "julia",
-      label: "Julia",
-    };
-  }
-  return {
-    tag: tag,
-    label: tag,
-  };
-}
-
-;// CONCATENATED MODULE: ./scripts/programme/collectProgrammesData.js
-
-
-
-
-
-
-
-
-
-async function collectProgrammesData(
-  owner,
-  token,
-  programmeRepo,
-  programmeBranch
-) {
-  await console.log("=> ", formatTag("py"));
-  const res = await formatTag("py");
-  await console.log("format py => ", res);
-
-  // const programmeList = [];
-  // const pathsData = await fetch(
-  //   `https://api.github.com/repos/${owner}/${programmeRepo}/git/trees/${programmeBranch}?recursive=1`,
-  //   {
-  //     method: "GET",
-  //     headers: {
-  //       Authorization: `token ${token}`,
-  //     },
-  //   }
-  // )
-  //   .then((res) => res.json())
-  //   .then((res) => res.tree)
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-
-  // pathsData &&
-  //   (await Promise.all(
-  //     await pathsData.map(async (data) => {
-  //       if (
-  //         data.path.startsWith("programme") &&
-  //         data.path.endsWith("README.md") &&
-  //         data.path !== "programme/README.md"
-  //       ) {
-  //         const source = await fetch(
-  //           `https://raw.githubusercontent.com/${owner}/${programmeRepo}/${programmeBranch}/${data.path}`,
-  //           {
-  //             method: "GET",
-  //             headers: {
-  //               Authorization: `token ${token}`,
-  //             },
-  //           }
-  //         )
-  //           .then((res) => res.text())
-  //           .catch((error) => console.log(error));
-
-  //         try {
-  //           const content = await matter(source);
-  //           await programmeList.push({
-  //             title: content.data.title ? content.data.title : "Codinasion",
-  //             tags: content.data.tags ? content.data.tags : [],
-  //             slug: formatSlug(data.path),
-  //           });
-  //         } catch (error) {
-  //           await console.log("error occured !!! for ", data.path);
-  //           await console.log(error);
-  //         }
-  //       }
-  //     })
-  //   ));
-
-  // await console.log("\n=> Total programmeList data : ", programmeList.length);
-
-  // // write prorgamme list data to file
-  // const programmeListJson = await JSON.stringify(
-  //   programmeList.sort(function (a, b) {
-  //     if (a.slug < b.slug) {
-  //       return -1;
-  //     }
-  //     if (a.slug > b.slug) {
-  //       return 1;
-  //     }
-  //     return 0;
-  //   })
-  // );
-  // const programmeFileDir = "data/programme";
-  // await fs.promises.mkdir(programmeFileDir, { recursive: true });
-  // const programmeFilePath = programmeFileDir + "/programmeList.json";
-  // await fs.writeFile(programmeFilePath, programmeListJson, (err) => {
-  //   if (err) throw err;
-  //   console.log(`=> ${programmeFilePath} succesfully saved !!!`);
-  // });
-}
-
 ;// CONCATENATED MODULE: external "node:http"
 const external_node_http_namespaceObject = require("node:http");
 ;// CONCATENATED MODULE: external "node:https"
@@ -14640,6 +14464,109 @@ function fixResponseChunkedTransferBadEnding(request, errorCallback) {
 			previousChunk = buf;
 		});
 	});
+}
+
+// EXTERNAL MODULE: external "fs"
+var external_fs_ = __nccwpck_require__(7147);
+var external_fs_default = /*#__PURE__*/__nccwpck_require__.n(external_fs_);
+// EXTERNAL MODULE: ./node_modules/gray-matter/index.js
+var gray_matter = __nccwpck_require__(479);
+var gray_matter_default = /*#__PURE__*/__nccwpck_require__.n(gray_matter);
+;// CONCATENATED MODULE: ./scripts/formatSlug.js
+function formatSlug(slug) {
+  slug = slug.replace(/programme\//, "");
+  slug = slug.replace(/\/(README|index|Readme)/, "");
+  slug = slug.replace(/\.(mdx|md)/, "");
+  return slug;
+}
+
+;// CONCATENATED MODULE: ./scripts/programme/collectProgrammesData.js
+
+
+
+
+
+
+
+
+async function collectProgrammesData(
+  owner,
+  token,
+  programmeRepo,
+  programmeBranch
+) {
+  const programmeList = [];
+  const pathsData = await fetch(
+    `https://api.github.com/repos/${owner}/${programmeRepo}/git/trees/${programmeBranch}?recursive=1`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    }
+  )
+    .then((res) => res.json())
+    .then((res) => res.tree)
+    .catch((error) => {
+      console.log(error);
+    });
+
+  pathsData &&
+    (await Promise.all(
+      await pathsData.map(async (data) => {
+        if (
+          data.path.startsWith("programme") &&
+          data.path.endsWith("README.md") &&
+          data.path !== "programme/README.md"
+        ) {
+          const source = await fetch(
+            `https://raw.githubusercontent.com/${owner}/${programmeRepo}/${programmeBranch}/${data.path}`,
+            {
+              method: "GET",
+              headers: {
+                Authorization: `token ${token}`,
+              },
+            }
+          )
+            .then((res) => res.text())
+            .catch((error) => console.log(error));
+
+          try {
+            const content = await gray_matter_default()(source);
+            await programmeList.push({
+              title: content.data.title ? content.data.title : "Codinasion",
+              tags: content.data.tags ? content.data.tags : [],
+              slug: formatSlug(data.path),
+            });
+          } catch (error) {
+            await console.log("error occured !!! for ", data.path);
+            await console.log(error);
+          }
+        }
+      })
+    ));
+
+  await console.log("\n=> Total programmeList data : ", programmeList.length);
+
+  // write prorgamme list data to file
+  const programmeListJson = await JSON.stringify(
+    programmeList.sort(function (a, b) {
+      if (a.slug < b.slug) {
+        return -1;
+      }
+      if (a.slug > b.slug) {
+        return 1;
+      }
+      return 0;
+    })
+  );
+  const programmeFileDir = "data/programme";
+  await external_fs_default().promises.mkdir(programmeFileDir, { recursive: true });
+  const programmeFilePath = programmeFileDir + "/programmeList.json";
+  await external_fs_default().writeFile(programmeFilePath, programmeListJson, (err) => {
+    if (err) throw err;
+    console.log(`=> ${programmeFilePath} succesfully saved !!!`);
+  });
 }
 
 ;// CONCATENATED MODULE: ./node_modules/bail/index.js
@@ -35252,6 +35179,82 @@ async function collectProgrammeData(
     ));
 }
 
+;// CONCATENATED MODULE: ./scripts/formatTag.js
+function formatTag(tag) {
+  if (tag === "c" || tag === "C") {
+    return {
+      tag: "c",
+      label: "C",
+    };
+  }
+  if (tag === "c++" || tag === "C++" || tag === "cpp" || tag === "CPP") {
+    return {
+      tag: "cpp",
+      label: "C++",
+    };
+  }
+  if (tag === "cs" || tag === "c#" || tag === "CS" || tag === "C#") {
+    return {
+      tag: "cs",
+      label: "C#",
+    };
+  }
+  if (tag === "java" || tag === "Java" || tag === "JAVA") {
+    return {
+      tag: "java",
+      label: "Java",
+    };
+  }
+  if (
+    tag === "py" ||
+    tag === "Py" ||
+    tag === "PY" ||
+    tag === "python" ||
+    tag === "Python" ||
+    tag === "PYTHON"
+  ) {
+    return {
+      tag: "python",
+      label: "Python",
+    };
+  }
+  if (tag === "GO" || tag === "go" || tag === "golang" || tag === "Go") {
+    return {
+      tag: "go",
+      label: "GO",
+    };
+  }
+  if (
+    tag === "js" ||
+    tag === "JS" ||
+    tag === "Js" ||
+    tag === "javascript" ||
+    tag === "JavaScript" ||
+    tag === "JAVASCRIPT"
+  ) {
+    return {
+      tag: "js",
+      label: "JS",
+    };
+  }
+  if (tag === "php" || tag === "PHP" || tag === "Php") {
+    return {
+      tag: "php",
+      label: "PHP",
+    };
+  }
+  if (tag === "julia" || tag === "Julia" || tag === "JULIA") {
+    return {
+      tag: "julia",
+      label: "Julia",
+    };
+  }
+  return {
+    tag: tag,
+    label: tag,
+  };
+}
+
 ;// CONCATENATED MODULE: ./scripts/tag/collectTagsData.js
 
 
@@ -35895,14 +35898,6 @@ Twitter:     https://twitter.com/codinasion
     await console.log(`error occured !!! for ${owner} stats collect`);
     await console.log(error);
   }
-}
-
-;// CONCATENATED MODULE: ./scripts/formatSlug.js
-function formatSlug(slug) {
-  slug = slug.replace(/programme\//, "");
-  slug = slug.replace(/\/(README|index|Readme)/, "");
-  slug = slug.replace(/\.(mdx|md)/, "");
-  return slug;
 }
 
 ;// CONCATENATED MODULE: ./scripts/dsa/collectAllDsaData.js
