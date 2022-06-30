@@ -53,16 +53,24 @@ export default async function collectProgrammesData(
           const programme_files = pathsData.filter((file) =>
             file.path.startsWith("programme/" + data.path.split("/")[1])
           );
-          await console.log(programme_files);
           programme_files &&
             (await Promise.all(
               await programme_files.map(async (file) => {
                 if (
                   !file.path.endsWith(".md") &&
                   file.path.replace(
-                    `programme/${file.path.split("/")[1]}`,"") !== ""
+                    `programme/${file.path.split("/")[1]}`,
+                    ""
+                  ) !== ""
                 ) {
-                  await programme_tags.push(file.path.split(".")[1]);
+                  // check if tag is already in the list
+                  if (
+                    !programme_tags.find(
+                      (tag) => tag.name === file.path.replace(/\//g, "")
+                    )
+                  ) {
+                    await programme_tags.push(file.path.split(".")[1]);
+                  }
                 }
               })
             ));
