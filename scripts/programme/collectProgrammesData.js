@@ -60,9 +60,7 @@ export default async function collectProgrammesData(
                 if (
                   !file.path.endsWith(".md") &&
                   file.path.replace(
-                    `programme/${file.path.split("/")[1]}`,
-                    ""
-                  ) !== ""
+                    `programme/${file.path.split("/")[1]}`,"") !== ""
                 ) {
                   await programme_tags.push(file.path.split(".")[1]);
                 }
