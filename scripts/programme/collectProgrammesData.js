@@ -13,6 +13,7 @@ export default async function collectProgrammesData(
   programmeRepo,
   programmeBranch
 ) {
+  await console.log("=> ", formatTag("py"));
   const res = await formatTag("py");
   await console.log("format py => ", res);
 

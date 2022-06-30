@@ -11490,87 +11490,6 @@ exports.debug = debug; // for test
 
 /***/ }),
 
-/***/ 1786:
-/***/ (() => {
-
-function formatTag(tag) {
-  if (tag === "c" || tag === "C") {
-    return {
-      tag: "c",
-      label: "C",
-    };
-  }
-  if (tag === "c++" || tag === "C++" || tag === "cpp" || tag === "CPP") {
-    return {
-      tag: "cpp",
-      label: "C++",
-    };
-  }
-  if (tag === "cs" || tag === "c#" || tag === "CS" || tag === "C#") {
-    return {
-      tag: "cs",
-      label: "C#",
-    };
-  }
-  if (tag === "java" || tag === "Java" || tag === "JAVA") {
-    return {
-      tag: "java",
-      label: "Java",
-    };
-  }
-  if (
-    tag === "py" ||
-    tag === "Py" ||
-    tag === "PY" ||
-    tag === "python" ||
-    tag === "Python" ||
-    tag === "PYTHON"
-  ) {
-    return {
-      tag: "python",
-      label: "Python",
-    };
-  }
-  if (tag === "GO" || tag === "go" || tag === "golang" || tag === "Go") {
-    return {
-      tag: "go",
-      label: "GO",
-    };
-  }
-  if (
-    tag === "js" ||
-    tag === "JS" ||
-    tag === "Js" ||
-    tag === "javascript" ||
-    tag === "JavaScript" ||
-    tag === "JAVASCRIPT"
-  ) {
-    return {
-      tag: "js",
-      label: "JS",
-    };
-  }
-  if (tag === "php" || tag === "PHP" || tag === "Php") {
-    return {
-      tag: "php",
-      label: "PHP",
-    };
-  }
-  if (tag === "julia" || tag === "Julia" || tag === "JULIA") {
-    return {
-      tag: "julia",
-      label: "Julia",
-    };
-  }
-  return {
-    tag: tag,
-    label: tag,
-  };
-}
-
-
-/***/ }),
-
 /***/ 9491:
 /***/ ((module) => {
 
@@ -12444,9 +12363,82 @@ var external_fs_default = /*#__PURE__*/__nccwpck_require__.n(external_fs_);
 // EXTERNAL MODULE: ./node_modules/gray-matter/index.js
 var gray_matter = __nccwpck_require__(479);
 var gray_matter_default = /*#__PURE__*/__nccwpck_require__.n(gray_matter);
-// EXTERNAL MODULE: ./scripts/formatTag.js
-var formatTag = __nccwpck_require__(1786);
-var formatTag_default = /*#__PURE__*/__nccwpck_require__.n(formatTag);
+;// CONCATENATED MODULE: ./scripts/formatTag.js
+function formatTag(tag) {
+  if (tag === "c" || tag === "C") {
+    return {
+      tag: "c",
+      label: "C",
+    };
+  }
+  if (tag === "c++" || tag === "C++" || tag === "cpp" || tag === "CPP") {
+    return {
+      tag: "cpp",
+      label: "C++",
+    };
+  }
+  if (tag === "cs" || tag === "c#" || tag === "CS" || tag === "C#") {
+    return {
+      tag: "cs",
+      label: "C#",
+    };
+  }
+  if (tag === "java" || tag === "Java" || tag === "JAVA") {
+    return {
+      tag: "java",
+      label: "Java",
+    };
+  }
+  if (
+    tag === "py" ||
+    tag === "Py" ||
+    tag === "PY" ||
+    tag === "python" ||
+    tag === "Python" ||
+    tag === "PYTHON"
+  ) {
+    return {
+      tag: "python",
+      label: "Python",
+    };
+  }
+  if (tag === "GO" || tag === "go" || tag === "golang" || tag === "Go") {
+    return {
+      tag: "go",
+      label: "GO",
+    };
+  }
+  if (
+    tag === "js" ||
+    tag === "JS" ||
+    tag === "Js" ||
+    tag === "javascript" ||
+    tag === "JavaScript" ||
+    tag === "JAVASCRIPT"
+  ) {
+    return {
+      tag: "js",
+      label: "JS",
+    };
+  }
+  if (tag === "php" || tag === "PHP" || tag === "Php") {
+    return {
+      tag: "php",
+      label: "PHP",
+    };
+  }
+  if (tag === "julia" || tag === "Julia" || tag === "JULIA") {
+    return {
+      tag: "julia",
+      label: "Julia",
+    };
+  }
+  return {
+    tag: tag,
+    label: tag,
+  };
+}
+
 ;// CONCATENATED MODULE: ./scripts/programme/collectProgrammesData.js
 
 
@@ -12463,7 +12455,8 @@ async function collectProgrammesData(
   programmeRepo,
   programmeBranch
 ) {
-  const res = await formatTag_default()("py");
+  await console.log("=> ", formatTag("py"));
+  const res = await formatTag("py");
   await console.log("format py => ", res);
 
   // const programmeList = [];
@@ -35285,8 +35278,8 @@ async function collectTagsData(owner, token) {
     (await Promise.all(
       await programmeList.map(async (data) => {
         for (let i = 0; i < data.tags.length; i++) {
-          if (!allTags.includes(formatTag_default()(data.tags[i]).tag)) {
-            await allTags.push(formatTag_default()(data.tags[i]).tag);
+          if (!allTags.includes(formatTag(data.tags[i]).tag)) {
+            await allTags.push(formatTag(data.tags[i]).tag);
           }
         }
       })
@@ -35340,7 +35333,7 @@ async function collectTagData(owner, token) {
           (await Promise.all(
             await programmeList.map(async (data) => {
               for (let i = 0; i < data.tags.length; i++) {
-                if (formatTag_default()(data.tags[i]).tag === formatTag_default()(tag).tag) {
+                if (formatTag(data.tags[i]).tag === formatTag(tag).tag) {
                   allProgramme.push(data);
                   break;
                 }
