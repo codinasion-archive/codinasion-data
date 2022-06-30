@@ -32,7 +32,7 @@ jobs:
           format: "YYYY-MM-DD-hh-mm"
 
       ##########  Update Script  ##########
-      - name: Download File
+      - name: Update Script
         run: |
           cd scripts
           wget 'https://raw.githubusercontent.com/codinasion/codinasion/master/script/formatTag.js' -O formatTag.js
