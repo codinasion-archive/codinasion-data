@@ -35228,7 +35228,7 @@ async function collectProgrammeData(
           {
             method: "GET",
             headers: {
-              Authorization: `token ${token}`,
+              Authorization: `token ${PAT}`,
             },
           }
         )
