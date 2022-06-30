@@ -11490,27 +11490,10 @@ exports.debug = debug; // for test
 
 /***/ }),
 
-/***/ 1786:
-/***/ ((__unused_webpack_module, __webpack_exports__, __nccwpck_require__) => {
+/***/ 2003:
+/***/ ((module) => {
 
-"use strict";
-/* harmony export */ __nccwpck_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (/* binding */ formatTag)
-/* harmony export */ });
-/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(9381);
-
-
-async function formatTag(tag) {
-  const fnText = await (0,node_fetch__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .ZP)(
-    `https://raw.githubusercontent.com/codinasion/codinasion/master/script/formatTag.js`
-  )
-    .then((res) => res.text())
-    .catch((error) => console.log(error));
-
-  await eval(fnText);
-
-  return formatTag(tag);
-}
+module.exports = eval("require")("../formatTag");
 
 
 /***/ }),
@@ -12200,19 +12183,289 @@ c.push(`--${b}--`)
 return new B(c,{type:"multipart/form-data; boundary="+b})}
 
 
-/***/ }),
+/***/ })
 
-/***/ 9381:
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __nccwpck_require__) => {
-
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __nccwpck_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		var threw = true;
+/******/ 		try {
+/******/ 			__webpack_modules__[moduleId].call(module.exports, module, module.exports, __nccwpck_require__);
+/******/ 			threw = false;
+/******/ 		} finally {
+/******/ 			if(threw) delete __webpack_module_cache__[moduleId];
+/******/ 		}
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__nccwpck_require__.m = __webpack_modules__;
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__nccwpck_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__nccwpck_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__nccwpck_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__nccwpck_require__.o(definition, key) && !__nccwpck_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/ensure chunk */
+/******/ 	(() => {
+/******/ 		__nccwpck_require__.f = {};
+/******/ 		// This file contains only the entry chunk.
+/******/ 		// The chunk loading function for additional chunks
+/******/ 		__nccwpck_require__.e = (chunkId) => {
+/******/ 			return Promise.all(Object.keys(__nccwpck_require__.f).reduce((promises, key) => {
+/******/ 				__nccwpck_require__.f[key](chunkId, promises);
+/******/ 				return promises;
+/******/ 			}, []));
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/get javascript chunk filename */
+/******/ 	(() => {
+/******/ 		// This function allow to reference async chunks
+/******/ 		__nccwpck_require__.u = (chunkId) => {
+/******/ 			// return url for filenames based on template
+/******/ 			return "" + chunkId + ".index.js";
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__nccwpck_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__nccwpck_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat */
+/******/ 	
+/******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
+/******/ 	
+/******/ 	/* webpack/runtime/require chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded chunks
+/******/ 		// "1" means "loaded", otherwise not loaded yet
+/******/ 		var installedChunks = {
+/******/ 			179: 1
+/******/ 		};
+/******/ 		
+/******/ 		// no on chunks loaded
+/******/ 		
+/******/ 		var installChunk = (chunk) => {
+/******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids, runtime = chunk.runtime;
+/******/ 			for(var moduleId in moreModules) {
+/******/ 				if(__nccwpck_require__.o(moreModules, moduleId)) {
+/******/ 					__nccwpck_require__.m[moduleId] = moreModules[moduleId];
+/******/ 				}
+/******/ 			}
+/******/ 			if(runtime) runtime(__nccwpck_require__);
+/******/ 			for(var i = 0; i < chunkIds.length; i++)
+/******/ 				installedChunks[chunkIds[i]] = 1;
+/******/ 		
+/******/ 		};
+/******/ 		
+/******/ 		// require() chunk loading for javascript
+/******/ 		__nccwpck_require__.f.require = (chunkId, promises) => {
+/******/ 			// "1" is the signal for "already loaded"
+/******/ 			if(!installedChunks[chunkId]) {
+/******/ 				if(true) { // all chunks have JS
+/******/ 					installChunk(require("./" + __nccwpck_require__.u(chunkId)));
+/******/ 				} else installedChunks[chunkId] = 1;
+/******/ 			}
+/******/ 		};
+/******/ 		
+/******/ 		// no external install chunk
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
 "use strict";
+// ESM COMPAT FLAG
+__nccwpck_require__.r(__webpack_exports__);
 
-// EXPORTS
-__nccwpck_require__.d(__webpack_exports__, {
-  "ZP": () => (/* binding */ fetch)
+// NAMESPACE OBJECT: ./node_modules/micromark/lib/constructs.js
+var constructs_namespaceObject = {};
+__nccwpck_require__.r(constructs_namespaceObject);
+__nccwpck_require__.d(constructs_namespaceObject, {
+  "attentionMarkers": () => (attentionMarkers),
+  "contentInitial": () => (contentInitial),
+  "disable": () => (disable),
+  "document": () => (constructs_document),
+  "flow": () => (constructs_flow),
+  "flowInitial": () => (flowInitial),
+  "insideSpan": () => (insideSpan),
+  "string": () => (constructs_string),
+  "text": () => (constructs_text)
 });
 
-// UNUSED EXPORTS: AbortError, Blob, FetchError, File, FormData, Headers, Request, Response, blobFrom, blobFromSync, fileFrom, fileFromSync, isRedirect
+// NAMESPACE OBJECT: ./node_modules/property-information/lib/util/types.js
+var types_namespaceObject = {};
+__nccwpck_require__.r(types_namespaceObject);
+__nccwpck_require__.d(types_namespaceObject, {
+  "boolean": () => (types_boolean),
+  "booleanish": () => (booleanish),
+  "commaOrSpaceSeparated": () => (commaOrSpaceSeparated),
+  "commaSeparated": () => (commaSeparated),
+  "number": () => (number),
+  "overloadedBoolean": () => (overloadedBoolean),
+  "spaceSeparated": () => (spaceSeparated)
+});
+
+// EXTERNAL MODULE: external "fs"
+var external_fs_ = __nccwpck_require__(7147);
+var external_fs_default = /*#__PURE__*/__nccwpck_require__.n(external_fs_);
+// EXTERNAL MODULE: ./node_modules/gray-matter/index.js
+var gray_matter = __nccwpck_require__(479);
+var gray_matter_default = /*#__PURE__*/__nccwpck_require__.n(gray_matter);
+// EXTERNAL MODULE: ../../../../../usr/lib/node_modules/@vercel/ncc/dist/ncc/@@notfound.js?../formatTag
+var _notfoundformatTag = __nccwpck_require__(2003);
+var _notfoundformatTag_default = /*#__PURE__*/__nccwpck_require__.n(_notfoundformatTag);
+;// CONCATENATED MODULE: ./scripts/programme/collectProgrammesData.js
+
+
+
+
+
+
+
+
+
+async function collectProgrammesData(
+  owner,
+  token,
+  programmeRepo,
+  programmeBranch
+) {
+  const res = await _notfoundformatTag_default()("py");
+  await console.log("format py => ", res);
+
+  // const programmeList = [];
+  // const pathsData = await fetch(
+  //   `https://api.github.com/repos/${owner}/${programmeRepo}/git/trees/${programmeBranch}?recursive=1`,
+  //   {
+  //     method: "GET",
+  //     headers: {
+  //       Authorization: `token ${token}`,
+  //     },
+  //   }
+  // )
+  //   .then((res) => res.json())
+  //   .then((res) => res.tree)
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
+
+  // pathsData &&
+  //   (await Promise.all(
+  //     await pathsData.map(async (data) => {
+  //       if (
+  //         data.path.startsWith("programme") &&
+  //         data.path.endsWith("README.md") &&
+  //         data.path !== "programme/README.md"
+  //       ) {
+  //         const source = await fetch(
+  //           `https://raw.githubusercontent.com/${owner}/${programmeRepo}/${programmeBranch}/${data.path}`,
+  //           {
+  //             method: "GET",
+  //             headers: {
+  //               Authorization: `token ${token}`,
+  //             },
+  //           }
+  //         )
+  //           .then((res) => res.text())
+  //           .catch((error) => console.log(error));
+
+  //         try {
+  //           const content = await matter(source);
+  //           await programmeList.push({
+  //             title: content.data.title ? content.data.title : "Codinasion",
+  //             tags: content.data.tags ? content.data.tags : [],
+  //             slug: formatSlug(data.path),
+  //           });
+  //         } catch (error) {
+  //           await console.log("error occured !!! for ", data.path);
+  //           await console.log(error);
+  //         }
+  //       }
+  //     })
+  //   ));
+
+  // await console.log("\n=> Total programmeList data : ", programmeList.length);
+
+  // // write prorgamme list data to file
+  // const programmeListJson = await JSON.stringify(
+  //   programmeList.sort(function (a, b) {
+  //     if (a.slug < b.slug) {
+  //       return -1;
+  //     }
+  //     if (a.slug > b.slug) {
+  //       return 1;
+  //     }
+  //     return 0;
+  //   })
+  // );
+  // const programmeFileDir = "data/programme";
+  // await fs.promises.mkdir(programmeFileDir, { recursive: true });
+  // const programmeFilePath = programmeFileDir + "/programmeList.json";
+  // await fs.writeFile(programmeFilePath, programmeListJson, (err) => {
+  //   if (err) throw err;
+  //   console.log(`=> ${programmeFilePath} succesfully saved !!!`);
+  // });
+}
 
 ;// CONCATENATED MODULE: external "node:http"
 const external_node_http_namespaceObject = require("node:http");
@@ -14323,292 +14576,6 @@ function fixResponseChunkedTransferBadEnding(request, errorCallback) {
 	});
 }
 
-
-/***/ })
-
-/******/ 	});
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __nccwpck_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		var threw = true;
-/******/ 		try {
-/******/ 			__webpack_modules__[moduleId].call(module.exports, module, module.exports, __nccwpck_require__);
-/******/ 			threw = false;
-/******/ 		} finally {
-/******/ 			if(threw) delete __webpack_module_cache__[moduleId];
-/******/ 		}
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__nccwpck_require__.m = __webpack_modules__;
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__nccwpck_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__nccwpck_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__nccwpck_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__nccwpck_require__.o(definition, key) && !__nccwpck_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/ensure chunk */
-/******/ 	(() => {
-/******/ 		__nccwpck_require__.f = {};
-/******/ 		// This file contains only the entry chunk.
-/******/ 		// The chunk loading function for additional chunks
-/******/ 		__nccwpck_require__.e = (chunkId) => {
-/******/ 			return Promise.all(Object.keys(__nccwpck_require__.f).reduce((promises, key) => {
-/******/ 				__nccwpck_require__.f[key](chunkId, promises);
-/******/ 				return promises;
-/******/ 			}, []));
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/get javascript chunk filename */
-/******/ 	(() => {
-/******/ 		// This function allow to reference async chunks
-/******/ 		__nccwpck_require__.u = (chunkId) => {
-/******/ 			// return url for filenames based on template
-/******/ 			return "" + chunkId + ".index.js";
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__nccwpck_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__nccwpck_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/compat */
-/******/ 	
-/******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
-/******/ 	
-/******/ 	/* webpack/runtime/require chunk loading */
-/******/ 	(() => {
-/******/ 		// no baseURI
-/******/ 		
-/******/ 		// object to store loaded chunks
-/******/ 		// "1" means "loaded", otherwise not loaded yet
-/******/ 		var installedChunks = {
-/******/ 			179: 1
-/******/ 		};
-/******/ 		
-/******/ 		// no on chunks loaded
-/******/ 		
-/******/ 		var installChunk = (chunk) => {
-/******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids, runtime = chunk.runtime;
-/******/ 			for(var moduleId in moreModules) {
-/******/ 				if(__nccwpck_require__.o(moreModules, moduleId)) {
-/******/ 					__nccwpck_require__.m[moduleId] = moreModules[moduleId];
-/******/ 				}
-/******/ 			}
-/******/ 			if(runtime) runtime(__nccwpck_require__);
-/******/ 			for(var i = 0; i < chunkIds.length; i++)
-/******/ 				installedChunks[chunkIds[i]] = 1;
-/******/ 		
-/******/ 		};
-/******/ 		
-/******/ 		// require() chunk loading for javascript
-/******/ 		__nccwpck_require__.f.require = (chunkId, promises) => {
-/******/ 			// "1" is the signal for "already loaded"
-/******/ 			if(!installedChunks[chunkId]) {
-/******/ 				if(true) { // all chunks have JS
-/******/ 					installChunk(require("./" + __nccwpck_require__.u(chunkId)));
-/******/ 				} else installedChunks[chunkId] = 1;
-/******/ 			}
-/******/ 		};
-/******/ 		
-/******/ 		// no external install chunk
-/******/ 		
-/******/ 		// no HMR
-/******/ 		
-/******/ 		// no HMR manifest
-/******/ 	})();
-/******/ 	
-/************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
-(() => {
-"use strict";
-// ESM COMPAT FLAG
-__nccwpck_require__.r(__webpack_exports__);
-
-// NAMESPACE OBJECT: ./node_modules/micromark/lib/constructs.js
-var constructs_namespaceObject = {};
-__nccwpck_require__.r(constructs_namespaceObject);
-__nccwpck_require__.d(constructs_namespaceObject, {
-  "attentionMarkers": () => (attentionMarkers),
-  "contentInitial": () => (contentInitial),
-  "disable": () => (disable),
-  "document": () => (constructs_document),
-  "flow": () => (constructs_flow),
-  "flowInitial": () => (flowInitial),
-  "insideSpan": () => (insideSpan),
-  "string": () => (constructs_string),
-  "text": () => (constructs_text)
-});
-
-// NAMESPACE OBJECT: ./node_modules/property-information/lib/util/types.js
-var types_namespaceObject = {};
-__nccwpck_require__.r(types_namespaceObject);
-__nccwpck_require__.d(types_namespaceObject, {
-  "boolean": () => (types_boolean),
-  "booleanish": () => (booleanish),
-  "commaOrSpaceSeparated": () => (commaOrSpaceSeparated),
-  "commaSeparated": () => (commaSeparated),
-  "number": () => (number),
-  "overloadedBoolean": () => (overloadedBoolean),
-  "spaceSeparated": () => (spaceSeparated)
-});
-
-// EXTERNAL MODULE: external "fs"
-var external_fs_ = __nccwpck_require__(7147);
-var external_fs_default = /*#__PURE__*/__nccwpck_require__.n(external_fs_);
-// EXTERNAL MODULE: ./node_modules/gray-matter/index.js
-var gray_matter = __nccwpck_require__(479);
-var gray_matter_default = /*#__PURE__*/__nccwpck_require__.n(gray_matter);
-// EXTERNAL MODULE: ./scripts/formatTag.js
-var formatTag = __nccwpck_require__(1786);
-;// CONCATENATED MODULE: ./scripts/programme/collectProgrammesData.js
-
-
-
-
-
-
-
-
-
-async function collectProgrammesData(
-  owner,
-  token,
-  programmeRepo,
-  programmeBranch
-) {
-  const res = await (0,formatTag/* default */.Z)("py");
-  await console.log("format py => ", res);
-
-  // const programmeList = [];
-  // const pathsData = await fetch(
-  //   `https://api.github.com/repos/${owner}/${programmeRepo}/git/trees/${programmeBranch}?recursive=1`,
-  //   {
-  //     method: "GET",
-  //     headers: {
-  //       Authorization: `token ${token}`,
-  //     },
-  //   }
-  // )
-  //   .then((res) => res.json())
-  //   .then((res) => res.tree)
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-
-  // pathsData &&
-  //   (await Promise.all(
-  //     await pathsData.map(async (data) => {
-  //       if (
-  //         data.path.startsWith("programme") &&
-  //         data.path.endsWith("README.md") &&
-  //         data.path !== "programme/README.md"
-  //       ) {
-  //         const source = await fetch(
-  //           `https://raw.githubusercontent.com/${owner}/${programmeRepo}/${programmeBranch}/${data.path}`,
-  //           {
-  //             method: "GET",
-  //             headers: {
-  //               Authorization: `token ${token}`,
-  //             },
-  //           }
-  //         )
-  //           .then((res) => res.text())
-  //           .catch((error) => console.log(error));
-
-  //         try {
-  //           const content = await matter(source);
-  //           await programmeList.push({
-  //             title: content.data.title ? content.data.title : "Codinasion",
-  //             tags: content.data.tags ? content.data.tags : [],
-  //             slug: formatSlug(data.path),
-  //           });
-  //         } catch (error) {
-  //           await console.log("error occured !!! for ", data.path);
-  //           await console.log(error);
-  //         }
-  //       }
-  //     })
-  //   ));
-
-  // await console.log("\n=> Total programmeList data : ", programmeList.length);
-
-  // // write prorgamme list data to file
-  // const programmeListJson = await JSON.stringify(
-  //   programmeList.sort(function (a, b) {
-  //     if (a.slug < b.slug) {
-  //       return -1;
-  //     }
-  //     if (a.slug > b.slug) {
-  //       return 1;
-  //     }
-  //     return 0;
-  //   })
-  // );
-  // const programmeFileDir = "data/programme";
-  // await fs.promises.mkdir(programmeFileDir, { recursive: true });
-  // const programmeFilePath = programmeFileDir + "/programmeList.json";
-  // await fs.writeFile(programmeFilePath, programmeListJson, (err) => {
-  //   if (err) throw err;
-  //   console.log(`=> ${programmeFilePath} succesfully saved !!!`);
-  // });
-}
-
-// EXTERNAL MODULE: ./node_modules/node-fetch/src/index.js + 20 modules
-var src = __nccwpck_require__(9381);
 ;// CONCATENATED MODULE: ./node_modules/bail/index.js
 /**
  * Throw a given error.
@@ -35118,7 +35085,7 @@ async function collectProgrammeData(
   programmeRepo,
   programmeBranch
 ) {
-  const programmeList = await (0,src/* default */.ZP)(
+  const programmeList = await fetch(
     `https://raw.githubusercontent.com/${"codinasion"}/${"codinasion-data"}/master/data/programme/${"programmeList"}.json`,
     {
       method: "GET",
@@ -35138,7 +35105,7 @@ async function collectProgrammeData(
         const slug = data.slug;
 
         try {
-          const source = await (0,src/* default */.ZP)(
+          const source = await fetch(
             `https://raw.githubusercontent.com/${owner}/${programmeRepo}/${programmeBranch}/programme/${slug}/README.md`,
             {
               method: "GET",
@@ -35160,7 +35127,7 @@ async function collectProgrammeData(
           var latestUpdateDate = null;
           try {
             let json_res = [];
-            latestUpdateDate = await (0,src/* default */.ZP)(
+            latestUpdateDate = await fetch(
               `https://api.github.com/repos/${owner}/${programmeRepo}/commits?path=${
                 "programme/" + slug + "/README.md"
               }&page=1&per_page=1`,
@@ -35229,7 +35196,7 @@ async function collectProgrammeData(
 async function collectTagsData(owner, token) {
   const allTags = [];
 
-  const programmeList = await (0,src/* default */.ZP)(
+  const programmeList = await fetch(
     `https://raw.githubusercontent.com/${owner}/${"codinasion-data"}/master/data/programme/${"programmeList"}.json`,
     {
       method: "GET",
@@ -35245,8 +35212,8 @@ async function collectTagsData(owner, token) {
     (await Promise.all(
       await programmeList.map(async (data) => {
         for (let i = 0; i < data.tags.length; i++) {
-          if (!allTags.includes((0,formatTag/* default */.Z)(data.tags[i]).tag)) {
-            await allTags.push((0,formatTag/* default */.Z)(data.tags[i]).tag);
+          if (!allTags.includes(_notfoundformatTag_default()(data.tags[i]).tag)) {
+            await allTags.push(_notfoundformatTag_default()(data.tags[i]).tag);
           }
         }
       })
@@ -35268,7 +35235,7 @@ async function collectTagsData(owner, token) {
 
 
 async function collectTagData(owner, token) {
-  const programmeList = await (0,src/* default */.ZP)(
+  const programmeList = await fetch(
     `https://raw.githubusercontent.com/${owner}/${"codinasion-data"}/master/data/programme/${"programmeList"}.json`,
     {
       method: "GET",
@@ -35280,7 +35247,7 @@ async function collectTagData(owner, token) {
     .then((res) => res.json())
     .catch((error) => console.log(error));
 
-  const tagList = await (0,src/* default */.ZP)(
+  const tagList = await fetch(
     `https://raw.githubusercontent.com/${"codinasion"}/${"codinasion-data"}/master/data/programme/${"tagList"}.json`,
     {
       method: "GET",
@@ -35300,7 +35267,7 @@ async function collectTagData(owner, token) {
           (await Promise.all(
             await programmeList.map(async (data) => {
               for (let i = 0; i < data.tags.length; i++) {
-                if ((0,formatTag/* default */.Z)(data.tags[i]).tag === (0,formatTag/* default */.Z)(tag).tag) {
+                if (_notfoundformatTag_default()(data.tags[i]).tag === _notfoundformatTag_default()(tag).tag) {
                   allProgramme.push(data);
                   break;
                 }
@@ -35344,7 +35311,7 @@ async function collectOrgStats(owner, token, PAT) {
 
     async function getRepoJson(apilink) {
       var repo_data = [];
-      await (0,src/* default */.ZP)(apilink, {
+      await fetch(apilink, {
         method: "GET",
         headers: {
           Authorization: `token ${token} `,
@@ -35384,7 +35351,7 @@ async function collectOrgStats(owner, token, PAT) {
 
     async function getContributorJson(apilink) {
       var contributor_data = [];
-      await (0,src/* default */.ZP)(apilink, {
+      await fetch(apilink, {
         method: "GET",
         headers: {
           Authorization: `token ${token} `,
@@ -35543,7 +35510,7 @@ Twitter:     https://twitter.com/codinasion
     `;
     var maintainers_data = [];
     var maintainers = [];
-    await (0,src/* default */.ZP)(
+    await fetch(
       `https://api.github.com/organizations/98682602/team/6258326/members`,
       {
         method: "GET",
@@ -35580,7 +35547,7 @@ Twitter:     https://twitter.com/codinasion
         await maintainers.map(async (maintainer) => {
           var maintainer_data = {};
           // get user data from github api
-          await (0,src/* default */.ZP)(`https://api.github.com/users/${maintainer}`, {
+          await fetch(`https://api.github.com/users/${maintainer}`, {
             method: "GET",
             headers: {
               Authorization: `token ${token} `,
@@ -35642,7 +35609,7 @@ Twitter:     https://twitter.com/codinasion
     var team_data = [];
     var team = [];
     // get all teams from github api
-    await (0,src/* default */.ZP)(`https://api.github.com/orgs/codinasion/teams`, {
+    await fetch(`https://api.github.com/orgs/codinasion/teams`, {
       method: "GET",
       headers: {
         Authorization: `token ${PAT} `,
@@ -35667,7 +35634,7 @@ Twitter:     https://twitter.com/codinasion
       (await Promise.all(
         await team_data.map(async (data) => {
           var team_members_data = [];
-          await (0,src/* default */.ZP)(`https://api.github.com/teams/${data.id}/members`, {
+          await fetch(`https://api.github.com/teams/${data.id}/members`, {
             method: "GET",
             headers: {
               Authorization: `token ${PAT} `,
@@ -35722,7 +35689,7 @@ Twitter:     https://twitter.com/codinasion
     // iterate trough team array and get user data from github api
     for (let j = 0; j < team.length; j++) {
       var team_member_data = {};
-      await (0,src/* default */.ZP)(`https://api.github.com/users/${team[j]}`, {
+      await fetch(`https://api.github.com/users/${team[j]}`, {
         method: "GET",
         headers: {
           Authorization: `token ${token} `,
@@ -35797,7 +35764,7 @@ Twitter:     https://twitter.com/codinasion
     // iterate through contributors array and get user data from github api
     for (let i = 0; i < contributors_data.length; i++) {
       var contributor_data = {};
-      await (0,src/* default */.ZP)(`https://api.github.com/users/${contributors_data[i]}`, {
+      await fetch(`https://api.github.com/users/${contributors_data[i]}`, {
         method: "GET",
         headers: {
           Authorization: `token ${token} `,
@@ -35888,7 +35855,7 @@ async function collectAllDsaData(
   dsaBranch
 ) {
   const dsaList = [];
-  const pathsData = await (0,src/* default */.ZP)(
+  const pathsData = await fetch(
     `https://api.github.com/repos/${owner}/${dsaRepo}/git/trees/${dsaBranch}?recursive=1`,
     {
       method: "GET",
@@ -35911,7 +35878,7 @@ async function collectAllDsaData(
           data.path.endsWith("README.md") &&
           data.path !== "programme/README.md"
         ) {
-          const source = await (0,src/* default */.ZP)(
+          const source = await fetch(
             `https://raw.githubusercontent.com/${owner}/${dsaRepo}/${dsaBranch}/${data.path}`,
             {
               method: "GET",
@@ -35974,7 +35941,7 @@ async function collectAllDsaData(
 
 
 async function collectDsaData(owner, token, dsaRepo, dsaBranch) {
-  const dsaList = await (0,src/* default */.ZP)(
+  const dsaList = await fetch(
     `https://raw.githubusercontent.com/${"codinasion"}/${"codinasion-data"}/master/data/dsa/${"dsaList"}.json`,
     {
       method: "GET",
@@ -35994,7 +35961,7 @@ async function collectDsaData(owner, token, dsaRepo, dsaBranch) {
         const slug = data.slug;
 
         try {
-          const source = await (0,src/* default */.ZP)(
+          const source = await fetch(
             `https://raw.githubusercontent.com/${owner}/${dsaRepo}/${dsaBranch}/programme/${slug}/README.md`,
             {
               method: "GET",
@@ -36016,7 +35983,7 @@ async function collectDsaData(owner, token, dsaRepo, dsaBranch) {
           var latestUpdateDate = null;
           try {
             let json_res = [];
-            latestUpdateDate = await (0,src/* default */.ZP)(
+            latestUpdateDate = await fetch(
               `https://api.github.com/repos/${owner}/${dsaRepo}/commits?path=${
                 "programme/" + slug + "/README.md"
               }&page=1&per_page=1`,
