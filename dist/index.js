@@ -35181,8 +35181,7 @@ async function collectProgrammeData(
   owner,
   token,
   programmeRepo,
-  programmeBranch,
-  PAT
+  programmeBranch
 ) {
   const programmeList = await fetch(
     `https://raw.githubusercontent.com/${"codinasion"}/${"codinasion-data"}/master/data/programme/${"programmeList"}.json`,
@@ -35226,7 +35225,7 @@ async function collectProgrammeData(
           {
             method: "GET",
             headers: {
-              Authorization: `token ${PAT}`,
+              Authorization: `token ${token}`,
             },
           }
         )
@@ -36235,7 +36234,7 @@ const index_core = __nccwpck_require__(6398);
     }
 
     if (processProgramme === "true") {
-      await collectProgrammeData(owner, token, programmeRepo, programmeBranch, PAT);
+      await collectProgrammeData(owner, token, programmeRepo, programmeBranch);
     }
 
     if (collectDsa === "true") {

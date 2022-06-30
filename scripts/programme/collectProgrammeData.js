@@ -12,8 +12,7 @@ export default async function collectProgrammeData(
   owner,
   token,
   programmeRepo,
-  programmeBranch,
-  PAT
+  programmeBranch
 ) {
   const programmeList = await fetch(
     `https://raw.githubusercontent.com/${"codinasion"}/${"codinasion-data"}/master/data/programme/${"programmeList"}.json`,
@@ -57,7 +56,7 @@ export default async function collectProgrammeData(
           {
             method: "GET",
             headers: {
-              Authorization: `token ${PAT}`,
+              Authorization: `token ${token}`,
             },
           }
         )
