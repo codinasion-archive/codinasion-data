@@ -50,6 +50,7 @@ export default async function collectProgrammeData(
         var code_text = `
 <CodeBlock>
         `;
+        const programme_tags = [];
         const programme_files = await fetch(
           `https://api.github.com/repos/${owner}/${programmeRepo}/contents/programme/${slug}`,
           {
@@ -66,6 +67,15 @@ export default async function collectProgrammeData(
           (await Promise.all(
             programme_files.map(async (file) => {
               if (!file.path.endsWith(".md") && !file.path.endsWith(".png")) {
+                // get tags data
+                // check if tag is already in the list
+                if (
+                  !programme_tags.find((tag) => tag === file.path.split(".")[1])
+                ) {
+                  await programme_tags.push(file.path.split(".")[1]);
+                }
+
+                // get code file data
                 const response_text = await fetch(
                   `https://raw.githubusercontent.com/${owner}/${programmeRepo}/${programmeBranch}/${file.path}`,
                   {
@@ -101,7 +111,7 @@ ${readme_text}
 ${code_text}
         `;
 
-          await console.log(source);
+          // await console.log(source);
 
           const matterResult = await matter(source);
 
@@ -115,7 +125,7 @@ ${code_text}
             let json_res = [];
             latestUpdateDate = await fetch(
               `https://api.github.com/repos/${owner}/${programmeRepo}/commits?path=${
-                "programme/" + slug + "/README.md"
+                "programme/" + slug
               }&page=1&per_page=1`,
               {
                 method: "GET",
@@ -140,19 +150,17 @@ ${code_text}
           }
 
           const programmeData = JSON.stringify({
-            frontMatter: {
-              slug: slug || null,
-              title: matterResult.data.title
-                ? matterResult.data.title
-                : "Codinasion",
-              description: matterResult.data.description
-                ? matterResult.data.description
-                : "Codinasion",
-              tags: matterResult.data.tags ? matterResult.data.tags : [],
-              contributors: matterResult.data.contributors
-                ? matterResult.data.contributors
-                : [],
-            },
+            slug: slug || null,
+            title: matterResult.data.title
+              ? matterResult.data.title
+              : "Codinasion",
+            description: matterResult.data.description
+              ? matterResult.data.description
+              : "Codinasion",
+            tags: programme_tags ? programme_tags : [],
+            contributors: matterResult.data.contributors
+              ? matterResult.data.contributors
+              : [],
             latestUpdateDate: latestUpdateDate,
             contentHtml: contentHtml,
             markdown: matterResult.content,

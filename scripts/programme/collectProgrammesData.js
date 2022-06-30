@@ -66,7 +66,7 @@ export default async function collectProgrammesData(
                   // check if tag is already in the list
                   if (
                     !programme_tags.find(
-                      (tag) => tag.name === file.path.replace(/\//g, "")
+                      (tag) => tag === file.path.split(".")[1]
                     )
                   ) {
                     await programme_tags.push(file.path.split(".")[1]);
