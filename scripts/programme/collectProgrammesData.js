@@ -50,7 +50,7 @@ export default async function collectProgrammesData(
 
           // get programme files
           const programme_tags = [];
-          const programme_files = pathsData.find(
+          const programme_files = pathsData.filter(
             (file) => file.path === `programme/${file.path.split("/")[1]}`
           );
           programme_files &&
