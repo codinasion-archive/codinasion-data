@@ -7,13 +7,13 @@ import { remark } from "remark";
 import html from "remark-html";
 
 import formatTag from "../formatTag";
-import { stringify } from "querystring";
 
 export default async function collectProgrammeData(
   owner,
   token,
   programmeRepo,
-  programmeBranch
+  programmeBranch,
+  PAT
 ) {
   const programmeList = await fetch(
     `https://raw.githubusercontent.com/${"codinasion"}/${"codinasion-data"}/master/data/programme/${"programmeList"}.json`,
@@ -109,6 +109,7 @@ ${"```"}
         try {
           const source = `
 ${readme_text}
+
 ${code_text}
         `;
 

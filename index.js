@@ -33,7 +33,7 @@ const core = require("@actions/core");
     }
 
     if (processProgramme === "true") {
-      await collectProgrammeData(owner, token, programmeRepo, programmeBranch);
+      await collectProgrammeData(owner, token, programmeRepo, programmeBranch, PAT);
     }
 
     if (collectDsa === "true") {

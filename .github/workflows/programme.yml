@@ -43,17 +43,16 @@ jobs:
           message: "update script - ${{ steps.date.outputs.time }}"
 
       ##########  collect programme data  ##########
-      - name: Collect Programme Data
-        uses: ./action/
-        with:
-          collect-programme: true
-          programme-branch: v4
-          token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Collect Programme Data
+      #   uses: ./action/
+      #   with:
+      #     collect-programme: true
+      #     token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Commit Programme Data
-        uses: EndBug/add-and-commit@v9
-        with:
-          message: "programme list data - ${{ steps.date.outputs.time }}"
+      # - name: Commit Programme Data
+      #   uses: EndBug/add-and-commit@v9
+      #   with:
+      #     message: "programme list data - ${{ steps.date.outputs.time }}"
 
       ##########  process data  ##########
       - name: Process Programme Data

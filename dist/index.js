@@ -35166,10 +35166,7 @@ function formatTag(tag) {
   };
 }
 
-;// CONCATENATED MODULE: external "querystring"
-const external_querystring_namespaceObject = require("querystring");
 ;// CONCATENATED MODULE: ./scripts/programme/collectProgrammeData.js
-
 
 
 
@@ -35184,7 +35181,8 @@ async function collectProgrammeData(
   owner,
   token,
   programmeRepo,
-  programmeBranch
+  programmeBranch,
+  PAT
 ) {
   const programmeList = await fetch(
     `https://raw.githubusercontent.com/${"codinasion"}/${"codinasion-data"}/master/data/programme/${"programmeList"}.json`,
@@ -35280,6 +35278,7 @@ ${"```"}
         try {
           const source = `
 ${readme_text}
+
 ${code_text}
         `;
 
@@ -36238,7 +36237,7 @@ const index_core = __nccwpck_require__(6398);
     }
 
     if (processProgramme === "true") {
-      await collectProgrammeData(owner, token, programmeRepo, programmeBranch);
+      await collectProgrammeData(owner, token, programmeRepo, programmeBranch, PAT);
     }
 
     if (collectDsa === "true") {
