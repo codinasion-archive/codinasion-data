@@ -65,7 +65,7 @@ export default async function collectProgrammeData(
         programme_files &&
           (await Promise.all(
             programme_files.map(async (file) => {
-              if (!file.path.endsWith(".md")) {
+              if (!file.path.endsWith(".md") && !file.path.endsWith(".png")) {
                 const response_text = await fetch(
                   `https://raw.githubusercontent.com/${owner}/${programmeRepo}/${programmeBranch}/${file.path}`,
                   {
