@@ -35283,7 +35283,7 @@ ${code_text}
 
           const matterResult = await gray_matter_default()(String(source));
 
-          await console.log(matterResult);
+          // await console.log(matterResult);
 
           const processedContent = await remark()
             .use(remarkHtml)
