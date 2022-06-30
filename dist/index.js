@@ -14533,9 +14533,10 @@ async function collectProgrammesData(
 
           // get programme files
           const programme_tags = [];
-          const programme_files = pathsData.filter(
-            (file) => file.path === `programme/${file.path.split("/")[1]}`
+          const programme_files = pathsData.filter((file) =>
+            file.path.startsWith("programme/" + data.path.split("/")[1])
           );
+          await console.log(programme_files);
           programme_files &&
             (await Promise.all(
               await programme_files.map(async (file) => {
@@ -14549,7 +14550,7 @@ async function collectProgrammesData(
             const content = await gray_matter_default()(source);
             await programmeList.push({
               title: content.data.title ? content.data.title : "Codinasion",
-              tags: programme_tags ? programme_tags : [],
+              // tags: programme_tags ? programme_tags : [],
               slug: formatSlug(data.path),
             });
           } catch (error) {
