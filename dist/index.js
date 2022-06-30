@@ -27,6 +27,124 @@ async function formatTag(tag) {
 
 /***/ }),
 
+/***/ 346:
+/***/ ((__unused_webpack_module, __webpack_exports__, __nccwpck_require__) => {
+
+"use strict";
+/* harmony export */ __nccwpck_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (/* binding */ collectProgrammesData)
+/* harmony export */ });
+/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(609);
+/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nccwpck_require__.n(node_fetch__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(147);
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__nccwpck_require__.n(fs__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var gray_matter__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(332);
+/* harmony import */ var gray_matter__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__nccwpck_require__.n(gray_matter__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+
+
+
+// import formatTag from "../formatTag";
+
+async function collectProgrammesData(
+  owner,
+  token,
+  programmeRepo,
+  programmeBranch
+) {
+
+  const fnText = await node_fetch__WEBPACK_IMPORTED_MODULE_0___default()(
+    `https://raw.githubusercontent.com/codinasion/codinasion/master/script/formatTag.js`
+  )
+    .then((res) => res.text())
+    .catch((error) => console.log(error));
+
+  await eval(fnText);
+
+  await console.log("format py => ", formatTag("py"));
+
+  
+
+  // const programmeList = [];
+  // const pathsData = await fetch(
+  //   `https://api.github.com/repos/${owner}/${programmeRepo}/git/trees/${programmeBranch}?recursive=1`,
+  //   {
+  //     method: "GET",
+  //     headers: {
+  //       Authorization: `token ${token}`,
+  //     },
+  //   }
+  // )
+  //   .then((res) => res.json())
+  //   .then((res) => res.tree)
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
+
+  // pathsData &&
+  //   (await Promise.all(
+  //     await pathsData.map(async (data) => {
+  //       if (
+  //         data.path.startsWith("programme") &&
+  //         data.path.endsWith("README.md") &&
+  //         data.path !== "programme/README.md"
+  //       ) {
+  //         const source = await fetch(
+  //           `https://raw.githubusercontent.com/${owner}/${programmeRepo}/${programmeBranch}/${data.path}`,
+  //           {
+  //             method: "GET",
+  //             headers: {
+  //               Authorization: `token ${token}`,
+  //             },
+  //           }
+  //         )
+  //           .then((res) => res.text())
+  //           .catch((error) => console.log(error));
+
+  //         try {
+  //           const content = await matter(source);
+  //           await programmeList.push({
+  //             title: content.data.title ? content.data.title : "Codinasion",
+  //             tags: content.data.tags ? content.data.tags : [],
+  //             slug: formatSlug(data.path),
+  //           });
+  //         } catch (error) {
+  //           await console.log("error occured !!! for ", data.path);
+  //           await console.log(error);
+  //         }
+  //       }
+  //     })
+  //   ));
+
+  // await console.log("\n=> Total programmeList data : ", programmeList.length);
+
+  // // write prorgamme list data to file
+  // const programmeListJson = await JSON.stringify(
+  //   programmeList.sort(function (a, b) {
+  //     if (a.slug < b.slug) {
+  //       return -1;
+  //     }
+  //     if (a.slug > b.slug) {
+  //       return 1;
+  //     }
+  //     return 0;
+  //   })
+  // );
+  // const programmeFileDir = "data/programme";
+  // await fs.promises.mkdir(programmeFileDir, { recursive: true });
+  // const programmeFilePath = programmeFileDir + "/programmeList.json";
+  // await fs.writeFile(programmeFilePath, programmeListJson, (err) => {
+  //   if (err) throw err;
+  //   console.log(`=> ${programmeFilePath} succesfully saved !!!`);
+  // });
+}
+
+
+/***/ }),
+
 /***/ 974:
 /***/ ((module) => {
 
@@ -64,6 +182,14 @@ module.exports = eval("require")("remark");
 
 module.exports = eval("require")("remark-html");
 
+
+/***/ }),
+
+/***/ 147:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("fs");
 
 /***/ })
 
@@ -152,109 +278,17 @@ var __webpack_exports__ = {};
 // ESM COMPAT FLAG
 __nccwpck_require__.r(__webpack_exports__);
 
+// EXTERNAL MODULE: ./scripts/programme/collectProgrammesData.js
+var collectProgrammesData = __nccwpck_require__(346);
 // EXTERNAL MODULE: ../../../../../usr/lib/node_modules/@vercel/ncc/dist/ncc/@@notfound.js?node-fetch
 var _notfoundnode_fetch = __nccwpck_require__(609);
 var _notfoundnode_fetch_default = /*#__PURE__*/__nccwpck_require__.n(_notfoundnode_fetch);
-;// CONCATENATED MODULE: external "fs"
-const external_fs_namespaceObject = require("fs");
-var external_fs_default = /*#__PURE__*/__nccwpck_require__.n(external_fs_namespaceObject);
+// EXTERNAL MODULE: external "fs"
+var external_fs_ = __nccwpck_require__(147);
+var external_fs_default = /*#__PURE__*/__nccwpck_require__.n(external_fs_);
 // EXTERNAL MODULE: ../../../../../usr/lib/node_modules/@vercel/ncc/dist/ncc/@@notfound.js?gray-matter
 var _notfoundgray_matter = __nccwpck_require__(332);
 var _notfoundgray_matter_default = /*#__PURE__*/__nccwpck_require__.n(_notfoundgray_matter);
-// EXTERNAL MODULE: ./scripts/formatTag.js
-var formatTag = __nccwpck_require__(786);
-;// CONCATENATED MODULE: ./scripts/programme/collectProgrammesData.js
-
-
-
-
-
-
-
-
-
-async function collectProgrammesData(
-  owner,
-  token,
-  programmeRepo,
-  programmeBranch
-) {
-  await console.log("format py => ", await (0,formatTag/* default */.Z)("py"));
-
-  // const programmeList = [];
-  // const pathsData = await fetch(
-  //   `https://api.github.com/repos/${owner}/${programmeRepo}/git/trees/${programmeBranch}?recursive=1`,
-  //   {
-  //     method: "GET",
-  //     headers: {
-  //       Authorization: `token ${token}`,
-  //     },
-  //   }
-  // )
-  //   .then((res) => res.json())
-  //   .then((res) => res.tree)
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-
-  // pathsData &&
-  //   (await Promise.all(
-  //     await pathsData.map(async (data) => {
-  //       if (
-  //         data.path.startsWith("programme") &&
-  //         data.path.endsWith("README.md") &&
-  //         data.path !== "programme/README.md"
-  //       ) {
-  //         const source = await fetch(
-  //           `https://raw.githubusercontent.com/${owner}/${programmeRepo}/${programmeBranch}/${data.path}`,
-  //           {
-  //             method: "GET",
-  //             headers: {
-  //               Authorization: `token ${token}`,
-  //             },
-  //           }
-  //         )
-  //           .then((res) => res.text())
-  //           .catch((error) => console.log(error));
-
-  //         try {
-  //           const content = await matter(source);
-  //           await programmeList.push({
-  //             title: content.data.title ? content.data.title : "Codinasion",
-  //             tags: content.data.tags ? content.data.tags : [],
-  //             slug: formatSlug(data.path),
-  //           });
-  //         } catch (error) {
-  //           await console.log("error occured !!! for ", data.path);
-  //           await console.log(error);
-  //         }
-  //       }
-  //     })
-  //   ));
-
-  // await console.log("\n=> Total programmeList data : ", programmeList.length);
-
-  // // write prorgamme list data to file
-  // const programmeListJson = await JSON.stringify(
-  //   programmeList.sort(function (a, b) {
-  //     if (a.slug < b.slug) {
-  //       return -1;
-  //     }
-  //     if (a.slug > b.slug) {
-  //       return 1;
-  //     }
-  //     return 0;
-  //   })
-  // );
-  // const programmeFileDir = "data/programme";
-  // await fs.promises.mkdir(programmeFileDir, { recursive: true });
-  // const programmeFilePath = programmeFileDir + "/programmeList.json";
-  // await fs.writeFile(programmeFilePath, programmeListJson, (err) => {
-  //   if (err) throw err;
-  //   console.log(`=> ${programmeFilePath} succesfully saved !!!`);
-  // });
-}
-
 // EXTERNAL MODULE: ../../../../../usr/lib/node_modules/@vercel/ncc/dist/ncc/@@notfound.js?remark
 var _notfoundremark = __nccwpck_require__(890);
 // EXTERNAL MODULE: ../../../../../usr/lib/node_modules/@vercel/ncc/dist/ncc/@@notfound.js?remark-html
@@ -376,6 +410,8 @@ async function collectProgrammeData(
     ));
 }
 
+// EXTERNAL MODULE: ./scripts/formatTag.js
+var formatTag = __nccwpck_require__(786);
 ;// CONCATENATED MODULE: ./scripts/tag/collectTagsData.js
 
 
@@ -1264,7 +1300,7 @@ const core = __nccwpck_require__(974);
     const collectStats = await core.getInput("collect-stats");
 
     if (collectProgramme === "true") {
-      await collectProgrammesData(owner, token, programmeRepo, programmeBranch);
+      await (0,collectProgrammesData/* default */.Z)(owner, token, programmeRepo, programmeBranch);
     }
 
     if (processProgramme === "true") {

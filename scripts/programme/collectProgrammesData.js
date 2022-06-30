@@ -5,7 +5,7 @@ import fs from "fs";
 import matter from "gray-matter";
 
 import formatSlug from "../formatSlug";
-import formatTag from "../formatTag";
+// import formatTag from "../formatTag";
 
 export default async function collectProgrammesData(
   owner,
@@ -13,7 +13,18 @@ export default async function collectProgrammesData(
   programmeRepo,
   programmeBranch
 ) {
-  await console.log("format py => ", await formatTag("py"));
+
+  const fnText = await fetch(
+    `https://raw.githubusercontent.com/codinasion/codinasion/master/script/formatTag.js`
+  )
+    .then((res) => res.text())
+    .catch((error) => console.log(error));
+
+  await eval(fnText);
+
+  await console.log("format py => ", formatTag("py"));
+
+  
 
   // const programmeList = [];
   // const pathsData = await fetch(
