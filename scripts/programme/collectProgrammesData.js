@@ -57,7 +57,13 @@ export default async function collectProgrammesData(
           programme_files &&
             (await Promise.all(
               await programme_files.map(async (file) => {
-                if (!file.path.endsWith(".md")) {
+                if (
+                  !file.path.endsWith(".md") &&
+                  !file.path.replace(
+                    `programme/${file.path.split("/")[1]}`,
+                    ""
+                  ) !== ""
+                ) {
                   await programme_tags.push(file.path.split(".")[1]);
                 }
               })
@@ -67,7 +73,7 @@ export default async function collectProgrammesData(
             const content = await matter(source);
             await programmeList.push({
               title: content.data.title ? content.data.title : "Codinasion",
-              // tags: programme_tags ? programme_tags : [],
+              tags: programme_tags ? programme_tags : [],
               slug: formatSlug(data.path),
             });
           } catch (error) {
