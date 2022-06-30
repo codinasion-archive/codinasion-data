@@ -1,0 +1,56 @@
+name: Collect Programme Data
+
+# triger conditions
+on:
+  # manually triggered
+  workflow_dispatch:
+  # runs every two hour
+  schedule:
+    - cron: "0 0/2 * * *"
+  # on push to master
+  push:
+    branches: [master, v4]
+
+jobs:
+  collect_data:
+    runs-on: ubuntu-latest
+    name: Collect Programme Data
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Get Date
+        id: date
+        uses: nanzm/get-time-action@v1.1
+        with:
+          timeZone: 5.5
+          format: "YYYY-MM-DD-hh-mm"
+
+      ##########  collect programme data  ##########
+      - name: Collect Programme Data
+        uses: ./action/
+        with:
+          collect-programme: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit Programme Data
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "programme list data - ${{ steps.date.outputs.time }}"
+
+      ##########  process data  ##########
+      # - name: Process Data
+      #   uses: ./action/
+      #   with:
+      #     process-programme: true
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     PAT: ${{ secrets.API_DATA_FETCH_PAT }}
+
+      # - name: Commit Processed Data
+      #   uses: EndBug/add-and-commit@v9
+      #   with:
+      #     message: "programme data - ${{ steps.date.outputs.time }}"

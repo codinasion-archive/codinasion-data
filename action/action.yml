@@ -39,17 +39,6 @@ inputs:
     required: true
     default: "master"
 
-  # quote repo related data
-  quote-repo:
-    description: "quote repository name"
-    required: true
-    default: "readme-quote"
-
-  quote-branch:
-    description: "quote repository branch"
-    required: true
-    default: "master"
-
   # function trigger conditions
   collect-programme:
     description: "collect programme data"
@@ -68,16 +57,6 @@ inputs:
 
   process-dsa:
     description: "process dsa data"
-    required: true
-    default: "false"
-
-  collect-quote:
-    description: "collect quote data"
-    required: true
-    default: "false"
-
-  process-quote:
-    description: "process quote data"
     required: true
     default: "false"
 
