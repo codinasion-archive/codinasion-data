@@ -55,7 +55,7 @@ export default async function collectProgrammesData(
           );
           programme_files &&
             (await Promise.all(
-              await programme_files.tree.map(async (file) => {
+              await programme_files.map(async (file) => {
                 if (!file.path.endsWith(".md")) {
                   await programme_tags.push(file.path.split(".")[1]);
                 }
