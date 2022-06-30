@@ -47,6 +47,7 @@ jobs:
         uses: ./action/
         with:
           collect-programme: true
+          programme-branch: v4
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit Programme Data
@@ -59,6 +60,7 @@ jobs:
         uses: ./action/
         with:
           process-programme: true
+          programme-branch: v4
           token: ${{ secrets.GITHUB_TOKEN }}
           PAT: ${{ secrets.API_DATA_FETCH_PAT }}
 
