@@ -35280,7 +35280,7 @@ ${readme_text}
 ${code_text}
         `;
 
-          // await console.log(source);
+          await console.log(source);
 
           const matterResult = await gray_matter_default()(source);
 
