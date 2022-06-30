@@ -48,7 +48,7 @@ export default async function collectProgrammeData(
 
         // get code data
         var code_text = `
-        <CodeBlock>
+<CodeBlock>
         `;
         const programme_files = await fetch(
           `https://api.github.com/repos/${owner}/${programmeRepo}/contents/programme/${slug}`,
@@ -81,14 +81,20 @@ export default async function collectProgrammeData(
                 code_text =
                   code_text +
                   `
-                ${"```"}${formatTag(file.path.split(".")[1]).tag}
-                ${response_text}
-                ${"```"}
+${"```"}${formatTag(file.path.split(".")[1]).tag}
+${response_text}
+${"```"}
                 `;
-                await console.log(code_text);
               }
             })
           ));
+
+        code_text =
+          code_text +
+          `
+<CodeBlock>
+          `;
+        await console.log(code_text);
 
         // try {
         //   const source = await fetch(
