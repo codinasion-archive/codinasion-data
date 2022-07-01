@@ -9,7 +9,7 @@ on:
     - cron: "0 15/2 * * *"
   # on push to master
   push:
-    branches: [master]
+    branches: [master, v4]
 
 jobs:
   collect_data:
