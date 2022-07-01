@@ -62,7 +62,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           PAT: ${{ secrets.API_DATA_FETCH_PAT }}
 
-      - name: Commit Processed Data
+      - name: Commit Processed Programme Data
         uses: EndBug/add-and-commit@v9
         with:
           message: "programme data - ${{ steps.date.outputs.time }}"

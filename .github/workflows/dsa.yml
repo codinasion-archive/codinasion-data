@@ -32,26 +32,26 @@ jobs:
           format: "YYYY-MM-DD-hh-mm"
 
       ##########  collect dsa data  ##########
-      - name: Collect dsa Data
+      - name: Collect DSA Data
         uses: ./action/
         with:
           collect-dsa: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Commit dsa Data
+      - name: Commit DSA Data
         uses: EndBug/add-and-commit@v9
         with:
           message: "dsa list data - ${{ steps.date.outputs.time }}"
 
       ##########  process dsa data  ##########
-      # - name: Process DSA Data
-      #   uses: ./action/
-      #   with:
-      #     process-dsa: true
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     PAT: ${{ secrets.API_DATA_FETCH_PAT }}
+      - name: Process DSA Data
+        uses: ./action/
+        with:
+          process-dsa: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          PAT: ${{ secrets.API_DATA_FETCH_PAT }}
 
-      # - name: Commit Processed Data
-      #   uses: EndBug/add-and-commit@v9
-      #   with:
-      #     message: "dsa data - ${{ steps.date.outputs.time }}"
+      - name: Commit Processed DSA Data
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "dsa data - ${{ steps.date.outputs.time }}"
