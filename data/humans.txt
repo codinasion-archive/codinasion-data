@@ -33,9 +33,48 @@ Twitter:     https://twitter.com/codinasion
 
 /* MAINTAINERS */
     
+Harsh Raj
+https://github.com/harshraj8843
+https://twitter.com/harshraj8843
+
 
 /* TEAM */
     
+Anzo52
+https://github.com/Anzo52
+https://twitter.com/DevAndyZ
+
+Madhu S Gowda
+https://github.com/MadhuS-1605
+https://twitter.com/thenameismadhus
+
+Neel Patel
+https://github.com/NeelPatel31
+
+Prajwal Borkar
+https://github.com/PrajwalBorkar
+https://twitter.com/PrajwalBorkar7
+
+Lorenzo Rossi
+https://github.com/rossilor95
+https://twitter.com/_Lyndhir_
+
+Scraper 404
+https://github.com/scraper-404
+
+Avik Sarkar
+https://github.com/ssavi-ict
+
+umaxyon
+https://github.com/umaxyon
+
+Victoria Cheng
+https://github.com/victoriacheng15
+
+Waleska
+https://github.com/waleska404
+https://twitter.com/waleska404
+
 
 /* CONTRIBUTORS */
     
@@ -59,10 +98,6 @@ https://github.com/amitSahu9
 
 andrew9078
 https://github.com/andrew9078
-
-Anzo52
-https://github.com/Anzo52
-https://twitter.com/DevAndyZ
 
 ARTH PRAJAPATI
 https://github.com/arth2002
@@ -130,10 +165,6 @@ https://github.com/hansleykowlessur
 Harshitha Devi Ganajala
 https://github.com/harshi1122
 
-Harsh Raj
-https://github.com/harshraj8843
-https://twitter.com/harshraj8843
-
 HaveACookie
 https://github.com/HaveACookie
 
@@ -198,10 +229,6 @@ https://github.com/lt77777
 Luís Figueiredo
 https://github.com/luiscff
 
-Madhu S Gowda
-https://github.com/MadhuS-1605
-https://twitter.com/thenameismadhus
-
 Manan Karnik
 https://github.com/MananKarnik
 
@@ -226,9 +253,6 @@ Saad Mateen
 https://github.com/msaadm
 https://twitter.com/SaadMateen12
 
-Neel Patel
-https://github.com/NeelPatel31
-
 nikhilnarla
 https://github.com/nikhilnarla
 
@@ -251,10 +275,6 @@ https://github.com/ppark3
 Prabhdeep
 https://github.com/Prabs09
 
-Prajwal Borkar
-https://github.com/PrajwalBorkar
-https://twitter.com/PrajwalBorkar7
-
 Ramanand Thakur
 https://github.com/ramanand-rv
 https://twitter.com/ramanand_rv
@@ -271,10 +291,6 @@ https://github.com/rishav-karanjit
 rootzer00
 https://github.com/rootzer00
 
-Lorenzo Rossi
-https://github.com/rossilor95
-https://twitter.com/_Lyndhir_
-
 Rui Lopes
 https://github.com/RuiL1904
 
@@ -287,9 +303,6 @@ https://github.com/saikatg347
 
 Satyapriyo Biswas
 https://github.com/Satyapriyo
-
-Scraper 404
-https://github.com/scraper-404
 
 Seraph★776
 https://github.com/seraph776
@@ -318,9 +331,6 @@ https://github.com/SpadeQ22
 Abhishekh S R
 https://github.com/srabhishekh
 
-Avik Sarkar
-https://github.com/ssavi-ict
-
 superpthegreat
 https://github.com/superpthegreat
 
@@ -337,18 +347,8 @@ https://github.com/Tosin-dotcom
 Udit Soni
 https://github.com/udit6023
 
-umaxyon
-https://github.com/umaxyon
-
 vaishnavikumar8
 https://github.com/vaishnavikumar8
-
-Victoria Cheng
-https://github.com/victoriacheng15
-
-Waleska
-https://github.com/waleska404
-https://twitter.com/waleska404
 
 William Harrison Tann
 https://github.com/whtann
