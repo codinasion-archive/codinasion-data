@@ -36082,7 +36082,7 @@ async function collectAllDsaData(
                 ? content.data.description
                 : "Codinasion",
               image: content.data.image
-                ? `https://raw.githubusercontent.com/${owner}/${dsaRepo}/${dsaBranch}/programme/${data.path}/${content.data.image}`
+                ? `https://raw.githubusercontent.com/${owner}/${dsaRepo}/${dsaBranch}/programme/${formatSlug(data.path)}/${content.data.image}`
                 : "https://raw.githubusercontent.com/codinasion/codinasion/master/image/og/default.png",
               tags: programme_tags ? programme_tags : [],
               slug: formatSlug(data.path),
