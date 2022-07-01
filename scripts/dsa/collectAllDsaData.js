@@ -58,6 +58,7 @@ export default async function collectAllDsaData(
               await programme_files.map(async (file) => {
                 if (
                   !file.path.endsWith(".md") &&
+                  !file.path.endsWith(".png") &&
                   file.path.replace(
                     `programme/${file.path.split("/")[1]}`,
                     ""
