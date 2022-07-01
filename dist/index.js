@@ -35466,7 +35466,7 @@ async function collectTagData(owner, token) {
 
 
 
-async function collectOrgStats(owner, token, PAT) {
+async function collectOrgStats(owner, token) {
   try {
     const repos = [];
     const contributors = [];
@@ -36384,7 +36384,7 @@ const index_core = __nccwpck_require__(6398);
     }
 
     if (collectStats === "true") {
-      await collectOrgStats(owner, token, PAT);
+      await collectOrgStats(owner, token);
     }
 
     if (generateHumans === "true") {

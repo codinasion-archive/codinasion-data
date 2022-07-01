@@ -55,7 +55,7 @@ const core = require("@actions/core");
     }
 
     if (collectStats === "true") {
-      await collectOrgStats(owner, token, PAT);
+      await collectOrgStats(owner, token);
     }
 
     if (generateHumans === "true") {

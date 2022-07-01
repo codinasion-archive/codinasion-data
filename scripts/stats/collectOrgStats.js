@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 
 import fs from "fs";
 
-export default async function collectOrgStats(owner, token, PAT) {
+export default async function collectOrgStats(owner, token) {
   try {
     const repos = [];
     const contributors = [];
