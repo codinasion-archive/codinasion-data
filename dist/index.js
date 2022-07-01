@@ -36046,6 +36046,33 @@ async function collectAllDsaData(
             .then((res) => res.text())
             .catch((error) => console.log(error));
 
+          // get programme tags
+          const programme_tags = [];
+          const programme_files = pathsData.filter((file) =>
+            file.path.startsWith("programme/" + data.path.split("/")[1])
+          );
+          programme_files &&
+            (await Promise.all(
+              await programme_files.map(async (file) => {
+                if (
+                  !file.path.endsWith(".md") &&
+                  file.path.replace(
+                    `programme/${file.path.split("/")[1]}`,
+                    ""
+                  ) !== ""
+                ) {
+                  // check if tag is already in the list
+                  if (
+                    !programme_tags.find(
+                      (tag) => tag === file.path.split(".")[1]
+                    )
+                  ) {
+                    await programme_tags.push(file.path.split(".")[1]);
+                  }
+                }
+              })
+            ));
+
           try {
             const content = await gray_matter_default()(source);
             await dsaList.push({
@@ -36053,7 +36080,7 @@ async function collectAllDsaData(
               description: content.data.description
                 ? content.data.description
                 : "Codinasion",
-              tags: content.data.tags ? content.data.tags : [],
+              tags: programme_tags ? programme_tags : [],
               slug: formatSlug(data.path),
             });
           } catch (error) {

@@ -1,0 +1,57 @@
+name: Collect DSA Data
+
+# triger conditions
+on:
+  # manually triggered
+  workflow_dispatch:
+  # runs every two hour
+  schedule:
+    - cron: "0 5/2 * * *"
+  # on push to master
+  push:
+    branches: [master, v4]
+
+jobs:
+  collect_data:
+    runs-on: ubuntu-latest
+    name: Collect DSA Data
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      ##########  Get Date  ##########
+      - name: Get Date
+        id: date
+        uses: nanzm/get-time-action@v1.1
+        with:
+          timeZone: 5.5
+          format: "YYYY-MM-DD-hh-mm"
+
+      ##########  collect dsa data  ##########
+      - name: Collect dsa Data
+        uses: ./action/
+        with:
+          collect-dsa: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit dsa Data
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "dsa list data - ${{ steps.date.outputs.time }}"
+
+      ##########  process dsa data  ##########
+      # - name: Process DSA Data
+      #   uses: ./action/
+      #   with:
+      #     process-dsa: true
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     PAT: ${{ secrets.API_DATA_FETCH_PAT }}
+
+      # - name: Commit Processed Data
+      #   uses: EndBug/add-and-commit@v9
+      #   with:
+      #     message: "dsa data - ${{ steps.date.outputs.time }}"

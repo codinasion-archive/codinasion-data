@@ -9,7 +9,7 @@ on:
     - cron: "0 0/2 * * *"
   # on push to master
   push:
-    branches: [master, v4]
+    branches: [master]
 
 jobs:
   collect_data:
@@ -54,7 +54,7 @@ jobs:
         with:
           message: "programme list data - ${{ steps.date.outputs.time }}"
 
-      ##########  process data  ##########
+      ##########  process programme data  ##########
       - name: Process Programme Data
         uses: ./action/
         with:
