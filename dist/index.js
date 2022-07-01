@@ -36081,6 +36081,9 @@ async function collectAllDsaData(
               description: content.data.description
                 ? content.data.description
                 : "Codinasion",
+              image: content.data.image
+                ? `https://raw.githubusercontent.com/${owner}/${dsaRepo}/${dsaBranch}/programme/${slug}/${content.data.image}`
+                : "https://raw.githubusercontent.com/codinasion/codinasion/master/image/og/default.png",
               tags: programme_tags ? programme_tags : [],
               slug: formatSlug(data.path),
             });
@@ -36271,6 +36274,9 @@ ${code_text}
             description: matterResult.data.description
               ? matterResult.data.description
               : "Codinasion",
+            image: matterResult.data.image
+              ? `https://raw.githubusercontent.com/${owner}/${dsaRepo}/${dsaBranch}/programme/${slug}/${matterResult.data.image}`
+              : "https://raw.githubusercontent.com/codinasion/codinasion/master/image/og/default.png",
             tags: programme_tags ? programme_tags : [],
             contributors: matterResult.data.contributors
               ? matterResult.data.contributors
