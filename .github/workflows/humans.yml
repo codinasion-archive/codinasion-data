@@ -37,6 +37,7 @@ jobs:
         with:
           generate-humans: true
           token: ${{ secrets.GITHUB_TOKEN }}
+          PAT: ${{ secrets.API_DATA_FETCH_PAT }}
 
       - name: Commit humans.txt
         uses: EndBug/add-and-commit@v9
