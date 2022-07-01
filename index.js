@@ -5,6 +5,7 @@ import collectTagData from "./scripts/tag/collectTagData";
 import collectOrgStats from "./scripts/stats/collectOrgStats";
 import collectAllDsaData from "./scripts/dsa/collectAllDsaData";
 import collectDsaData from "./scripts/dsa/collectDsaData";
+import generateHumansFn from "./scripts/humans/generateHumans";
 
 const core = require("@actions/core");
 
@@ -27,6 +28,7 @@ const core = require("@actions/core");
     const collectTag = await core.getInput("collect-tag");
     const processTag = await core.getInput("process-tag");
     const collectStats = await core.getInput("collect-stats");
+    const generateHumans = await core.getInput("generate-humans");
 
     if (collectProgramme === "true") {
       await collectProgrammesData(owner, token, programmeRepo, programmeBranch);
@@ -54,6 +56,10 @@ const core = require("@actions/core");
 
     if (collectStats === "true") {
       await collectOrgStats(owner, token, PAT);
+    }
+
+    if (generateHumans === "true") {
+      await generateHumansFn(owner, token, PAT);
     }
 
     // end of action

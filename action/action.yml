@@ -74,6 +74,11 @@ inputs:
     description: "collect stats data"
     required: true
     default: "false"
+  
+  generate-humans:
+    description: "generate humans.txt"
+    required: true
+    default: "false"
 
 runs:
   using: "node16"
