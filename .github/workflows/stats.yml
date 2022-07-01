@@ -1,4 +1,4 @@
-name: Generate humans.txt
+name: Collect Stats Data
 
 # triger conditions
 on:
@@ -6,15 +6,15 @@ on:
   workflow_dispatch:
   # runs every two hour
   schedule:
-    - cron: "0 20/2 * * *"
+    - cron: "0 15/2 * * *"
   # on push to master
   push:
-    branches: [master]
+    branches: [master, v4]
 
 jobs:
   collect_data:
     runs-on: ubuntu-latest
-    name: Generate humans.txt
+    name: Collect Data
 
     permissions:
       contents: write
@@ -31,15 +31,15 @@ jobs:
           timeZone: 5.5
           format: "YYYY-MM-DD-hh-mm"
 
-      ##########  generate humans.txt  ##########
-      - name: Generate humans.txt
+      ##########  collect stats data  ##########
+      - name: Collect Stats Data
         uses: ./action/
         with:
-          generate-humans: true
+          collect-stats: true
           token: ${{ secrets.GITHUB_TOKEN }}
           PAT: ${{ secrets.API_DATA_FETCH_PAT }}
 
-      - name: Commit humans.txt
+      - name: Commit Stats Data
         uses: EndBug/add-and-commit@v9
         with:
-          message: "humans.txt - ${{ steps.date.outputs.time }}"
+          message: "data - ${{ steps.date.outputs.time }}"
