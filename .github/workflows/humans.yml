@@ -1,0 +1,45 @@
+name: Generate humans.txt
+
+# triger conditions
+on:
+  # manually triggered
+  workflow_dispatch:
+  # runs every two hour
+  schedule:
+    - cron: "0 20/2 * * *"
+  # on push to master
+  push:
+    branches: [master]
+
+jobs:
+  collect_data:
+    runs-on: ubuntu-latest
+    name: Generate humans.txt
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      ##########  Get Date  ##########
+      - name: Get Date
+        id: date
+        uses: nanzm/get-time-action@v1.1
+        with:
+          timeZone: 5.5
+          format: "YYYY-MM-DD-hh-mm"
+
+      ##########  generate humans.txt  ##########
+      - name: Generate humans.txt
+        uses: ./action/
+        with:
+          generate-humans: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          PAT: ${{ secrets.API_DATA_FETCH_PAT }}
+
+      - name: Commit humans.txt
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "humans.txt - ${{ steps.date.outputs.time }}"

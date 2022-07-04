@@ -25,6 +25,7 @@ export default function formatTag(tag) {
   }
   if (
     tag === "py" ||
+    tag === "Py" ||
     tag === "PY" ||
     tag === "python" ||
     tag === "Python" ||

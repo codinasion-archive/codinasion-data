@@ -1,0 +1,57 @@
+name: Collect Tag Data
+
+# triger conditions
+on:
+  # manually triggered
+  workflow_dispatch:
+  # runs every two hour
+  schedule:
+    - cron: "0 10/2 * * *"
+  # on push to master
+  push:
+    branches: [master]
+
+jobs:
+  collect_data:
+    runs-on: ubuntu-latest
+    name: Collect Tag Data
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      ##########  Get Date  ##########
+      - name: Get Date
+        id: date
+        uses: nanzm/get-time-action@v1.1
+        with:
+          timeZone: 5.5
+          format: "YYYY-MM-DD-hh-mm"
+
+      ##########  collect Tag data  ##########
+      - name: Collect Tag Data
+        uses: ./action/
+        with:
+          collect-tag: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit Tag Data
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "tag list data - ${{ steps.date.outputs.time }}"
+
+      ##########  process Tag data  ##########
+      - name: Process Tag Data
+        uses: ./action/
+        with:
+          process-tag: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          PAT: ${{ secrets.API_DATA_FETCH_PAT }}
+
+      - name: Commit Processed Data
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "tag data - ${{ steps.date.outputs.time }}"

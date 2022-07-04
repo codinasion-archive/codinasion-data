@@ -39,17 +39,6 @@ inputs:
     required: true
     default: "master"
 
-  # quote repo related data
-  quote-repo:
-    description: "quote repository name"
-    required: true
-    default: "readme-quote"
-
-  quote-branch:
-    description: "quote repository branch"
-    required: true
-    default: "master"
-
   # function trigger conditions
   collect-programme:
     description: "collect programme data"
@@ -71,16 +60,6 @@ inputs:
     required: true
     default: "false"
 
-  collect-quote:
-    description: "collect quote data"
-    required: true
-    default: "false"
-
-  process-quote:
-    description: "process quote data"
-    required: true
-    default: "false"
-
   collect-tag:
     description: "collect tag data"
     required: true
@@ -93,6 +72,11 @@ inputs:
 
   collect-stats:
     description: "collect stats data"
+    required: true
+    default: "false"
+  
+  generate-humans:
+    description: "generate humans.txt"
     required: true
     default: "false"
 
