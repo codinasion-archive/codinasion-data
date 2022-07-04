@@ -4,12 +4,11 @@ name: Generate humans.txt
 on:
   # manually triggered
   workflow_dispatch:
-  # runs every two hour
-  schedule:
-    - cron: "0 20/2 * * *"
-  # on push to master
-  push:
-    branches: [master]
+  # runs after stats.yml
+  workflow_run:
+    workflows: ["Collect Stats Data"]
+    types:
+      - completed
 
 jobs:
   collect_data:
