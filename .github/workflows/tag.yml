@@ -4,12 +4,11 @@ name: Collect Tag Data
 on:
   # manually triggered
   workflow_dispatch:
-  # runs every two hour
-  schedule:
-    - cron: "0 10/2 * * *"
-  # on push to master
-  push:
-    branches: [master]
+  # runs after dsa.yml
+  workflow_run:
+    workflows: ["Collect DSA Data"]
+    types:
+      - completed
 
 jobs:
   collect_data:
