@@ -31,6 +31,16 @@ jobs:
           timeZone: 5.5
           format: "YYYY-MM-DD-hh-mm"
 
+      ##########  Install packages  ##########
+      - name: Yarn
+        run: |
+          yarn
+
+      - name: Commit Script Files
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "update script - ${{ steps.date.outputs.time }}"
+
       ##########  Update Script  ##########
       - name: Update Script
         run: |
