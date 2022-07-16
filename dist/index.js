@@ -36361,6 +36361,8 @@ Twitter:     https://twitter.com/codinasion
 ;// CONCATENATED MODULE: ./scripts/home/collectProjectData.js
 
 
+
+
 async function collectProjectsData(owner, token, projectTopic) {
   try {
     // get all projects
@@ -36395,6 +36397,13 @@ async function collectProjectsData(owner, token, projectTopic) {
       ));
 
     await console.log(projectsData);
+
+    // write projectsData to file
+    const filePath = `data/projects.json`;
+    await external_fs_default().writeFile(filePath, JSON.stringify(projectsData), (err) => {
+      if (err) throw err;
+      console.log(`=> ${filePath} succesfully saved !!!`);
+    });
 
     //   collection complete
   } catch (error) {

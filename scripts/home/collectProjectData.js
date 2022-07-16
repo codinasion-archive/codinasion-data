@@ -1,5 +1,7 @@
 import fetch from "node-fetch";
 
+import fs from "fs";
+
 export default async function collectProjectsData(owner, token, projectTopic) {
   try {
     // get all projects
@@ -34,6 +36,13 @@ export default async function collectProjectsData(owner, token, projectTopic) {
       ));
 
     await console.log(projectsData);
+
+    // write projectsData to file
+    const filePath = `data/projects.json`;
+    await fs.writeFile(filePath, JSON.stringify(projectsData), (err) => {
+      if (err) throw err;
+      console.log(`=> ${filePath} succesfully saved !!!`);
+    });
 
     //   collection complete
   } catch (error) {
