@@ -35,7 +35,7 @@ export default async function collectProjectsData(owner, token, projectTopic) {
         })
       ));
 
-    await console.log(projectsData);
+    // await console.log(projectsData);
 
     // write projectsData to file
     const filePath = `data/projects.json`;
