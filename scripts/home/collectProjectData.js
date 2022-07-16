@@ -13,19 +13,8 @@ export default async function collectProjectsData(owner, token, projectTopic) {
         },
       }
     )
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          throw new Error(
-            `The HTTP status of the reponse: ${res.status} (${res.statusText})`
-          );
-        }
-      })
-      .then((json) => {
-        return json;
-      })
-      .catch((err) => console.log(err));
+      .then((res) => res.json())
+      .catch((error) => console.log(error));
 
     // add projects to projectsData
     projects &&
