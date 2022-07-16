@@ -11490,14 +11490,6 @@ exports.debug = debug; // for test
 
 /***/ }),
 
-/***/ 5038:
-/***/ ((module) => {
-
-module.exports = eval("require")("./scripts/project/collectProjectsData");
-
-
-/***/ }),
-
 /***/ 9491:
 /***/ ((module) => {
 
@@ -36366,9 +36358,60 @@ Twitter:     https://twitter.com/codinasion
   }
 }
 
-// EXTERNAL MODULE: ../../../../../usr/lib/node_modules/@vercel/ncc/dist/ncc/@@notfound.js?./scripts/project/collectProjectsData
-var collectProjectsData = __nccwpck_require__(5038);
-var collectProjectsData_default = /*#__PURE__*/__nccwpck_require__.n(collectProjectsData);
+;// CONCATENATED MODULE: ./scripts/home/collectProjectData.js
+
+
+
+
+async function collectProjectsData(owner, token, projectTopic) {
+  try {
+    // get all projects
+    const projectsData = [];
+    const projects = await fetch(
+      `https://api.github.com/search/repositories?q=topic:${projectTopic}&sort=stars&order=desc`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `token ${token} `,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((json) => json.items)
+      .catch((error) => console.log(error));
+
+    // add projects to projectsData
+    projects &&
+      (await Promise.all(
+        projects.map(async (project) => {
+          if (project.owner.login === owner) {
+            const data = {
+              name: project.name,
+              description: project.description,
+              url: project.html_url,
+              stars: project.stargazers_count,
+            };
+            projectsData.push(data);
+          }
+        })
+      ));
+
+    // await console.log(projectsData);
+
+    // write projectsData to file
+    const filePath = `data/projects.json`;
+    await external_fs_default().writeFile(filePath, JSON.stringify(projectsData), (err) => {
+      if (err) throw err;
+      console.log(`=> ${filePath} succesfully saved !!!`);
+    });
+
+    //   collection complete
+  } catch (error) {
+    await console.log(`error occured !!! for ${owner} project collection !!!`);
+    await console.log(error);
+  }
+}
+
 ;// CONCATENATED MODULE: ./index.js
 // import programme functions
 
@@ -36468,7 +36511,7 @@ const index_core = __nccwpck_require__(6398);
 
     // project conditions
     if (collectProject === "true") {
-      await collectProjectsData_default()(owner, token, projectTopic);
+      await collectProjectsData(owner, token, projectTopic);
     }
 
     // end of action

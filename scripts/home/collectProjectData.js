@@ -1,5 +1,7 @@
 import fetch from "node-fetch";
 
+import fs from "fs";
+
 export default async function collectProjectsData(owner, token, projectTopic) {
   try {
     // get all projects
@@ -13,21 +15,11 @@ export default async function collectProjectsData(owner, token, projectTopic) {
         },
       }
     )
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          throw new Error(
-            `The HTTP status of the reponse: ${res.status} (${res.statusText})`
-          );
-        }
-      })
-      .then((json) => {
-        return json;
-      })
-      .catch((err) => console.log(err));
+      .then((res) => res.json())
+      .then((json) => json.items)
+      .catch((error) => console.log(error));
 
-    //   add projects to projectsData
+    // add projects to projectsData
     projects &&
       (await Promise.all(
         projects.map(async (project) => {
@@ -37,22 +29,20 @@ export default async function collectProjectsData(owner, token, projectTopic) {
               description: project.description,
               url: project.html_url,
               stars: project.stargazers_count,
-              language: project.language,
-              owner: project.owner.login,
-              ownerUrl: project.owner.html_url,
-              ownerAvatar: project.owner.avatar_url,
-              ownerType: project.owner.type,
-              ownerCompany: project.owner.company,
-              ownerLocation: project.owner.location,
-              ownerBlog: project.owner.blog,
-              ownerBio: project.owner.bio,
             };
             projectsData.push(data);
           }
         })
       ));
 
-    await console.log(projectsData);
+    // await console.log(projectsData);
+
+    // write projectsData to file
+    const filePath = `data/projects.json`;
+    await fs.writeFile(filePath, JSON.stringify(projectsData), (err) => {
+      if (err) throw err;
+      console.log(`=> ${filePath} succesfully saved !!!`);
+    });
 
     //   collection complete
   } catch (error) {
