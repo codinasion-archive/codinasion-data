@@ -29,28 +29,26 @@ export default async function collectProjectsData(owner, token, projectTopic) {
 
     //   add projects to projectsData
     projects &&
-      (await Promise.all(
-        projects.map(async (project) => {
-          if (project.owner.login === owner) {
-            const data = {
-              name: project.name,
-              description: project.description,
-              url: project.html_url,
-              stars: project.stargazers_count,
-              language: project.language,
-              owner: project.owner.login,
-              ownerUrl: project.owner.html_url,
-              ownerAvatar: project.owner.avatar_url,
-              ownerType: project.owner.type,
-              ownerCompany: project.owner.company,
-              ownerLocation: project.owner.location,
-              ownerBlog: project.owner.blog,
-              ownerBio: project.owner.bio,
-            };
-            projectsData.push(data);
-          }
-        })
-      ));
+      (await Promise.all().map(async (project) => {
+        if (project.owner.login === owner) {
+          const data = {
+            name: project.name,
+            description: project.description,
+            url: project.html_url,
+            stars: project.stargazers_count,
+            language: project.language,
+            owner: project.owner.login,
+            ownerUrl: project.owner.html_url,
+            ownerAvatar: project.owner.avatar_url,
+            ownerType: project.owner.type,
+            ownerCompany: project.owner.company,
+            ownerLocation: project.owner.location,
+            ownerBlog: project.owner.blog,
+            ownerBio: project.owner.bio,
+          };
+          projectsData.push(data);
+        }
+      }));
 
     await console.log(projectsData);
 
