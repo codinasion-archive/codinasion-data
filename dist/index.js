@@ -14541,6 +14541,11 @@ async function collectProgrammesData(
               await programme_files.map(async (file) => {
                 if (
                   !file.path.endsWith(".md") &&
+                  !file.path.endsWith(".png") &&
+                  !file.path.endsWith(".jpg") &&
+                  !file.path.endsWith(".jpeg") &&
+                  !file.path.endsWith(".gif") &&
+                  !file.path.endsWith(".svg") &&
                   file.path.replace(
                     `programme/${file.path.split("/")[1]}`,
                     ""
@@ -35242,7 +35247,14 @@ async function collectProgrammeData(
         programme_files &&
           (await Promise.all(
             programme_files.map(async (file) => {
-              if (!file.path.endsWith(".md") && !file.path.endsWith(".png")) {
+              if (
+                !file.path.endsWith(".md") &&
+                !file.path.endsWith(".png") &&
+                !file.path.endsWith(".jpg") &&
+                !file.path.endsWith(".jpeg") &&
+                !file.path.endsWith(".gif") &&
+                !file.path.endsWith(".svg")
+              ) {
                 // get tags data
                 // check if tag is already in the list
                 if (
@@ -35691,6 +35703,10 @@ async function collectAllDsaData(
                 if (
                   !file.path.endsWith(".md") &&
                   !file.path.endsWith(".png") &&
+                  !file.path.endsWith(".jpg") &&
+                  !file.path.endsWith(".jpeg") &&
+                  !file.path.endsWith(".gif") &&
+                  !file.path.endsWith(".svg") &&
                   file.path.replace(
                     `programme/${file.path.split("/")[1]}`,
                     ""
@@ -35716,7 +35732,9 @@ async function collectAllDsaData(
                 ? content.data.description
                 : "Codinasion",
               image: content.data.image
-                ? `https://raw.githubusercontent.com/${owner}/${dsaRepo}/${dsaBranch}/programme/${formatSlug(data.path)}/${content.data.image}`
+                ? `https://raw.githubusercontent.com/${owner}/${dsaRepo}/${dsaBranch}/programme/${formatSlug(
+                    data.path
+                  )}/${content.data.image}`
                 : "https://raw.githubusercontent.com/codinasion/codinasion/master/image/og/default.png",
               tags: programme_tags ? programme_tags : [],
               slug: formatSlug(data.path),
@@ -35816,7 +35834,14 @@ async function collectDsaData(owner, token, dsaRepo, dsaBranch) {
         programme_files &&
           (await Promise.all(
             programme_files.map(async (file) => {
-              if (!file.path.endsWith(".md") && !file.path.endsWith(".png")) {
+              if (
+                !file.path.endsWith(".md") &&
+                !file.path.endsWith(".png") &&
+                !file.path.endsWith(".jpg") &&
+                !file.path.endsWith(".jpeg") &&
+                !file.path.endsWith(".gif") &&
+                !file.path.endsWith(".svg")
+              ) {
                 // get tags data
                 // check if tag is already in the list
                 if (
