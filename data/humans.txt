@@ -51,6 +51,9 @@ https://twitter.com/thenameismadhus
 Neel Patel
 https://github.com/NeelPatel31
 
+Paolo Ferrari
+https://github.com/PaoloFer
+
 Prajwal Borkar
 https://github.com/PrajwalBorkar
 https://twitter.com/PrajwalBorkar7
@@ -87,6 +90,10 @@ https://github.com/20emigdal
 Aashish Khubchandani
 https://github.com/aashish-khub
 
+Adarsh jaiswal
+https://github.com/Adarsh-jaiss
+https://twitter.com/twtadarsh
+
 Akhil Sharma
 https://github.com/akhil484
 
@@ -95,6 +102,9 @@ https://github.com/AlfredoR-CSUF
 
 amitSahu9
 https://github.com/amitSahu9
+
+Anas Tazir
+https://github.com/anastazir
 
 andrew9078
 https://github.com/andrew9078
@@ -106,8 +116,17 @@ https://twitter.com/aparth11
 Aryan Gupta
 https://github.com/aryangupta701
 
+aukokyong
+https://github.com/aukokyong
+
 Yang Yunyi
 https://github.com/Badboy-16
+
+boatwrong
+https://github.com/boatwrong
+
+Brian Jesse Kimani
+https://github.com/BrianJesseKimani
 
 ClasherKasten
 https://github.com/ClasherKasten
@@ -125,6 +144,12 @@ Lakshyajeet Singh Goyal
 https://github.com/DarkMatter-999
 https://twitter.com/DarkMatter_999
 
+Darren
+https://github.com/Darren-R
+
+Diego Cordoba
+https://github.com/dcordoba97
+
 debaghosh
 https://github.com/debaghosh
 
@@ -139,6 +164,9 @@ https://github.com/Enoch02
 
 Ferruh
 https://github.com/ferruhcihan
+
+G0V1NDK
+https://github.com/G0V1NDK
 
 Anish Vedantham
 https://github.com/garciajump
@@ -159,11 +187,18 @@ https://github.com/Glogius95
 RafaelFadel
 https://github.com/GodKimba
 
+Greenboat24
+https://github.com/Greenboat24
+
 Hans
 https://github.com/hansleykowlessur
 
 Harshitha Devi Ganajala
 https://github.com/harshi1122
+
+Harshvardhan singh tomar
+https://github.com/Harshvardhantomar
+https://twitter.com/420_hercules
 
 HaveACookie
 https://github.com/HaveACookie
@@ -171,17 +206,39 @@ https://github.com/HaveACookie
 Ian Stewart
 https://github.com/ianstewart4
 
+icyca
+https://github.com/icyca
+
+Hrzán Ondřej
+https://github.com/idkjanevim
+
+Hammad Asghar
+https://github.com/ihammadasghar
+https://twitter.com/ihammadasghar
+
 inv-parthan
 https://github.com/inv-parthan
 
 Ilmi
 https://github.com/IrumiDesu7
 
+irvinavelino
+https://github.com/irvinavelino
+
+Isaac David Noriega Gutierrez
+https://github.com/IsaacNoga
+
+Krish Shah
+https://github.com/isobarbaric
+
 javithegreat35
 https://github.com/javithegreat35
 
 Jaden Pape
 https://github.com/JDev64
+
+Jef van der Avoirt
+https://github.com/JefvdA
 
 Jessica Hamilton
 https://github.com/jessicant
@@ -204,6 +261,10 @@ https://github.com/jspoh
 julyvjo
 https://github.com/julyvjo
 
+Kaleen Moon
+https://github.com/Kaleen-MicheleXO
+https://twitter.com/Kay_MicheleXO
+
 Karthik Srinivas Bhallamudi
 https://github.com/karthiksbh
 
@@ -220,6 +281,9 @@ https://twitter.com/_KikiManjaro
 Karina Zhang
 https://github.com/kzhang01
 
+Leigh Briody
+https://github.com/leighbriody
+
 Lev Bernstein
 https://github.com/LevBernstein
 
@@ -228,6 +292,9 @@ https://github.com/lt77777
 
 Luís Figueiredo
 https://github.com/luiscff
+
+Amir Mahdi
+https://github.com/mahdithedev
 
 Manan Karnik
 https://github.com/MananKarnik
@@ -238,7 +305,7 @@ https://twitter.com/manny_uncharted
 
 Jon Christie
 https://github.com/mathcodes
-https://twitter.com/jonpchristie
+https://twitter.com/fullstack112358
 
 Micha Davis
 https://github.com/Micha-L-Davis
@@ -266,6 +333,9 @@ https://github.com/PA11TEDDU
 pa11teddu12
 https://github.com/pa11teddu12
 
+Giandomenico Pagliara
+https://github.com/PagliaraG
+
 Alenn Wright
 https://github.com/PhysicsMD
 
@@ -288,6 +358,9 @@ https://github.com/rgodoy86
 Rishav karanjit
 https://github.com/rishav-karanjit
 
+Roger M Reyes
+https://github.com/RogerMReyes
+
 rootzer00
 https://github.com/rootzer00
 
@@ -300,6 +373,9 @@ https://twitter.com/rutterjt
 
 saikatg347
 https://github.com/saikatg347
+
+Sanjaya J Shetty
+https://github.com/SanjayShetty01
 
 Satyapriyo Biswas
 https://github.com/Satyapriyo
@@ -325,17 +401,27 @@ Siddhant Chimankar
 https://github.com/siddhantchimankar
 https://twitter.com/siddhantapricot
 
+Samad Rahimi
+https://github.com/smdpro
+
 Omar Abdelwahab
 https://github.com/SpadeQ22
 
 Abhishekh S R
 https://github.com/srabhishekh
 
+Stevie
+https://github.com/Stevie011
+https://twitter.com/StevieStewart11
+
 superpthegreat
 https://github.com/superpthegreat
 
 theanorak
 https://github.com/theanorak
+
+Teo
+https://github.com/TheofilosKaxiris
 
 Tiara Brown
 https://github.com/tiarabcodes1
@@ -356,6 +442,9 @@ https://github.com/whtann
 williamye51
 https://github.com/williamye51
 
+xqueezeme
+https://github.com/xqueezeme
+
 Yacine Zitouni
 https://github.com/yacine-zitouni
 
@@ -370,6 +459,10 @@ https://github.com/yougottawork
 
 yslDevelop
 https://github.com/yslDevelop
+
+K Zayd Ahmed
+https://github.com/zahyaah
+https://twitter.com/zahyaah
 
 Evelyn Wu
 https://github.com/zhixuanevelynwu
