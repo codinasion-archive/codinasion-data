@@ -59,6 +59,10 @@ export default async function collectAllDsaData(
                 if (
                   !file.path.endsWith(".md") &&
                   !file.path.endsWith(".png") &&
+                  !file.path.endsWith(".jpg") &&
+                  !file.path.endsWith(".jpeg") &&
+                  !file.path.endsWith(".gif") &&
+                  !file.path.endsWith(".svg") &&
                   file.path.replace(
                     `programme/${file.path.split("/")[1]}`,
                     ""
@@ -84,7 +88,9 @@ export default async function collectAllDsaData(
                 ? content.data.description
                 : "Codinasion",
               image: content.data.image
-                ? `https://raw.githubusercontent.com/${owner}/${dsaRepo}/${dsaBranch}/programme/${formatSlug(data.path)}/${content.data.image}`
+                ? `https://raw.githubusercontent.com/${owner}/${dsaRepo}/${dsaBranch}/programme/${formatSlug(
+                    data.path
+                  )}/${content.data.image}`
                 : "https://raw.githubusercontent.com/codinasion/codinasion/master/image/og/default.png",
               tags: programme_tags ? programme_tags : [],
               slug: formatSlug(data.path),
