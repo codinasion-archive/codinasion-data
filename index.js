@@ -17,7 +17,7 @@ import collectDsaData from "./scripts/dsa/collectDsaData";
 import generateHumansFn from "./scripts/humans/generateHumans";
 
 // import project functions
-import collectProjectsData from "./scripts/project/collectProjectsData";
+import collectProjectsData from "./scripts/home/collectProjectData";
 
 const core = require("@actions/core");
 
