@@ -36377,6 +36377,8 @@ async function collectProjectsData(owner, token, projectTopic) {
       .then((res) => res.json())
       .catch((error) => console.log(error));
 
+    await console.log("projects => ", projects);
+
     // add projects to projectsData
     projects &&
       (await Promise.all(
