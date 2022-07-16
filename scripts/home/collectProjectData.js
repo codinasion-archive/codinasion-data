@@ -17,8 +17,6 @@ export default async function collectProjectsData(owner, token, projectTopic) {
       .then((json) => json.items)
       .catch((error) => console.log(error));
 
-    await console.log("projects => ", projects);
-
     // add projects to projectsData
     projects &&
       (await Promise.all(
@@ -29,15 +27,6 @@ export default async function collectProjectsData(owner, token, projectTopic) {
               description: project.description,
               url: project.html_url,
               stars: project.stargazers_count,
-              language: project.language,
-              owner: project.owner.login,
-              ownerUrl: project.owner.html_url,
-              ownerAvatar: project.owner.avatar_url,
-              ownerType: project.owner.type,
-              ownerCompany: project.owner.company,
-              ownerLocation: project.owner.location,
-              ownerBlog: project.owner.blog,
-              ownerBio: project.owner.bio,
             };
             projectsData.push(data);
           }
