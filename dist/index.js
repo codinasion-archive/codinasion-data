@@ -11490,6 +11490,14 @@ exports.debug = debug; // for test
 
 /***/ }),
 
+/***/ 5038:
+/***/ ((module) => {
+
+module.exports = eval("require")("./scripts/project/collectProjectsData");
+
+
+/***/ }),
+
 /***/ 9491:
 /***/ ((module) => {
 
@@ -36358,14 +36366,29 @@ Twitter:     https://twitter.com/codinasion
   }
 }
 
+// EXTERNAL MODULE: ../../../../../usr/lib/node_modules/@vercel/ncc/dist/ncc/@@notfound.js?./scripts/project/collectProjectsData
+var collectProjectsData = __nccwpck_require__(5038);
+var collectProjectsData_default = /*#__PURE__*/__nccwpck_require__.n(collectProjectsData);
 ;// CONCATENATED MODULE: ./index.js
+// import programme functions
 
 
 
+// import tags functions
 
 
 
+// import stats functions
 
+
+// import dsa functions
+
+
+
+// import humans functions
+
+
+// import project functions
 
 
 const index_core = __nccwpck_require__(6398);
@@ -36375,22 +36398,38 @@ const index_core = __nccwpck_require__(6398);
   try {
     console.log("Hii there !!!");
 
+    // default data
     const owner = await index_core.getInput("owner");
     const token = await index_core.getInput("token");
     const PAT = await index_core.getInput("PAT");
+
+    // programme data
     const programmeRepo = await index_core.getInput("programme-repo");
     const programmeBranch = await index_core.getInput("programme-branch");
-    const dsaRepo = await index_core.getInput("dsa-repo");
-    const dsaBranch = await index_core.getInput("dsa-branch");
     const collectProgramme = await index_core.getInput("collect-programme");
     const processProgramme = await index_core.getInput("process-programme");
+
+    // dsa data
+    const dsaRepo = await index_core.getInput("dsa-repo");
+    const dsaBranch = await index_core.getInput("dsa-branch");
     const collectDsa = await index_core.getInput("collect-dsa");
     const processDsa = await index_core.getInput("process-dsa");
+
+    // tag data
     const collectTag = await index_core.getInput("collect-tag");
     const processTag = await index_core.getInput("process-tag");
+
+    // stats data
     const collectStats = await index_core.getInput("collect-stats");
+
+    // humans data
     const generateHumans = await index_core.getInput("generate-humans");
 
+    // home data
+    const projectTopic = await index_core.getInput("project-topic");
+    const collectProject = await index_core.getInput("collect-project");
+
+    // programme conditions
     if (collectProgramme === "true") {
       await collectProgrammesData(owner, token, programmeRepo, programmeBranch);
     }
@@ -36399,6 +36438,7 @@ const index_core = __nccwpck_require__(6398);
       await collectProgrammeData(owner, token, programmeRepo, programmeBranch);
     }
 
+    // dsa conditions
     if (collectDsa === "true") {
       await collectAllDsaData(owner, token, dsaRepo, dsaBranch);
     }
@@ -36407,6 +36447,7 @@ const index_core = __nccwpck_require__(6398);
       await collectDsaData(owner, token, dsaRepo, dsaBranch);
     }
 
+    // tag conditions
     if (collectTag === "true") {
       await collectTagsData(owner, token);
     }
@@ -36415,12 +36456,19 @@ const index_core = __nccwpck_require__(6398);
       await collectTagData(owner, token);
     }
 
+    // stats conditions
     if (collectStats === "true") {
       await collectOrgStats(owner, token);
     }
 
+    // humans conditions
     if (generateHumans === "true") {
       await generateHumans_generateHumans(owner, token, PAT);
+    }
+
+    // project conditions
+    if (collectProject === "true") {
+      await collectProjectsData_default()(owner, token, projectTopic);
     }
 
     // end of action

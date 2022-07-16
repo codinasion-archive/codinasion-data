@@ -17,6 +17,12 @@ inputs:
     description: "github personal access token"
     required: false
 
+  # home data related data
+  project-topic:
+    description: "topic keyword to collect project data"
+    required: true
+    default: "codinasion-project"
+
   # programme repo related data
   programme-repo:
     description: "programme repository name"
@@ -40,6 +46,11 @@ inputs:
     default: "master"
 
   # function trigger conditions
+  collect-project:
+    description: "collect project data"
+    required: true
+    default: "false"
+
   collect-programme:
     description: "collect programme data"
     required: true
@@ -74,7 +85,7 @@ inputs:
     description: "collect stats data"
     required: true
     default: "false"
-  
+
   generate-humans:
     description: "generate humans.txt"
     required: true
