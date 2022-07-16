@@ -58,6 +58,11 @@ export default async function collectProgrammesData(
               await programme_files.map(async (file) => {
                 if (
                   !file.path.endsWith(".md") &&
+                  !file.path.endsWith(".png") &&
+                  !file.path.endsWith(".jpg") &&
+                  !file.path.endsWith(".jpeg") &&
+                  !file.path.endsWith(".gif") &&
+                  !file.path.endsWith(".svg") &&
                   file.path.replace(
                     `programme/${file.path.split("/")[1]}`,
                     ""
