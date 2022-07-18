@@ -1,4 +1,4 @@
-name: Generate humans.txt
+name: Generate humans txt
 
 # triger conditions
 on:

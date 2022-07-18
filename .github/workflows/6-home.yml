@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   # runs after tag.yml
   workflow_run:
-    workflows: ["Generate humans.txt"]
+    workflows: ["Generate humans txt"]
     types:
       - completed
 
