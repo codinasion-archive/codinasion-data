@@ -35172,6 +35172,19 @@ function formatTag(tag) {
       label: "Julia",
     };
   }
+  if (
+    tag === "rust" ||
+    tag === "Rust" ||
+    tag === "RUST" ||
+    tag === "rs" ||
+    tag === "RS" ||
+    tag === "Rs"
+  ) {
+    return {
+      tag: "rust",
+      label: "Rust",
+    };
+  }
   return {
     tag: tag,
     label: tag,
