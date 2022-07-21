@@ -44,6 +44,9 @@ Anzo52
 https://github.com/Anzo52
 https://twitter.com/DevAndyZ
 
+RafaelFadel
+https://github.com/GodKimba
+
 Madhu S Gowda
 https://github.com/MadhuS-1605
 https://twitter.com/thenameismadhus
@@ -64,6 +67,9 @@ https://twitter.com/_Lyndhir_
 
 Scraper 404
 https://github.com/scraper-404
+
+Seraph★776
+https://github.com/seraph776
 
 Avik Sarkar
 https://github.com/ssavi-ict
@@ -186,9 +192,6 @@ https://github.com/gilazani
 
 Glogius95
 https://github.com/Glogius95
-
-RafaelFadel
-https://github.com/GodKimba
 
 Greenboat24
 https://github.com/Greenboat24
@@ -389,9 +392,6 @@ https://github.com/SanjayShetty01
 Satyapriyo Biswas
 https://github.com/Satyapriyo
 
-Seraph★776
-https://github.com/seraph776
-
 Shahzeb Ali
 https://github.com/Shahzeb-A
 
@@ -415,6 +415,9 @@ https://github.com/smdpro
 
 Omar Abdelwahab
 https://github.com/SpadeQ22
+
+Spiros Arkoudelis
+https://github.com/SpirosArk
 
 Abhishekh S R
 https://github.com/srabhishekh
