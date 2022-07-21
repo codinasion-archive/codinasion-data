@@ -8,8 +8,8 @@ on:
   schedule:
     - cron: "30 18 * * *"
   # on push to master
-  push:
-    branches: [master]
+  # push:
+  #   branches: [master]
   # runs after stats.yml
   # workflow_run:
   #   workflows: ["Collect Stats Data"]
