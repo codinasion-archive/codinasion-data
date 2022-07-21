@@ -4,11 +4,14 @@ name: Generate humans txt
 on:
   # manually triggered
   workflow_dispatch:
+  # runs everyday at 00:00 IST or 18:30 UTC
+  schedule:
+    - cron: "30 18 * * *"
   # runs after stats.yml
-  workflow_run:
-    workflows: ["Collect Stats Data"]
-    types:
-      - completed
+  # workflow_run:
+  #   workflows: ["Collect Stats Data"]
+  #   types:
+  #     - completed
 
 jobs:
   collect_data:
