@@ -8,7 +8,7 @@ import collectDsaData from "./scripts/dsa/collectDsaData";
 
 // import blog functions
 import collectAllBlogsData from "./scripts/blog/collectAllBlogsData";
-// import collectBlogData from "./scripts/blog/collectBlogData";
+import collectBlogData from "./scripts/blog/collectBlogData";
 
 // import tags functions
 import collectTagsData from "./scripts/tag/collectTagsData";
@@ -90,9 +90,9 @@ const core = require("@actions/core");
       await collectAllBlogsData(owner, token, blogRepo, blogBranch);
     }
 
-    // if (processBlog === "true") {
-    //   await collectBlogData(owner, token, blogRepo, blogBranch);
-    // }
+    if (processBlog === "true") {
+      await collectBlogData(owner, token, blogRepo, blogBranch);
+    }
 
     // tag conditions
     if (collectTag === "true") {

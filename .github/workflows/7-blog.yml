@@ -43,15 +43,15 @@ jobs:
         with:
           message: "blog list data - ${{ steps.date.outputs.time }}"
 
-      # ##########  process Blog data  ##########
-      # - name: Process Blog Data
-      #   uses: ./action/
-      #   with:
-      #     process-blog: true
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     PAT: ${{ secrets.API_DATA_FETCH_PAT }}
+      ##########  process Blog data  ##########
+      - name: Process Blog Data
+        uses: ./action/
+        with:
+          process-blog: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          PAT: ${{ secrets.API_DATA_FETCH_PAT }}
 
-      # - name: Commit Processed Blog Data
-      #   uses: EndBug/add-and-commit@v9
-      #   with:
-      #     message: "blog data - ${{ steps.date.outputs.time }}"
+      - name: Commit Processed Blog Data
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "blog data - ${{ steps.date.outputs.time }}"
