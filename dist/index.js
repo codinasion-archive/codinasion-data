@@ -14475,6 +14475,7 @@ var gray_matter_default = /*#__PURE__*/__nccwpck_require__.n(gray_matter);
 ;// CONCATENATED MODULE: ./scripts/formatSlug.js
 function formatSlug(slug) {
   slug = slug.replace(/programme\//, "");
+  slug = slug.replace(/blog\//, "");
   slug = slug.replace(/\/(README|index|Readme)/, "");
   slug = slug.replace(/\.(mdx|md)/, "");
   return slug;
@@ -35761,7 +35762,7 @@ async function collectAllBlogsData(
                 ? content.data.description
                 : "Codinasion",
               image: content.data.hero
-                ? `https://raw.githubusercontent.com/${owner}/${blogRepo}/${blogBranch}/${formatSlug(
+                ? `https://raw.githubusercontent.com/${owner}/${blogRepo}/${blogBranch}/blog/${formatSlug(
                     data.path
                   )}/${content.data.hero}`
                 : "https://raw.githubusercontent.com/codinasion/codinasion/master/image/og/default.png",
