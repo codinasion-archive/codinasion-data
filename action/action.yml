@@ -45,6 +45,17 @@ inputs:
     required: true
     default: "master"
 
+  # blog repo related data
+  blog-repo:
+    description: "blog repository name"
+    required: true
+    default: "codinasion-blog"
+
+  blog-branch:
+    description: "blog repository branch"
+    required: true
+    default: "master"
+
   # function trigger conditions
   collect-project:
     description: "collect project data"
@@ -68,6 +79,16 @@ inputs:
 
   process-dsa:
     description: "process dsa data"
+    required: true
+    default: "false"
+
+  collect-blog:
+    description: "collect blog data"
+    required: true
+    default: "false"
+
+  process-blog:
+    description: "process blog data"
     required: true
     default: "false"
 
