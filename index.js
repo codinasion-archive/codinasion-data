@@ -7,7 +7,7 @@ import collectAllDsaData from "./scripts/dsa/collectAllDsaData";
 import collectDsaData from "./scripts/dsa/collectDsaData";
 
 // import blog functions
-import collectAllBlogsData from "./scripts/blog/collectAllBlogData";
+import collectAllBlogsData from "./scripts/blog/collectAllBlogsData";
 // import collectBlogData from "./scripts/blog/collectBlogData";
 
 // import tags functions

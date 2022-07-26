@@ -11490,14 +11490,6 @@ exports.debug = debug; // for test
 
 /***/ }),
 
-/***/ 1209:
-/***/ ((module) => {
-
-module.exports = eval("require")("./scripts/blog/collectAllBlogData");
-
-
-/***/ }),
-
 /***/ 9491:
 /***/ ((module) => {
 
@@ -35708,9 +35700,103 @@ ${code_text}
     ));
 }
 
-// EXTERNAL MODULE: ../../../../../usr/lib/node_modules/@vercel/ncc/dist/ncc/@@notfound.js?./scripts/blog/collectAllBlogData
-var collectAllBlogData = __nccwpck_require__(1209);
-var collectAllBlogData_default = /*#__PURE__*/__nccwpck_require__.n(collectAllBlogData);
+;// CONCATENATED MODULE: ./scripts/blog/collectAllBlogsData.js
+
+
+
+
+
+
+
+
+async function collectAllBlogsData(
+  owner,
+  token,
+  blogRepo,
+  blogBranch
+) {
+  const blogList = [];
+  const pathsData = await fetch(
+    `https://api.github.com/repos/${owner}/${blogRepo}/git/trees/${blogBranch}?recursive=1`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    }
+  )
+    .then((res) => res.json())
+    .then((res) => res.tree)
+    .catch((error) => {
+      console.log(error);
+    });
+
+  pathsData &&
+    (await Promise.all(
+      await pathsData.map(async (data) => {
+        if (
+          data.path.startsWith("blog") &&
+          data.path.endsWith("README.md") &&
+          data.path !== "blog/README.md"
+        ) {
+          const source = await fetch(
+            `https://raw.githubusercontent.com/${owner}/${blogRepo}/${blogBranch}/${data.path}`,
+            {
+              method: "GET",
+              headers: {
+                Authorization: `token ${token}`,
+              },
+            }
+          )
+            .then((res) => res.text())
+            .catch((error) => console.log(error));
+
+          try {
+            const content = await gray_matter_default()(source);
+            await blogList.push({
+              title: content.data.title ? content.data.title : "Codinasion",
+              author: content.data.author ? content.data.author : "Codinasion",
+              date: content.data.date ? content.data.date : "2020-01-01",
+              description: content.data.description
+                ? content.data.description
+                : "Codinasion",
+              image: content.data.hero
+                ? `https://raw.githubusercontent.com/${owner}/${blogRepo}/${blogBranch}/blog/${formatSlug(
+                    data.path
+                  )}/${content.data.hero}`
+                : "https://raw.githubusercontent.com/codinasion/codinasion/master/image/og/default.png",
+              tags: content.data.tags ? content.data.tags : [],
+              contributors: content.data.contributors
+                ? content.data.contributors
+                : [],
+              slug: formatSlug(data.path),
+            });
+          } catch (error) {
+            await console.log("error occured !!! for ", data.path);
+            await console.log(error);
+          }
+        }
+      })
+    ));
+
+  await console.log("\n=> Total blogList data : ", blogList.length);
+
+  // write prorgamme list data to file
+  const blogListJson = await JSON.stringify(
+    // sort blogList by date
+    await blogList.sort((a, b) => {
+      return new Date(b.date) - new Date(a.date);
+    })
+  );
+  const blogFileDir = "data/blog";
+  await external_fs_default().promises.mkdir(blogFileDir, { recursive: true });
+  const blogFilePath = blogFileDir + "/blogList.json";
+  await external_fs_default().writeFile(blogFilePath, blogListJson, (err) => {
+    if (err) throw err;
+    console.log(`=> ${blogFilePath} succesfully saved !!!`);
+  });
+}
+
 ;// CONCATENATED MODULE: ./scripts/tag/collectTagsData.js
 
 
@@ -36526,7 +36612,7 @@ const index_core = __nccwpck_require__(6398);
 
     // blog conditions
     if (collectBlog === "true") {
-      await collectAllBlogData_default()(owner, token, blogRepo, blogBranch);
+      await collectAllBlogsData(owner, token, blogRepo, blogBranch);
     }
 
     // if (processBlog === "true") {
