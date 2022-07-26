@@ -35761,7 +35761,7 @@ async function collectAllBlogsData(
                 ? content.data.description
                 : "Codinasion",
               image: content.data.hero
-                ? `https://raw.githubusercontent.com/${owner}/${blogRepo}/${blogBranch}/blog/${formatSlug(
+                ? `https://raw.githubusercontent.com/${owner}/${blogRepo}/${blogBranch}/${formatSlug(
                     data.path
                   )}/${content.data.hero}`
                 : "https://raw.githubusercontent.com/codinasion/codinasion/master/image/og/default.png",
