@@ -14475,6 +14475,7 @@ var gray_matter_default = /*#__PURE__*/__nccwpck_require__.n(gray_matter);
 ;// CONCATENATED MODULE: ./scripts/formatSlug.js
 function formatSlug(slug) {
   slug = slug.replace(/programme\//, "");
+  slug = slug.replace(/blog\//, "");
   slug = slug.replace(/\/(README|index|Readme)/, "");
   slug = slug.replace(/\.(mdx|md)/, "");
   return slug;
@@ -35382,278 +35383,6 @@ ${code_text}
     ));
 }
 
-;// CONCATENATED MODULE: ./scripts/tag/collectTagsData.js
-
-
-
-
-
-
-async function collectTagsData(owner, token) {
-  const allTags = [];
-
-  const programmeList = await fetch(
-    `https://raw.githubusercontent.com/${owner}/${"codinasion-data"}/master/data/programme/${"programmeList"}.json`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: `token ${token}`,
-      },
-    }
-  )
-    .then((res) => res.json())
-    .catch((error) => console.log(error));
-
-  programmeList &&
-    (await Promise.all(
-      await programmeList.map(async (data) => {
-        for (let i = 0; i < data.tags.length; i++) {
-          if (!allTags.includes(formatTag(data.tags[i]).tag)) {
-            await allTags.push(formatTag(data.tags[i]).tag);
-          }
-        }
-      })
-    ));
-
-  // write tag list data to file
-  const tagsFilePath = `data/programme/tagList.json`;
-  await external_fs_default().writeFile(tagsFilePath, JSON.stringify(allTags), (err) => {
-    if (err) throw err;
-    console.log(`=> ${tagsFilePath} succesfully saved !!!`);
-  });
-}
-
-;// CONCATENATED MODULE: ./scripts/tag/collectTagData.js
-
-
-
-
-
-
-async function collectTagData(owner, token) {
-  const programmeList = await fetch(
-    `https://raw.githubusercontent.com/${owner}/${"codinasion-data"}/master/data/programme/${"programmeList"}.json`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: `token ${token}`,
-      },
-    }
-  )
-    .then((res) => res.json())
-    .catch((error) => console.log(error));
-
-  const tagList = await fetch(
-    `https://raw.githubusercontent.com/${"codinasion"}/${"codinasion-data"}/master/data/programme/${"tagList"}.json`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: `token ${token}`,
-      },
-    }
-  )
-    .then((res) => res.json())
-    .catch((error) => console.log(error));
-
-  tagList &&
-    (await Promise.all(
-      await tagList.map(async (tag) => {
-        const allProgramme = [];
-        programmeList &&
-          (await Promise.all(
-            await programmeList.map(async (data) => {
-              for (let i = 0; i < data.tags.length; i++) {
-                if (formatTag(data.tags[i]).tag === formatTag(tag).tag) {
-                  allProgramme.push(data);
-                  break;
-                }
-              }
-            })
-          ));
-        await console.log(`\n=> Total ${tag} tag data : `, allProgramme.length);
-        const tagFileDir = "data/programme/tag";
-        await external_fs_default().promises.mkdir(tagFileDir, { recursive: true });
-        const tagFilePath = `${tagFileDir}/${tag}.json`;
-        const tagData = await JSON.stringify(
-          allProgramme.sort(function (a, b) {
-            if (a.slug < b.slug) {
-              return -1;
-            }
-            if (a.slug > b.slug) {
-              return 1;
-            }
-            return 0;
-          })
-        );
-        await external_fs_default().writeFile(tagFilePath, tagData, (err) => {
-          if (err) throw err;
-          console.log(`=> ${tagFilePath} succesfully saved !!!`);
-        });
-      })
-    ));
-}
-
-;// CONCATENATED MODULE: ./scripts/stats/collectOrgStats.js
-
-
-
-
-async function collectOrgStats(owner, token) {
-  try {
-    const repos = [];
-    const contributors = [];
-    var stars = 0;
-    var forks = 0;
-
-    async function getRepoJson(apilink) {
-      var repo_data = [];
-      await fetch(apilink, {
-        method: "GET",
-        headers: {
-          Authorization: `token ${token} `,
-        },
-      })
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          } else {
-            throw new Error(
-              `The HTTP status of the reponse: ${res.status} (${res.statusText})`
-            );
-          }
-        })
-        .then((json) => {
-          repo_data = json;
-        })
-        .catch((err) => console.log(err));
-
-      for (let i = 0; i < repo_data.length; i++) {
-        const found = repos.some(
-          (el) => el.full_name === repo_data[i].full_name
-        );
-        if (!found) {
-          stars = stars + repo_data[i].stargazers_count;
-          forks = forks + repo_data[i].forks_count;
-          repos.push({ full_name: repo_data[i].full_name });
-        }
-      }
-
-      if (repo_data.length === 100) {
-        repo_page = repo_page + 1;
-        getrepolink = `https://api.github.com/users/${owner}/repos?per_page=100&page=${repo_page}`;
-        await getRepoJson(getrepolink);
-      }
-    }
-
-    async function getContributorJson(apilink) {
-      var contributor_data = [];
-      await fetch(apilink, {
-        method: "GET",
-        headers: {
-          Authorization: `token ${token} `,
-        },
-      })
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          } else {
-            throw new Error(
-              `The HTTP status of the reponse: ${res.status} (${res.statusText})`
-            );
-          }
-        })
-        .then((json) => {
-          contributor_data = json;
-        })
-        .catch((err) => console.log(err));
-
-      for (let i = 0; i < contributor_data.length; i++) {
-        const found = contributors.some(
-          (el) =>
-            el.username === contributor_data[i].login ||
-            contributor_data[i].login.includes("[bot]")
-        );
-        if (!found) contributors.push({ username: contributor_data[i].login });
-      }
-
-      if (contributor_data.length === 100) {
-        contributor_page = contributor_page + 1;
-        getcontributorlink = `https://api.github.com/repos/${repo_full_name}/contributors?per_page=100&page=${contributor_page}`;
-        await getContributorJson(getcontributorlink);
-      }
-    }
-
-    // get list of repos
-    var repo_page = 1;
-    var getrepolink = `https://api.github.com/users/${owner}/repos?per_page=100&page=${repo_page}`;
-    await getRepoJson(getrepolink);
-
-    // get list of contributors
-    for (let i = 0; i < repos.length; i++) {
-      var contributor_page = 1;
-      var repo_full_name = repos[i].full_name;
-      var getcontributorlink = `https://api.github.com/repos/${repo_full_name}/contributors?per_page=100&page=${contributor_page}`;
-      await getContributorJson(getcontributorlink);
-    }
-
-    contributors.sort((a, b) =>
-      a.username.toLowerCase() > b.username.toLowerCase()
-        ? 1
-        : b.username.toLowerCase() > a.username.toLowerCase()
-        ? -1
-        : 0
-    );
-
-    await console.log("\nTotal no. of contributors : ", contributors.length);
-
-    const data = [
-      {
-        title: "STARS",
-        value: stars,
-      },
-      {
-        title: "FORKS",
-        value: forks,
-      },
-      {
-        title: "CONTRIBUTORS",
-        value: contributors.length,
-      },
-      {
-        title: "REPOS",
-        value: repos.length,
-      },
-    ];
-
-    await console.log(data);
-
-    // write contributors list data to file
-    const contributorsFileDir = "data";
-    const contributorsFilePath = `${contributorsFileDir}/${"contributors"}.json`;
-    await external_fs_default().writeFile(
-      contributorsFilePath,
-      JSON.stringify(contributors),
-      (err) => {
-        if (err) throw err;
-        console.log(`=> ${contributorsFilePath} succesfully saved !!!`);
-      }
-    );
-
-    // write stats data to file
-    const statsFileDir = "data";
-    const statsFilePath = `${statsFileDir}/${"stats"}.json`;
-    await external_fs_default().writeFile(statsFilePath, JSON.stringify(data), (err) => {
-      if (err) throw err;
-      console.log(`=> ${statsFilePath} succesfully saved !!!`);
-    });
-
-    //   collection complete
-  } catch (error) {
-    await console.log(`error occured !!! for ${owner} stats collect`);
-    await console.log(error);
-  }
-}
-
 ;// CONCATENATED MODULE: ./scripts/dsa/collectAllDsaData.js
 
 
@@ -35970,6 +35699,503 @@ ${code_text}
         }
       })
     ));
+}
+
+;// CONCATENATED MODULE: ./scripts/blog/collectAllBlogsData.js
+
+
+
+
+
+
+
+
+async function collectAllBlogsData(
+  owner,
+  token,
+  blogRepo,
+  blogBranch
+) {
+  const blogList = [];
+  const pathsData = await fetch(
+    `https://api.github.com/repos/${owner}/${blogRepo}/git/trees/${blogBranch}?recursive=1`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    }
+  )
+    .then((res) => res.json())
+    .then((res) => res.tree)
+    .catch((error) => {
+      console.log(error);
+    });
+
+  pathsData &&
+    (await Promise.all(
+      await pathsData.map(async (data) => {
+        if (
+          data.path.startsWith("blog") &&
+          data.path.endsWith("README.md") &&
+          data.path !== "blog/README.md"
+        ) {
+          const source = await fetch(
+            `https://raw.githubusercontent.com/${owner}/${blogRepo}/${blogBranch}/${data.path}`,
+            {
+              method: "GET",
+              headers: {
+                Authorization: `token ${token}`,
+              },
+            }
+          )
+            .then((res) => res.text())
+            .catch((error) => console.log(error));
+
+          try {
+            const content = await gray_matter_default()(source);
+            await blogList.push({
+              title: content.data.title ? content.data.title : "Codinasion",
+              author: content.data.author ? content.data.author : "Codinasion",
+              date: content.data.date ? content.data.date : "2020-01-01",
+              description: content.data.description
+                ? content.data.description
+                : "Codinasion",
+              image: content.data.hero
+                ? `https://raw.githubusercontent.com/${owner}/${blogRepo}/${blogBranch}/blog/${formatSlug(
+                    data.path
+                  )}/${content.data.hero}`
+                : "https://raw.githubusercontent.com/codinasion/codinasion/master/image/og/default.png",
+              tags: content.data.tags ? content.data.tags : [],
+              contributors: content.data.contributors
+                ? content.data.contributors
+                : [],
+              slug: formatSlug(data.path),
+            });
+          } catch (error) {
+            await console.log("error occured !!! for ", data.path);
+            await console.log(error);
+          }
+        }
+      })
+    ));
+
+  await console.log("\n=> Total blogList data : ", blogList.length);
+
+  // write prorgamme list data to file
+  const blogListJson = await JSON.stringify(
+    // sort blogList by date
+    await blogList.sort((a, b) => {
+      return new Date(b.date) - new Date(a.date);
+    })
+  );
+  const blogFileDir = "data/blog";
+  await external_fs_default().promises.mkdir(blogFileDir, { recursive: true });
+  const blogFilePath = blogFileDir + "/blogList.json";
+  await external_fs_default().writeFile(blogFilePath, blogListJson, (err) => {
+    if (err) throw err;
+    console.log(`=> ${blogFilePath} succesfully saved !!!`);
+  });
+}
+
+;// CONCATENATED MODULE: ./scripts/blog/collectBlogData.js
+
+
+
+
+
+
+
+
+async function collectblogData(
+  owner,
+  token,
+  blogRepo,
+  blogBranch
+) {
+  const blogList = await fetch(
+    `https://raw.githubusercontent.com/${"codinasion"}/${"codinasion-data"}/${"blog"}/data/blog/${"blogList"}.json`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    }
+  )
+    .then((res) => res.json())
+    .catch((error) => console.log(error));
+
+  const blogFileDir = "data/blog/blog";
+  await external_fs_default().promises.mkdir(blogFileDir, { recursive: true });
+  blogList &&
+    (await Promise.all(
+      blogList.map(async (data) => {
+        try {
+          const slug = data.slug;
+
+          // get README.md text data
+          const source = await fetch(
+            `https://raw.githubusercontent.com/${owner}/${blogRepo}/${blogBranch}/blog/${slug}/README.md`,
+            {
+              method: "GET",
+              headers: {
+                Authorization: `token ${token}`,
+              },
+            }
+          )
+            .then((res) => res.text())
+            .catch((error) => console.log(error));
+
+          // await console.log(source);
+
+          const matterResult = await gray_matter_default()(String(source));
+
+          // await console.log(matterResult);
+
+          const processedContent = await remark()
+            .use(remarkHtml)
+            .process(matterResult.content);
+          const contentHtml = processedContent.toString();
+
+          var latestUpdateDate = null;
+          try {
+            let json_res = [];
+            latestUpdateDate = await fetch(
+              `https://api.github.com/repos/${owner}/${blogRepo}/commits?path=${
+                "blog/" + slug
+              }&page=1&per_page=1`,
+              {
+                method: "GET",
+                headers: {
+                  Authorization: `token ${token}`,
+                },
+              }
+            )
+              .then((res) => res.json())
+              .then((json) => ((json_res = json), json_res))
+              .then((json) => json[0].commit.committer.date)
+              .catch((error) => console.log(slug, json_res, error));
+          } catch (error) {
+            latestUpdateDate = await new Date().toISOString();
+            await console.log(
+              "latestUpdateDate set to null !!! for " +
+                `https://api.github.com/repos/${owner}/${blogRepo}/commits?path=${
+                  "blog/" + slug + "/README.md"
+                }&page=1&per_page=1`
+            );
+            await console.log(error);
+          }
+
+          const blogData = JSON.stringify({
+            slug: slug || null,
+            title: matterResult.data.title
+              ? matterResult.data.title
+              : "Codinasion",
+            author: matterResult.data.author
+              ? matterResult.data.author
+              : "Codinasion",
+            date: matterResult.data.date
+              ? matterResult.data.date
+              : "2020-01-01",
+            description: matterResult.data.description
+              ? matterResult.data.description
+              : "Codinasion",
+            image: matterResult.data.hero
+              ? `https://raw.githubusercontent.com/${owner}/${blogRepo}/${blogBranch}/blog/${slug}/${matterResult.data.hero}`
+              : "https://raw.githubusercontent.com/codinasion/codinasion/master/image/og/default.png",
+            tags: matterResult.data.tags ? matterResult.data.tags : [],
+            contributors: matterResult.data.contributors
+              ? matterResult.data.contributors
+              : [],
+            latestUpdateDate: latestUpdateDate,
+            contentHtml: contentHtml,
+            markdown: matterResult.content,
+          });
+
+          // write prorgamme list data to file
+          const blogFilePath = `${blogFileDir}/${slug}.json`;
+          await external_fs_default().writeFile(blogFilePath, blogData, (err) => {
+            if (err) throw err;
+            console.log(`=> ${blogFilePath} succesfully saved !!!`);
+          });
+        } catch (error) {
+          await console.log("error occured !!! for ", slug);
+          await console.log(error);
+        }
+      })
+    ));
+}
+
+;// CONCATENATED MODULE: ./scripts/tag/collectTagsData.js
+
+
+
+
+
+
+async function collectTagsData(owner, token) {
+  const allTags = [];
+
+  const programmeList = await fetch(
+    `https://raw.githubusercontent.com/${owner}/${"codinasion-data"}/master/data/programme/${"programmeList"}.json`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    }
+  )
+    .then((res) => res.json())
+    .catch((error) => console.log(error));
+
+  programmeList &&
+    (await Promise.all(
+      await programmeList.map(async (data) => {
+        for (let i = 0; i < data.tags.length; i++) {
+          if (!allTags.includes(formatTag(data.tags[i]).tag)) {
+            await allTags.push(formatTag(data.tags[i]).tag);
+          }
+        }
+      })
+    ));
+
+  // write tag list data to file
+  const tagsFilePath = `data/programme/tagList.json`;
+  await external_fs_default().writeFile(tagsFilePath, JSON.stringify(allTags), (err) => {
+    if (err) throw err;
+    console.log(`=> ${tagsFilePath} succesfully saved !!!`);
+  });
+}
+
+;// CONCATENATED MODULE: ./scripts/tag/collectTagData.js
+
+
+
+
+
+
+async function collectTagData(owner, token) {
+  const programmeList = await fetch(
+    `https://raw.githubusercontent.com/${owner}/${"codinasion-data"}/master/data/programme/${"programmeList"}.json`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    }
+  )
+    .then((res) => res.json())
+    .catch((error) => console.log(error));
+
+  const tagList = await fetch(
+    `https://raw.githubusercontent.com/${"codinasion"}/${"codinasion-data"}/master/data/programme/${"tagList"}.json`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    }
+  )
+    .then((res) => res.json())
+    .catch((error) => console.log(error));
+
+  tagList &&
+    (await Promise.all(
+      await tagList.map(async (tag) => {
+        const allProgramme = [];
+        programmeList &&
+          (await Promise.all(
+            await programmeList.map(async (data) => {
+              for (let i = 0; i < data.tags.length; i++) {
+                if (formatTag(data.tags[i]).tag === formatTag(tag).tag) {
+                  allProgramme.push(data);
+                  break;
+                }
+              }
+            })
+          ));
+        await console.log(`\n=> Total ${tag} tag data : `, allProgramme.length);
+        const tagFileDir = "data/programme/tag";
+        await external_fs_default().promises.mkdir(tagFileDir, { recursive: true });
+        const tagFilePath = `${tagFileDir}/${tag}.json`;
+        const tagData = await JSON.stringify(
+          allProgramme.sort(function (a, b) {
+            if (a.slug < b.slug) {
+              return -1;
+            }
+            if (a.slug > b.slug) {
+              return 1;
+            }
+            return 0;
+          })
+        );
+        await external_fs_default().writeFile(tagFilePath, tagData, (err) => {
+          if (err) throw err;
+          console.log(`=> ${tagFilePath} succesfully saved !!!`);
+        });
+      })
+    ));
+}
+
+;// CONCATENATED MODULE: ./scripts/stats/collectOrgStats.js
+
+
+
+
+async function collectOrgStats(owner, token) {
+  try {
+    const repos = [];
+    const contributors = [];
+    var stars = 0;
+    var forks = 0;
+
+    async function getRepoJson(apilink) {
+      var repo_data = [];
+      await fetch(apilink, {
+        method: "GET",
+        headers: {
+          Authorization: `token ${token} `,
+        },
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            throw new Error(
+              `The HTTP status of the reponse: ${res.status} (${res.statusText})`
+            );
+          }
+        })
+        .then((json) => {
+          repo_data = json;
+        })
+        .catch((err) => console.log(err));
+
+      for (let i = 0; i < repo_data.length; i++) {
+        const found = repos.some(
+          (el) => el.full_name === repo_data[i].full_name
+        );
+        if (!found) {
+          stars = stars + repo_data[i].stargazers_count;
+          forks = forks + repo_data[i].forks_count;
+          repos.push({ full_name: repo_data[i].full_name });
+        }
+      }
+
+      if (repo_data.length === 100) {
+        repo_page = repo_page + 1;
+        getrepolink = `https://api.github.com/users/${owner}/repos?per_page=100&page=${repo_page}`;
+        await getRepoJson(getrepolink);
+      }
+    }
+
+    async function getContributorJson(apilink) {
+      var contributor_data = [];
+      await fetch(apilink, {
+        method: "GET",
+        headers: {
+          Authorization: `token ${token} `,
+        },
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            throw new Error(
+              `The HTTP status of the reponse: ${res.status} (${res.statusText})`
+            );
+          }
+        })
+        .then((json) => {
+          contributor_data = json;
+        })
+        .catch((err) => console.log(err));
+
+      for (let i = 0; i < contributor_data.length; i++) {
+        const found = contributors.some(
+          (el) =>
+            el.username === contributor_data[i].login ||
+            contributor_data[i].login.includes("[bot]")
+        );
+        if (!found) contributors.push({ username: contributor_data[i].login });
+      }
+
+      if (contributor_data.length === 100) {
+        contributor_page = contributor_page + 1;
+        getcontributorlink = `https://api.github.com/repos/${repo_full_name}/contributors?per_page=100&page=${contributor_page}`;
+        await getContributorJson(getcontributorlink);
+      }
+    }
+
+    // get list of repos
+    var repo_page = 1;
+    var getrepolink = `https://api.github.com/users/${owner}/repos?per_page=100&page=${repo_page}`;
+    await getRepoJson(getrepolink);
+
+    // get list of contributors
+    for (let i = 0; i < repos.length; i++) {
+      var contributor_page = 1;
+      var repo_full_name = repos[i].full_name;
+      var getcontributorlink = `https://api.github.com/repos/${repo_full_name}/contributors?per_page=100&page=${contributor_page}`;
+      await getContributorJson(getcontributorlink);
+    }
+
+    contributors.sort((a, b) =>
+      a.username.toLowerCase() > b.username.toLowerCase()
+        ? 1
+        : b.username.toLowerCase() > a.username.toLowerCase()
+        ? -1
+        : 0
+    );
+
+    await console.log("\nTotal no. of contributors : ", contributors.length);
+
+    const data = [
+      {
+        title: "STARS",
+        value: stars,
+      },
+      {
+        title: "FORKS",
+        value: forks,
+      },
+      {
+        title: "CONTRIBUTORS",
+        value: contributors.length,
+      },
+      {
+        title: "REPOS",
+        value: repos.length,
+      },
+    ];
+
+    await console.log(data);
+
+    // write contributors list data to file
+    const contributorsFileDir = "data";
+    const contributorsFilePath = `${contributorsFileDir}/${"contributors"}.json`;
+    await external_fs_default().writeFile(
+      contributorsFilePath,
+      JSON.stringify(contributors),
+      (err) => {
+        if (err) throw err;
+        console.log(`=> ${contributorsFilePath} succesfully saved !!!`);
+      }
+    );
+
+    // write stats data to file
+    const statsFileDir = "data";
+    const statsFilePath = `${statsFileDir}/${"stats"}.json`;
+    await external_fs_default().writeFile(statsFilePath, JSON.stringify(data), (err) => {
+      if (err) throw err;
+      console.log(`=> ${statsFilePath} succesfully saved !!!`);
+    });
+
+    //   collection complete
+  } catch (error) {
+    await console.log(`error occured !!! for ${owner} stats collect`);
+    await console.log(error);
+  }
 }
 
 ;// CONCATENATED MODULE: ./scripts/humans/generateHumans.js
@@ -36430,15 +36656,19 @@ async function collectProjectsData(owner, token, projectTopic) {
 
 
 
+// import dsa functions
+
+
+
+// import blog functions
+
+
+
 // import tags functions
 
 
 
 // import stats functions
-
-
-// import dsa functions
-
 
 
 // import humans functions
@@ -36471,6 +36701,12 @@ const index_core = __nccwpck_require__(6398);
     const collectDsa = await index_core.getInput("collect-dsa");
     const processDsa = await index_core.getInput("process-dsa");
 
+    // blog data
+    const blogRepo = await index_core.getInput("blog-repo");
+    const blogBranch = await index_core.getInput("blog-branch");
+    const collectBlog = await index_core.getInput("collect-blog");
+    const processBlog = await index_core.getInput("process-blog");
+
     // tag data
     const collectTag = await index_core.getInput("collect-tag");
     const processTag = await index_core.getInput("process-tag");
@@ -36501,6 +36737,15 @@ const index_core = __nccwpck_require__(6398);
 
     if (processDsa === "true") {
       await collectDsaData(owner, token, dsaRepo, dsaBranch);
+    }
+
+    // blog conditions
+    if (collectBlog === "true") {
+      await collectAllBlogsData(owner, token, blogRepo, blogBranch);
+    }
+
+    if (processBlog === "true") {
+      await collectblogData(owner, token, blogRepo, blogBranch);
     }
 
     // tag conditions
