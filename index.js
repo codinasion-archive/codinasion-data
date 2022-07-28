@@ -14,6 +14,10 @@ import collectBlogData from "./scripts/blog/collectBlogData";
 import collectProgrammeTagsData from "./scripts/programme/tag/collectProgrammeTagsData";
 import collectProgrammeTagData from "./scripts/programme/tag/collectProgrammeTagData";
 
+// import blog tags functions
+import collectBlogTagsData from "./scripts/blog/tag/collectBlogTagsData";
+import collectBlogTagData from "./scripts/blog/tag/collectBlogTagData";
+
 // import stats functions
 import collectOrgStats from "./scripts/stats/collectOrgStats";
 
@@ -56,6 +60,10 @@ const core = require("@actions/core");
     // Programme tag data
     const collectProgrammeTag = await core.getInput("collect-programme-tag");
     const processProgrammeTag = await core.getInput("process-programme-tag");
+
+    // Blog tag data
+    const collectBlogTag = await core.getInput("collect-blog-tag");
+    const processBlogTag = await core.getInput("process-blog-tag");
 
     // stats data
     const collectStats = await core.getInput("collect-stats");
@@ -101,6 +109,15 @@ const core = require("@actions/core");
 
     if (processProgrammeTag === "true") {
       await collectProgrammeTagData(owner, token);
+    }
+
+    // Blog tag conditions
+    if (collectBlogTag === "true") {
+      await collectBlogTagsData(owner, token);
+    }
+
+    if (processBlogTag === "true") {
+      await collectBlogTagData(owner, token);
     }
 
     // stats conditions

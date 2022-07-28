@@ -1,0 +1,56 @@
+name: Collect Blog Tag Data
+
+# triger conditions
+on:
+  # manually triggered
+  workflow_dispatch:
+  # runs after dsa.yml
+  workflow_run:
+    workflows: ["Collect Blog Data"]
+    types:
+      - completed
+
+jobs:
+  collect_data:
+    runs-on: ubuntu-latest
+    name: Collect Blog Tag Data
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      ##########  Get Date  ##########
+      - name: Get Date
+        id: date
+        uses: nanzm/get-time-action@v1.1
+        with:
+          timeZone: 5.5
+          format: "YYYY-MM-DD-hh-mm"
+
+      ##########  collect Blog Tag data  ##########
+      - name: Collect Blog Tag Data
+        uses: ./action/
+        with:
+          collect-blog-tag: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit Blog Tag Data
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "blog tag list data - ${{ steps.date.outputs.time }}"
+
+      ##########  process Blog Tag data  ##########
+      - name: Process Blog Tag Data
+        uses: ./action/
+        with:
+          process-blog-tag: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+          PAT: ${{ secrets.API_DATA_FETCH_PAT }}
+
+      - name: Commit Processed Data
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "blog tag data - ${{ steps.date.outputs.time }}"
