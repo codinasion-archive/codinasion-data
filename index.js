@@ -10,9 +10,9 @@ import collectDsaData from "./scripts/dsa/collectDsaData";
 import collectAllBlogsData from "./scripts/blog/collectAllBlogsData";
 import collectBlogData from "./scripts/blog/collectBlogData";
 
-// import tags functions
-import collectTagsData from "./scripts/tag/collectTagsData";
-import collectTagData from "./scripts/tag/collectTagData";
+// import programme tags functions
+import collectProgrammeTagsData from "./scripts/programme/tag/collectProgrammeTagsData";
+import collectProgrammeTagData from "./scripts/programme/tag/collectProgrammeTagData";
 
 // import stats functions
 import collectOrgStats from "./scripts/stats/collectOrgStats";
@@ -53,9 +53,9 @@ const core = require("@actions/core");
     const collectBlog = await core.getInput("collect-blog");
     const processBlog = await core.getInput("process-blog");
 
-    // tag data
-    const collectTag = await core.getInput("collect-tag");
-    const processTag = await core.getInput("process-tag");
+    // Programme tag data
+    const collectProgrammeTag = await core.getInput("collect-programme-tag");
+    const processProgrammeTag = await core.getInput("process-programme-tag");
 
     // stats data
     const collectStats = await core.getInput("collect-stats");
@@ -94,13 +94,13 @@ const core = require("@actions/core");
       await collectBlogData(owner, token, blogRepo, blogBranch);
     }
 
-    // tag conditions
-    if (collectTag === "true") {
-      await collectTagsData(owner, token);
+    // Programme tag conditions
+    if (collectProgrammeTag === "true") {
+      await collectProgrammeTagsData(owner, token);
     }
 
-    if (processTag === "true") {
-      await collectTagData(owner, token);
+    if (processProgrammeTag === "true") {
+      await collectProgrammeTagData(owner, token);
     }
 
     // stats conditions

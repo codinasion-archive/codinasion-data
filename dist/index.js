@@ -35814,7 +35814,7 @@ async function collectblogData(
   blogBranch
 ) {
   const blogList = await fetch(
-    `https://raw.githubusercontent.com/${"codinasion"}/${"codinasion-data"}/${"master"}/data/blog/${"blogList"}.json`,
+    `https://raw.githubusercontent.com/${"codinasion"}/${"codinasion-data"}/${"blog"}/data/blog/${"blogList"}.json`,
     {
       method: "GET",
       headers: {
@@ -35926,14 +35926,14 @@ async function collectblogData(
     ));
 }
 
-;// CONCATENATED MODULE: ./scripts/tag/collectTagsData.js
+;// CONCATENATED MODULE: ./scripts/programme/tag/collectProgrammeTagsData.js
 
 
 
 
 
 
-async function collectTagsData(owner, token) {
+async function collectProgrammeTagsData(owner, token) {
   const allTags = [];
 
   const programmeList = await fetch(
@@ -35967,14 +35967,14 @@ async function collectTagsData(owner, token) {
   });
 }
 
-;// CONCATENATED MODULE: ./scripts/tag/collectTagData.js
+;// CONCATENATED MODULE: ./scripts/programme/tag/collectProgrammeTagData.js
 
 
 
 
 
 
-async function collectTagData(owner, token) {
+async function collectProgrammeTagData(owner, token) {
   const programmeList = await fetch(
     `https://raw.githubusercontent.com/${owner}/${"codinasion-data"}/master/data/programme/${"programmeList"}.json`,
     {
@@ -36664,7 +36664,7 @@ async function collectProjectsData(owner, token, projectTopic) {
 
 
 
-// import tags functions
+// import programme tags functions
 
 
 
@@ -36707,9 +36707,9 @@ const index_core = __nccwpck_require__(6398);
     const collectBlog = await index_core.getInput("collect-blog");
     const processBlog = await index_core.getInput("process-blog");
 
-    // tag data
-    const collectTag = await index_core.getInput("collect-tag");
-    const processTag = await index_core.getInput("process-tag");
+    // Programme tag data
+    const collectProgrammeTag = await index_core.getInput("collect-programme-tag");
+    const processProgrammeTag = await index_core.getInput("process-programme-tag");
 
     // stats data
     const collectStats = await index_core.getInput("collect-stats");
@@ -36748,13 +36748,13 @@ const index_core = __nccwpck_require__(6398);
       await collectblogData(owner, token, blogRepo, blogBranch);
     }
 
-    // tag conditions
-    if (collectTag === "true") {
-      await collectTagsData(owner, token);
+    // Programme tag conditions
+    if (collectProgrammeTag === "true") {
+      await collectProgrammeTagsData(owner, token);
     }
 
-    if (processTag === "true") {
-      await collectTagData(owner, token);
+    if (processProgrammeTag === "true") {
+      await collectProgrammeTagData(owner, token);
     }
 
     // stats conditions

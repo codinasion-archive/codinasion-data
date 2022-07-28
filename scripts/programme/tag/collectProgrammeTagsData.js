@@ -2,9 +2,9 @@ import fs from "fs";
 
 import fetch from "node-fetch";
 
-import formatTag from "../formatTag";
+import formatTag from "../../formatTag";
 
-export default async function collectTagsData(owner, token) {
+export default async function collectProgrammeTagsData(owner, token) {
   const allTags = [];
 
   const programmeList = await fetch(

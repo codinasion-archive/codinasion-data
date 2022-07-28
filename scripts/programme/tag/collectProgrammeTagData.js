@@ -2,9 +2,9 @@ import fs from "fs";
 
 import fetch from "node-fetch";
 
-import formatTag from "../formatTag";
+import formatTag from "../../formatTag";
 
-export default async function collectTagData(owner, token) {
+export default async function collectProgrammeTagData(owner, token) {
   const programmeList = await fetch(
     `https://raw.githubusercontent.com/${owner}/${"codinasion-data"}/master/data/programme/${"programmeList"}.json`,
     {

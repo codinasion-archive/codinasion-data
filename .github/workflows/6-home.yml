@@ -4,7 +4,7 @@ name: Collect Home Data
 on:
   # manually triggered
   workflow_dispatch:
-  # runs after tag.yml
+  # runs after humans.yml
   workflow_run:
     workflows: ["Generate humans txt"]
     types:
