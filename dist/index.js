@@ -36129,7 +36129,7 @@ async function collectBlogTagData(owner, token) {
           (await Promise.all(
             await blogList.map(async (data) => {
               for (let i = 0; i < data.tags.length; i++) {
-                if (formatTag(data.tags[i]).tag === formatTag(tag).tag) {
+                if (formatTag(data.tags[i]).tag === formatTag(tag.tag).tag) {
                   allBlog.push(data);
                   break;
                 }
