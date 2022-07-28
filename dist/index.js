@@ -35814,7 +35814,7 @@ async function collectblogData(
   blogBranch
 ) {
   const blogList = await fetch(
-    `https://raw.githubusercontent.com/${"codinasion"}/${"codinasion-data"}/${"blog"}/data/blog/${"blogList"}.json`,
+    `https://raw.githubusercontent.com/${"codinasion"}/${"codinasion-data"}/${"master"}/data/blog/${"blogList"}.json`,
     {
       method: "GET",
       headers: {
