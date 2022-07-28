@@ -36037,6 +36037,128 @@ async function collectProgrammeTagData(owner, token) {
     ));
 }
 
+;// CONCATENATED MODULE: ./scripts/blog/tag/collectBlogTagsData.js
+
+
+
+
+
+
+async function collectBlogTagsData(owner, token) {
+  const allTags = [];
+
+  const blogList = await fetch(
+    `https://raw.githubusercontent.com/${owner}/${"codinasion-data"}/master/data/blog/${"blogList"}.json`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    }
+  )
+    .then((res) => res.json())
+    .catch((error) => console.log(error));
+
+  blogList &&
+    (await Promise.all(
+      await blogList.map(async (data) => {
+        for (let i = 0; i < data.tags.length; i++) {
+          if (!allTags.includes(formatTag(data.tags[i]).tag)) {
+            // push tag to allTags
+            await allTags.push({
+              tag: formatTag(data.tags[i]).tag,
+              "count:": 1,
+            });
+          } else {
+            // update count
+            for (let j = 0; j < allTags.length; j++) {
+              if (allTags[j].tag === formatTag(data.tags[i]).tag) {
+                allTags[j]["count:"] += 1;
+              }
+            }
+          }
+        }
+      })
+    ));
+
+  // write tag list data to file
+  const tagsFilePath = `data/blog/tagList.json`;
+  await external_fs_default().writeFile(tagsFilePath, JSON.stringify(allTags), (err) => {
+    if (err) throw err;
+    console.log(`=> ${tagsFilePath} succesfully saved !!!`);
+  });
+}
+
+;// CONCATENATED MODULE: ./scripts/blog/tag/collectBlogTagData.js
+
+
+
+
+
+
+async function collectBlogTagData(owner, token) {
+  const blogList = await fetch(
+    `https://raw.githubusercontent.com/${owner}/${"codinasion-data"}/master/data/blog/${"blogList"}.json`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    }
+  )
+    .then((res) => res.json())
+    .catch((error) => console.log(error));
+
+  const tagList = await fetch(
+    `https://raw.githubusercontent.com/${"codinasion"}/${"codinasion-data"}/master/data/blog/${"tagList"}.json`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    }
+  )
+    .then((res) => res.json())
+    .catch((error) => console.log(error));
+
+  tagList &&
+    (await Promise.all(
+      await tagList.map(async (tag) => {
+        const allBlog = [];
+        blogList &&
+          (await Promise.all(
+            await blogList.map(async (data) => {
+              for (let i = 0; i < data.tags.length; i++) {
+                if (formatTag(data.tags[i]).tag === formatTag(tag).tag) {
+                  allBlog.push(data);
+                  break;
+                }
+              }
+            })
+          ));
+        await console.log(`\n=> Total ${tag} tag data : `, allBlog.length);
+        const tagFileDir = "data/blog/tag";
+        await external_fs_default().promises.mkdir(tagFileDir, { recursive: true });
+        const tagFilePath = `${tagFileDir}/${tag}.json`;
+        const tagData = await JSON.stringify(
+          allBlog.sort(function (a, b) {
+            if (a.slug < b.slug) {
+              return -1;
+            }
+            if (a.slug > b.slug) {
+              return 1;
+            }
+            return 0;
+          })
+        );
+        await external_fs_default().writeFile(tagFilePath, tagData, (err) => {
+          if (err) throw err;
+          console.log(`=> ${tagFilePath} succesfully saved !!!`);
+        });
+      })
+    ));
+}
+
 ;// CONCATENATED MODULE: ./scripts/stats/collectOrgStats.js
 
 
@@ -36668,6 +36790,10 @@ async function collectProjectsData(owner, token, projectTopic) {
 
 
 
+// import blog tags functions
+
+
+
 // import stats functions
 
 
@@ -36710,6 +36836,10 @@ const index_core = __nccwpck_require__(6398);
     // Programme tag data
     const collectProgrammeTag = await index_core.getInput("collect-programme-tag");
     const processProgrammeTag = await index_core.getInput("process-programme-tag");
+
+    // Blog tag data
+    const collectBlogTag = await index_core.getInput("collect-blog-tag");
+    const processBlogTag = await index_core.getInput("process-blog-tag");
 
     // stats data
     const collectStats = await index_core.getInput("collect-stats");
@@ -36755,6 +36885,15 @@ const index_core = __nccwpck_require__(6398);
 
     if (processProgrammeTag === "true") {
       await collectProgrammeTagData(owner, token);
+    }
+
+    // Blog tag conditions
+    if (collectBlogTag === "true") {
+      await collectBlogTagsData(owner, token);
+    }
+
+    if (processBlogTag === "true") {
+      await collectBlogTagData(owner, token);
     }
 
     // stats conditions

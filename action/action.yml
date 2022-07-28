@@ -102,6 +102,16 @@ inputs:
     required: true
     default: "false"
 
+  collect-blog-tag:
+    description: "collect blog tag data"
+    required: true
+    default: "false"
+
+  process-blog-tag:
+    description: "process blog tag data"
+    required: true
+    default: "false"
+
   collect-stats:
     description: "collect stats data"
     required: true
