@@ -36067,13 +36067,13 @@ async function collectBlogTagsData(owner, token) {
             // push tag to allTags
             await allTags.push({
               tag: formatTag(data.tags[i]).tag,
-              "count:": 1,
+              count: 1,
             });
           } else {
             // update count
             for (let j = 0; j < allTags.length; j++) {
               if (allTags[j].tag === formatTag(data.tags[i]).tag) {
-                allTags[j]["count:"] += 1;
+                allTags[j].count++;
               }
             }
           }
