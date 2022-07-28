@@ -4,9 +4,9 @@ name: Collect Stats Data
 on:
   # manually triggered
   workflow_dispatch:
-  # runs after tag.yml
+  # runs after programme-tag.yml
   workflow_run:
-    workflows: ["Collect Tag Data"]
+    workflows: ["Collect Programme Tag Data"]
     types:
       - completed
 

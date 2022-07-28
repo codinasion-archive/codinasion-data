@@ -1,4 +1,4 @@
-name: Collect Tag Data
+name: Collect Programme Tag Data
 
 # triger conditions
 on:
@@ -13,7 +13,7 @@ on:
 jobs:
   collect_data:
     runs-on: ubuntu-latest
-    name: Collect Tag Data
+    name: Collect Programme Tag Data
 
     permissions:
       contents: write
@@ -30,27 +30,27 @@ jobs:
           timeZone: 5.5
           format: "YYYY-MM-DD-hh-mm"
 
-      ##########  collect Tag data  ##########
-      - name: Collect Tag Data
+      ##########  collect Programme Tag data  ##########
+      - name: Collect Programme Tag Data
         uses: ./action/
         with:
-          collect-tag: true
+          collect-programme-tag: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Commit Tag Data
+      - name: Commit Programme Tag Data
         uses: EndBug/add-and-commit@v9
         with:
-          message: "tag list data - ${{ steps.date.outputs.time }}"
+          message: "programme tag list data - ${{ steps.date.outputs.time }}"
 
-      ##########  process Tag data  ##########
-      - name: Process Tag Data
+      ##########  process Programme Tag data  ##########
+      - name: Process Programme Tag Data
         uses: ./action/
         with:
-          process-tag: true
+          process-programme-tag: true
           token: ${{ secrets.GITHUB_TOKEN }}
           PAT: ${{ secrets.API_DATA_FETCH_PAT }}
 
       - name: Commit Processed Data
         uses: EndBug/add-and-commit@v9
         with:
-          message: "tag data - ${{ steps.date.outputs.time }}"
+          message: "programme tag data - ${{ steps.date.outputs.time }}"

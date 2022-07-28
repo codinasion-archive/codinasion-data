@@ -92,13 +92,13 @@ inputs:
     required: true
     default: "false"
 
-  collect-tag:
-    description: "collect tag data"
+  collect-programme-tag:
+    description: "collect programme tag data"
     required: true
     default: "false"
 
-  process-tag:
-    description: "process tag data"
+  process-programme-tag:
+    description: "process programme tag data"
     required: true
     default: "false"
 
