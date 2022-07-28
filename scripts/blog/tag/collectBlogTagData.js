@@ -44,10 +44,10 @@ export default async function collectBlogTagData(owner, token) {
               }
             })
           ));
-        await console.log(`\n=> Total ${tag} tag data : `, allBlog.length);
+        await console.log(`\n=> Total ${tag.tag} tag data : `, allBlog.length);
         const tagFileDir = "data/blog/tag";
         await fs.promises.mkdir(tagFileDir, { recursive: true });
-        const tagFilePath = `${tagFileDir}/${tag}.json`;
+        const tagFilePath = `${tagFileDir}/${tag.tag}.json`;
         const tagData = await JSON.stringify(
           allBlog.sort(function (a, b) {
             if (a.slug < b.slug) {
