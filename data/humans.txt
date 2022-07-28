@@ -71,6 +71,9 @@ https://github.com/scraper-404
 Seraph★776
 https://github.com/seraph776
 
+Spiros Arkoudelis
+https://github.com/SpirosArk
+
 Avik Sarkar
 https://github.com/ssavi-ict
 
@@ -432,9 +435,6 @@ https://github.com/smdpro
 Omar Abdelwahab
 https://github.com/SpadeQ22
 
-Spiros Arkoudelis
-https://github.com/SpirosArk
-
 Abhishekh S R
 https://github.com/srabhishekh
 
@@ -455,8 +455,9 @@ Tiara Brown
 https://github.com/tiarabcodes1
 https://twitter.com/tiarabcodes
 
-Tosin-dotcom
+Iyiola Oluwatosin
 https://github.com/Tosin-dotcom
+https://twitter.com/IyiolaTosin1
 
 Udit Soni
 https://github.com/udit6023
