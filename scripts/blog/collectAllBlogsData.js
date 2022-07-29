@@ -66,7 +66,7 @@ export default async function collectAllBlogsData(
               contributors: content.data.contributors
                 ? content.data.contributors
                 : [],
-              slug: formatSlug(data.path),
+              slug: formatSlug(data.path).toLowerCase(),
             });
           } catch (error) {
             await console.log("error occured !!! for ", data.path);

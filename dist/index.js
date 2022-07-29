@@ -35774,7 +35774,7 @@ async function collectAllBlogsData(
               contributors: content.data.contributors
                 ? content.data.contributors
                 : [],
-              slug: formatSlug(data.path),
+              slug: formatSlug(data.path).toLowerCase(),
             });
           } catch (error) {
             await console.log("error occured !!! for ", data.path);
@@ -35835,7 +35835,7 @@ async function collectblogData(
     (await Promise.all(
       blogList.map(async (data) => {
         try {
-          const slug = data.slug;
+          const slug = data.slug.toLowerCase();
 
           // get README.md text data
           const source = await fetch(

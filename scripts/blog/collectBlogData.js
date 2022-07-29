@@ -30,7 +30,7 @@ export default async function collectblogData(
     (await Promise.all(
       blogList.map(async (data) => {
         try {
-          const slug = data.slug;
+          const slug = data.slug.toLowerCase();
 
           // get README.md text data
           const source = await fetch(
