@@ -23,7 +23,11 @@ export default async function collectBlogTagsData(owner, token) {
     (await Promise.all(
       await blogList.map(async (data) => {
         for (let i = 0; i < data.tags.length; i++) {
-          if (!allTags.includes(formatTag(data.tags[i]).tag)) {
+          // check if tag already exists
+          const tag = allTags.find(
+            (tag) => tag.tag === formatTag(data.tags[i]).tag
+          );
+          if (!tag) {
             // push tag to allTags
             await allTags.push({
               tag: formatTag(data.tags[i]).tag,
