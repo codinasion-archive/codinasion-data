@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   # runs every two hour
   schedule:
-    - cron: "0 0/6 * * *"
+    - cron: "0 0/12 * * *"
   # on push to master
   # push:
   #   branches: [master]
