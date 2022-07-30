@@ -47,6 +47,10 @@ https://twitter.com/DevAndyZ
 RafaelFadel
 https://github.com/GodKimba
 
+Kylian Meulin
+https://github.com/KikiManjaro
+https://twitter.com/_KikiManjaro
+
 Madhu S Gowda
 https://github.com/MadhuS-1605
 https://twitter.com/thenameismadhus
@@ -157,6 +161,9 @@ https://github.com/d-coder111
 
 Dafodils
 https://github.com/Dafodils
+
+Dalton Cash
+https://github.com/DaltonCash
 
 Lakshyajeet Singh Goyal
 https://github.com/DarkMatter-999
@@ -283,6 +290,10 @@ https://github.com/jspoh
 julyvjo
 https://github.com/julyvjo
 
+Kacper Tomaszewski
+https://github.com/KacperTKI
+https://twitter.com/tamagotchiCS
+
 Kaleen Moon
 https://github.com/Kaleen-MicheleXO
 https://twitter.com/Kay_MicheleXO
@@ -295,10 +306,6 @@ https://github.com/KhalilThabet
 
 Khushi369
 https://github.com/Khushi369
-
-Kylian Meulin
-https://github.com/KikiManjaro
-https://twitter.com/_KikiManjaro
 
 Karina Zhang
 https://github.com/kzhang01
@@ -364,6 +371,9 @@ https://github.com/pabon-alberto
 Giandomenico Pagliara
 https://github.com/PagliaraG
 
+Peleg-Noam
+https://github.com/Peleg-Noam
+
 Alenn Wright
 https://github.com/PhysicsMD
 
@@ -385,6 +395,9 @@ https://github.com/Regis-Caelum
 
 Raphael Rebello de Godoy
 https://github.com/rgodoy86
+
+Rahul  Ganesh S
+https://github.com/rgsk-28
 
 Rishav karanjit
 https://github.com/rishav-karanjit
