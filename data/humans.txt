@@ -55,9 +55,6 @@ Madhu S Gowda
 https://github.com/MadhuS-1605
 https://twitter.com/thenameismadhus
 
-Neel Patel
-https://github.com/NeelPatel31
-
 Paolo Ferrari
 https://github.com/PaoloFer
 
@@ -72,24 +69,14 @@ https://twitter.com/_Lyndhir_
 Scraper 404
 https://github.com/scraper-404
 
-Seraph★776
-https://github.com/seraph776
-
 Spiros Arkoudelis
 https://github.com/SpirosArk
 
 Avik Sarkar
 https://github.com/ssavi-ict
 
-umaxyon
-https://github.com/umaxyon
-
 Victoria Cheng
 https://github.com/victoriacheng15
-
-Waleska
-https://github.com/waleska404
-https://twitter.com/waleska404
 
 
 /* CONTRIBUTORS */
@@ -116,7 +103,7 @@ https://github.com/akhil484
 Alfredo Rodriguez
 https://github.com/AlfredoR-CSUF
 
-amitSahu9
+Amit Sahu
 https://github.com/amitSahu9
 
 Anas Tazir
@@ -352,6 +339,9 @@ https://twitter.com/SaadMateen12
 Jakub Goliszek
 https://github.com/n1ongol
 
+Neel Patel
+https://github.com/NeelPatel31
+
 nikhilnarla
 https://github.com/nikhilnarla
 
@@ -427,6 +417,9 @@ https://github.com/SanjayShetty01
 Satyapriyo Biswas
 https://github.com/Satyapriyo
 
+Seraph★776
+https://github.com/seraph776
+
 Shahzeb Ali
 https://github.com/Shahzeb-A
 
@@ -481,11 +474,18 @@ https://github.com/udaybadhe
 Udit Soni
 https://github.com/udit6023
 
+umaxyon
+https://github.com/umaxyon
+
 vaishnavikumar8
 https://github.com/vaishnavikumar8
 
 Vineet Sen
 https://github.com/VSen910
+
+Waleska
+https://github.com/waleska404
+https://twitter.com/waleska404
 
 William Harrison Tann
 https://github.com/whtann
