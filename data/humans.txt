@@ -66,9 +66,6 @@ Lorenzo Rossi
 https://github.com/rossilor95
 https://twitter.com/_Lyndhir_
 
-Scraper 404
-https://github.com/scraper-404
-
 Spiros Arkoudelis
 https://github.com/SpirosArk
 
@@ -426,6 +423,9 @@ https://github.com/SanjayShetty01
 
 Satyapriyo Biswas
 https://github.com/Satyapriyo
+
+undefined
+https://github.com/orgs/codinasion/people
 
 Seraph 天
 https://github.com/seraph776
